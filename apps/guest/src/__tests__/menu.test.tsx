@@ -1,8 +1,8 @@
 import { createQuote, getChefMenus, type ChefMenus, type Quote } from '@senzo/api-client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react-native';
-import { useDraft } from '../../../../features/booking/draft';
-import MenuDetail from './[menuId]';
+import { useDraft } from '../features/booking/draft';
+import MenuDetail from '../app/chef/[slug]/menu/[menuId]';
 
 jest.mock('@senzo/api-client', () => ({
   ...jest.requireActual('@senzo/api-client'),

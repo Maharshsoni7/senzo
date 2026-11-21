@@ -2,7 +2,7 @@ import { ApiError, requestOtp } from '@senzo/api-client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
-import Login from './login';
+import Login from '../app/(auth)/login';
 
 jest.mock('@senzo/api-client', () => ({
   ...jest.requireActual('@senzo/api-client'),

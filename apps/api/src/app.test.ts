@@ -25,3 +25,25 @@ describe('api skeleton', () => {
     expect(Object.keys(doc.paths)).toContain('/v1/health');
   });
 });
+
+describe('CORS', () => {
+  const preflight = (origin: string) =>
+    app.request(
+      '/v1/quotes',
+      {
+        method: 'OPTIONS',
+        headers: { Origin: origin, 'Access-Control-Request-Method': 'POST' },
+      },
+      env,
+    );
+
+  it('lets the local Expo web preview call the dev API', async () => {
+    const res = await preflight('http://localhost:8081');
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe('http://localhost:8081');
+  });
+
+  it('refuses other origins', async () => {
+    const res = await preflight('https://evil.example');
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBeNull();
+  });
+});

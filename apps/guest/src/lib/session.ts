@@ -1,8 +1,23 @@
 import { refreshSession, type TokenPair } from '@senzo/api-client';
 import * as SecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
 import { create } from 'zustand';
 
 const KEY = 'senzo.session';
+
+// SecureStore has no web build; the browser preview keeps tokens in localStorage.
+const vault =
+  Platform.OS === 'web'
+    ? {
+        get: async (k: string) => globalThis.localStorage?.getItem(k) ?? null,
+        set: async (k: string, v: string) => globalThis.localStorage?.setItem(k, v),
+        remove: async (k: string) => globalThis.localStorage?.removeItem(k),
+      }
+    : {
+        get: SecureStore.getItemAsync,
+        set: SecureStore.setItemAsync,
+        remove: SecureStore.deleteItemAsync,
+      };
 /** Refresh this long before the access token expires. */
 const EARLY_MS = 60_000;
 
@@ -19,7 +34,7 @@ export const useSession = create<SessionState>(() => ({
 }));
 
 export async function hydrateSession() {
-  const raw = await SecureStore.getItemAsync(KEY);
+  const raw = await vault.get(KEY);
   const tokens = raw ? (JSON.parse(raw) as TokenPair) : null;
   const usable = tokens && Date.parse(tokens.refreshExpiresAt) > Date.now();
   useSession.setState({
@@ -29,12 +44,12 @@ export async function hydrateSession() {
 }
 
 export async function signIn(tokens: TokenPair, isNewUser: boolean) {
-  await SecureStore.setItemAsync(KEY, JSON.stringify(tokens));
+  await vault.set(KEY, JSON.stringify(tokens));
   useSession.setState({ status: 'signedIn', tokens, isNewUser });
 }
 
 export async function signOut() {
-  await SecureStore.deleteItemAsync(KEY);
+  await vault.remove(KEY);
   useSession.setState({ status: 'signedOut', tokens: null, isNewUser: false });
 }
 
