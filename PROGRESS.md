@@ -53,8 +53,10 @@ Last updated: 21 Nov 2026
 - ✅ Cancellation policy `modules/bookings/policy.ts` (48 h / 24 h windows, Q3 fee rule, Q4 chef-cancel credit, promo never refunded as cash, card/wallet split, one free reschedule ≥ 48 h); rates in `src/config/policy.ts`; slot times in `src/lib/time.ts`
 - ✅ Ledger `modules/ledger`: pure line builders (capture, cancellation, tip, payout) that must sum to zero + `ledgerTxn()` returning inserts for the caller's batch; tested across promo/wallet/window combinations. Partial-refund GST treatment → CA (Q6)
 - ✅ Booking state machine: `modules/bookings/machine.ts` (pure transition table + guards: allergy ack, on-my-way ≤ 4 h, no-show after 30 min, done before finish) and `transition()` — booking update + booking_events + outbox + caller's ledger rows in one batch; a changes() guard rolls back racing writes (STATE_CONFLICT); slot clash → SLOT_TAKEN
-- ⬜ Create booking + soft lock + Razorpay order (test mode) + webhooks
-- ⬜ Workflows timers (accept 2 h, reminders, auto-complete, payout release)
+- ✅ Checkout soft lock: `SlotLock` Durable Object per chef + date + slot (`src/durable/slot-lock.ts`), 10 min, holder can extend/release, alarm clears it
+- ✅ Timers: `BookingTimers` Workflow per booking (`src/workflows/booking-timers.ts`), steps in `modules/bookings/timers.ts`: checkout expiry 10 min (+ lock release) → accept deadline 2 h → reminders 24 h / 2 h (outbox `booking.reminder`; skipped if > 15 min overdue) → possible no-show 30 min after arrival → auto-complete 2 h after "done" → payout release 24 h after completion. Every step re-reads the booking and no-ops if it moved on
+- ⬜ Create booking + Razorpay order (test mode) + webhooks — **blocked on P1** (Route vs RazorpayX). Must call `startBookingTimers()` at checkout, `signalBooking(PAYMENT_CAPTURED)` on capture, `signalBooking(JOB_DONE)` from the "done" route
+- ⬜ Late capture after checkout expiry → automatic refund (webhook handler)
 - ⬜ Availability check in quotes / booking (G08)
 
 ## Open decisions

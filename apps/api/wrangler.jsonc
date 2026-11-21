@@ -15,4 +15,11 @@
       "migrations_dir": "migrations",
     },
   ],
+  "durable_objects": {
+    "bindings": [{ "name": "SLOT_LOCK", "class_name": "SlotLock" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["SlotLock"] }],
+  "workflows": [
+    { "name": "senzo-booking-timers", "binding": "BOOKING_TIMERS", "class_name": "BookingTimers" },
+  ],
 }

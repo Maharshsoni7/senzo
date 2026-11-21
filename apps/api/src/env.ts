@@ -1,7 +1,11 @@
 import type { Db } from './db';
+import type { SlotLock } from './durable/slot-lock';
+import type { BookingTimerParams } from './workflows/booking-timers';
 
 export type Bindings = {
   DB: D1Database;
+  SLOT_LOCK: DurableObjectNamespace<SlotLock>;
+  BOOKING_TIMERS: Workflow<BookingTimerParams>;
   ENVIRONMENT: 'development' | 'staging' | 'production';
   JWT_SECRET: string;
   /** HMAC key for OTP and refresh-token hashes. */
