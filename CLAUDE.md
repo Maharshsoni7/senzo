@@ -57,7 +57,7 @@ pnpm --filter api db:seed:local      # mockup demo data (idempotent); tests impo
 pnpm --filter api-client generate   # export OpenAPI from route code + regenerate the typed client (orval)
 ```
 
-After changing any route or schema, run `pnpm --filter api-client generate` and commit `openapi.json` + `src/generated/`; CI fails if they're stale. Give every route an `operationId` (it becomes the client function name) and name shared schemas with `.meta({ id })`.
+After changing any route or schema, run `pnpm --filter api-client generate` and commit `openapi.json` + `src/generated/`; CI fails if they're stale. Give every route an `operationId` (it becomes the client function name) and name shared schemas with `.meta({ id })`. The OpenAPI export runs in Node, so nothing reachable from `src/app.ts` may import `cloudflare:workers` at runtime (Durable Objects and Workflows stay in `src/durable`, `src/workflows`; put shared constants in `src/config`). Don't silence `generate`'s output: if it fails, the client silently stays stale.
 
 `wrangler.jsonc` has a placeholder D1 `database_id` until Cloudflare is connected.
 

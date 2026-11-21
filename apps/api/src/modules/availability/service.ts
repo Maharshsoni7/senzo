@@ -2,7 +2,7 @@ import type { Slot } from '@senzo/schemas';
 import { and, eq, gte, inArray, lte, or } from 'drizzle-orm';
 import type { Db } from '../../db';
 import { availability, bookings, chefs, cookingDays } from '../../db/schema';
-import { CHECKOUT_LOCK_MS } from '../../durable/slot-lock';
+import { CHECKOUT_LOCK_MS } from '../../config/policy';
 import { AppError } from '../../lib/errors';
 import { monthAvailability, slotStatus, type AvailabilityInput } from './rules';
 

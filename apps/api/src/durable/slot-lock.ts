@@ -1,12 +1,11 @@
 import type { Slot } from '@senzo/schemas';
 import { DurableObject } from 'cloudflare:workers';
+import { CHECKOUT_LOCK_MS } from '../config/policy';
 import type { Bindings } from '../env';
 
 type Hold = { holder: string; expiresAt: number };
 
 export type AcquireResult = { ok: true; expiresAt: number } | { ok: false; heldUntil: number };
-
-export const CHECKOUT_LOCK_MS = 10 * 60_000;
 
 /**
  * Soft lock on one chef + date + slot while a guest pays (business rules §3). Durable Object

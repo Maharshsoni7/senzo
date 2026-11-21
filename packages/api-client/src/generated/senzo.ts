@@ -34,6 +34,7 @@ export const ProblemCode = {
   PROMO_INVALID: 'PROMO_INVALID',
   INVALID_TRANSITION: 'INVALID_TRANSITION',
   STATE_CONFLICT: 'STATE_CONFLICT',
+  SLOT_UNAVAILABLE: 'SLOT_UNAVAILABLE',
 } as const;
 
 export type ProblemFields = { [key: string]: string[] };
@@ -267,8 +268,58 @@ export interface QuoteRequest {
   promo?: string;
 }
 
+export type ChefMonthAvailabilityDaysItemSlotsLunch =
+  (typeof ChefMonthAvailabilityDaysItemSlotsLunch)[keyof typeof ChefMonthAvailabilityDaysItemSlotsLunch];
+
+export const ChefMonthAvailabilityDaysItemSlotsLunch = {
+  open: 'open',
+  booked: 'booked',
+  off: 'off',
+} as const;
+
+export type ChefMonthAvailabilityDaysItemSlotsDinner =
+  (typeof ChefMonthAvailabilityDaysItemSlotsDinner)[keyof typeof ChefMonthAvailabilityDaysItemSlotsDinner];
+
+export const ChefMonthAvailabilityDaysItemSlotsDinner = {
+  open: 'open',
+  booked: 'booked',
+  off: 'off',
+} as const;
+
+export type ChefMonthAvailabilityDaysItemSlotsLate =
+  (typeof ChefMonthAvailabilityDaysItemSlotsLate)[keyof typeof ChefMonthAvailabilityDaysItemSlotsLate];
+
+export const ChefMonthAvailabilityDaysItemSlotsLate = {
+  open: 'open',
+  booked: 'booked',
+  off: 'off',
+} as const;
+
+export type ChefMonthAvailabilityDaysItemSlots = {
+  lunch: ChefMonthAvailabilityDaysItemSlotsLunch;
+  dinner: ChefMonthAvailabilityDaysItemSlotsDinner;
+  late: ChefMonthAvailabilityDaysItemSlotsLate;
+};
+
+export type ChefMonthAvailabilityDaysItem = {
+  date: string;
+  open: boolean;
+  slots: ChefMonthAvailabilityDaysItemSlots;
+};
+
+export interface ChefMonthAvailability {
+  chefId: string;
+  month: string;
+  days: ChefMonthAvailabilityDaysItem[];
+}
+
 export type GetHealth200 = {
   ok: true;
+};
+
+export type GetChefAvailabilityParams = {
+  /** @pattern ^\d{4}-(0[1-9]|1[0-2])$ */
+  month: string;
 };
 
 const getHeaders = (
@@ -397,5 +448,35 @@ export const createQuote = async (
     method: 'POST',
     headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
     body: JSON.stringify(quoteRequest),
+  });
+};
+
+export const getGetChefAvailabilityUrl = (chefId: string, params: GetChefAvailabilityParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value));
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0
+    ? `/v1/chefs/${chefId}/availability?${stringifiedParams}`
+    : `/v1/chefs/${chefId}/availability`;
+};
+
+/**
+ * @summary Open, booked and off slots for one month (G08)
+ */
+export const getChefAvailability = async (
+  chefId: string,
+  params: GetChefAvailabilityParams,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<ChefMonthAvailability> => {
+  return senzoFetch<ChefMonthAvailability>(getGetChefAvailabilityUrl(chefId, params), {
+    ...options,
+    method: 'GET',
   });
 };

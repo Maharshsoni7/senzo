@@ -11,3 +11,6 @@ export const POLICY = {
   /** Free reschedule, once, up to this long before the slot. */
   rescheduleBeforeMs: 48 * 3_600_000,
 } as const;
+
+/** Checkout soft lock on a chef's slot while the guest pays (§3). */
+export const CHECKOUT_LOCK_MS = 10 * 60_000;
