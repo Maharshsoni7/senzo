@@ -22,13 +22,15 @@ export const ErrorCode = z.enum([
 export type ErrorCode = z.infer<typeof ErrorCode>;
 
 /** RFC 9457 body returned as application/problem+json. */
-export const Problem = z.object({
-  type: z.string(),
-  title: z.string(),
-  status: z.number().int(),
-  code: ErrorCode,
-  detail: z.string().optional(),
-  fields: z.record(z.string(), z.array(z.string())).optional(),
-  retryAfterSec: z.number().int().optional(),
-});
+export const Problem = z
+  .object({
+    type: z.string(),
+    title: z.string(),
+    status: z.number().int(),
+    code: ErrorCode,
+    detail: z.string().optional(),
+    fields: z.record(z.string(), z.array(z.string())).optional(),
+    retryAfterSec: z.number().int().optional(),
+  })
+  .meta({ id: 'Problem' });
 export type Problem = z.infer<typeof Problem>;

@@ -31,7 +31,8 @@ Last updated: 21 Nov 2026
 - ✅ Scaffold monorepo (pnpm 12 + Turborepo, hoisted node_modules): `apps/{api,guest,chef}`, `packages/{config,schemas,ui}`
 - ✅ Guest (Senzo) and chef (Senzo Partner) Expo SDK 58 shells: Expo Router, brand icons, theme from `design/tokens.json`; Android bundle builds
 - ✅ `packages/schemas`: money helpers (`percentOf`, `formatINR`), error codes + Problem schema, all enums (`enums.ts`)
-- 🟡 API skeleton: ✅ Hono + zod-openapi, problem+json errors, `/v1/health`, `/openapi.json` · ✅ redacting logger (`src/lib/log.ts`) · ✅ idempotency middleware (`src/middleware/idempotency.ts`) · ⬜ orval `packages/api-client`
+- ✅ API skeleton: Hono + zod-openapi, problem+json errors, `/v1/health`, `/openapi.json` · redacting logger (`src/lib/log.ts`) · idempotency middleware (`src/middleware/idempotency.ts`)
+- ✅ `packages/api-client`: OpenAPI exported from route code → orval typed fetch client (`requestOtp`, `verifyOtp`…) + `configureApiClient` / `ApiError` with stable codes; CI fails if it's stale
 - ✅ API tests run in workerd via `@cloudflare/vitest-plugin` (renamed from vitest-pool-workers) with local D1 + migrations
 - ✅ Drizzle schema for all 63 tables in `docs/data-model.md` (`apps/api/src/db/schema/`) + migration `0000_init`; enum CHECKs, `one_booking_per_slot` partial index, ledger non-zero check — tested
 - ✅ Seed data from the mockups in `apps/api/seed/`: 8 live chefs (Ananya Mehta with 3 menus + full Gujarati Classic courses/options/add-ons), guests Rahul Desai & Krupa Shah, bookings SZ-1042 (paid out, ₹200 tip) and SZ-1048 (requested), FIRSTFEAST promo, platform ledger accounts. `pnpm --filter api db:seed:local`
@@ -40,7 +41,7 @@ Last updated: 21 Nov 2026
 - ⬜ MSG91 sender (needs auth key + DLT templates); until then non-prod uses `DEV_FIXED_OTP`, prod refuses to send
 - ⬜ Per-IP / per-device OTP limits (Durable Object rate limiter)
 - ⬜ Consent + 18+ confirmation (`PATCH /v1/me`, E1)
-- ⬜ CI: typecheck, lint, test (GitHub Actions)
+- ✅ CI (GitHub Actions `.github/workflows/ci.yml`): typecheck, lint, test, migration drift, API-client drift — first run green
 - ⬜ Bundle IDs / EAS project (needs domain decision)
 - ⬜ `apps/web`, `apps/admin` (Phase 5)
 - ✅ `CLAUDE.md` → Commands updated to real scripts
@@ -61,3 +62,4 @@ Last updated: 21 Nov 2026
 - **21 Nov 2026** — Monorepo scaffolded. Versions: Expo 58.0.26, RN 0.88.1, React 19.3, TypeScript 6.0 (Expo's pin, used repo-wide), Hono 4.13, zod 4.6, Vitest 4.1 (pool-workers needs ^4.1), Wrangler 4.166. Checks: typecheck, lint, 10 tests pass; `wrangler dev` serves `/v1/health`; guest Android bundle exports.
 - **21 Nov 2026** — Q1–Q7 defaults adopted provisionally (D21). Database schema (63 tables, migration `0000_init`, applied locally), redacting logger, Idempotency-Key middleware. Vitest moved to 5.1 now that `@cloudflare/vitest-plugin` supports it. Schema changes vs `docs/data-model.md` recorded there: `idempotency_keys` gained request_hash/status_code/content_type; `ledger_accounts.owner_id` is `''` for platform accounts. 25 tests pass.
 - **21 Nov 2026** — Seed data from mockups (GST rounding logged as Q8). Phone OTP auth with rotating refresh tokens; `.dev.vars.example` added. 59 tests pass.
+- **21 Nov 2026** — CI on GitHub Actions (green). Typed API client generated from OpenAPI with orval. 61 tests pass. Phase 1 foundation done except the items still open above.

@@ -5,6 +5,11 @@ import { log } from './lib/log';
 import { createRouter } from './lib/router';
 import { authRoutes } from './modules/auth/routes';
 
+export const OPENAPI_CONFIG = {
+  openapi: '3.1.0',
+  info: { title: 'Senzo API', version: '1' },
+};
+
 export function createApp() {
   const app = createRouter();
 
@@ -24,6 +29,7 @@ export function createApp() {
     createRoute({
       method: 'get',
       path: '/v1/health',
+      operationId: 'getHealth',
       tags: ['system'],
       responses: {
         200: {
@@ -41,10 +47,7 @@ export function createApp() {
     type: 'http',
     scheme: 'bearer',
   });
-  app.doc31('/openapi.json', {
-    openapi: '3.1.0',
-    info: { title: 'Senzo API', version: '1' },
-  });
+  app.doc31('/openapi.json', OPENAPI_CONFIG);
 
   return app;
 }

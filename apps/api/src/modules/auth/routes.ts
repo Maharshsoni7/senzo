@@ -23,6 +23,7 @@ export const authRoutes = createRouter()
     createRoute({
       method: 'post',
       path: '/otp/request',
+      operationId: 'requestOtp',
       tags: ['auth'],
       summary: 'Send a login code by SMS or voice call',
       request: { body: { required: true, ...json(OtpRequest) } },
@@ -46,6 +47,7 @@ export const authRoutes = createRouter()
     createRoute({
       method: 'post',
       path: '/otp/verify',
+      operationId: 'verifyOtp',
       tags: ['auth'],
       summary: 'Check the code and start a session',
       request: { body: { required: true, ...json(OtpVerify) } },
@@ -61,6 +63,7 @@ export const authRoutes = createRouter()
     createRoute({
       method: 'post',
       path: '/refresh',
+      operationId: 'refreshSession',
       tags: ['auth'],
       summary: 'Swap a refresh token for a new pair; the old one stops working',
       request: { body: { required: true, ...json(RefreshRequest) } },
@@ -76,6 +79,7 @@ export const authRoutes = createRouter()
     createRoute({
       method: 'post',
       path: '/logout',
+      operationId: 'logout',
       tags: ['auth'],
       security: [{ bearer: [] }],
       middleware: [requireAuth] as const,

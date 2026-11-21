@@ -1,0 +1,25 @@
+{
+  "name": "@senzo/api-client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate": "pnpm --filter @senzo/api openapi:export ../../packages/api-client/openapi.json && orval",
+    "typecheck": "tsc",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@senzo/schemas": "workspace:*"
+  },
+  "devDependencies": {
+    "@senzo/config": "workspace:*",
+    "eslint": "^10.0.0",
+    "orval": "^8.48.0",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.1"
+  }
+}
