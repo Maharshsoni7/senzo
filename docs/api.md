@@ -47,6 +47,8 @@ Built (`apps/api/src/modules/auth`). Errors: `TURNSTILE_FAILED` 403 · `RATE_LIM
 | GET | `/chefs/:id/menus` | Set menus with bands, courses, options, add-ons, flags |
 | GET | `/chefs/:id/reviews` | cursor |
 | GET | `/chefs/:id/availability?month=YYYY-MM` | per day: lunch/dinner/late = open/booked/off |
+
+All five are **built** (`modules/discovery`, `modules/availability`). Not yet: `addressId` (needs saved addresses), the `figure` look for ChefFig, and the FTS5 search index — search is a substring match over name, headline, cuisines and approved dish names plus `search_synonyms`, fine at beta scale. `rule` takes `jain` or `no_onion_garlic`. Ranking weights live in `src/config/ranking.ts`.
 | POST | `/quotes` | `{ menuId, guests, foodRule, options[], addons[], groceriesBy, kitchen{gas,oven,…}, date, slot, promo? }` → full price breakdown, warnings (no oven, below minimum) — used by G22, G08, G09. **Built**: public; `bookable: false` below the chef minimum (still 200); warnings `JAIN_SWAPPED`, `NO_OVEN_ALTERNATIVE`, `INDUCTION_ADDED`, `BELOW_CHEF_MINIMUM`; errors `GUESTS_OUT_OF_RANGE`, `FOOD_RULE_UNAVAILABLE`, `PROMO_INVALID`. Chef earnings aren't returned. Availability (date/slot) isn't checked yet |
 
 ## Bookings — guest (G09–G13, G16, G17, G19, G21)

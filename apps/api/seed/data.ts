@@ -531,3 +531,28 @@ export const cookingDays: Insert<S['cookingDays']>[] = [
     })),
   ),
 ];
+
+export const searchSynonyms: Insert<S['searchSynonyms']>[] = [
+  { term: 'dhokla', synonym: 'dhokra' },
+  { term: 'dhokla', synonym: 'ઢોકળા' },
+  { term: 'undhiyu', synonym: 'undhiya' },
+];
+
+// G07 shows only verified proofs; the second stays hidden until ops approves it.
+export const chefProofs: Insert<S['chefProofs']>[] = [
+  {
+    id: 'proof_ananya_kitchen',
+    chefId: 'chef_ananya',
+    kind: 'kitchen',
+    title: 'Hotel kitchen, Ahmedabad',
+    detail: '3 years on the Gujarati line',
+    status: 'ok',
+  },
+  {
+    id: 'proof_ananya_cert',
+    chefId: 'chef_ananya',
+    kind: 'certificate',
+    title: 'Food safety course',
+    status: 'review',
+  },
+];

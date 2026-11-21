@@ -60,6 +60,11 @@ Last updated: 21 Nov 2026
 - ⬜ Late capture after checkout expiry → automatic refund (webhook handler)
 - ✅ Availability (G08): `GET /v1/chefs/:chefId/availability?month=` — weekly `cooking_days` + one-off `availability` overrides + active bookings and in-progress checkouts; past slots and non-live chefs off. `POST /v1/quotes` with date+slot returns SLOT_TAKEN / SLOT_UNAVAILABLE. Seed: Ananya Thu–Sun (C10)
 
+## Phase 3 · Guest app (API first)
+
+- ✅ Discovery API: `GET /v1/chefs` (rail + search: area radius, text + synonyms, Jain/NOG, cuisine, group size, date+slot; ranked by distance, rating, acceptance, reply time), `/v1/chefs/:slug` (verified proofs only), `/:id/menus`, `/:id/reviews` (paged, "Rahul D.")
+- ⬜ FTS5 search index, `addressId` filter, ChefFig look
+
 ## Open decisions
 
 | # | Question | Status |

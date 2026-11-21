@@ -616,6 +616,467 @@
           "month",
           "days"
         ]
+      },
+      "ChefList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChefCard"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ]
+      },
+      "ChefCard": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "headline": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cuisines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ratingAvg": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "ratingCount": {
+            "type": "integer"
+          },
+          "fromPricePaise": {
+            "type": "integer"
+          },
+          "distanceKm": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "offersJain": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "displayName",
+          "headline",
+          "cuisines",
+          "ratingAvg",
+          "ratingCount",
+          "fromPricePaise",
+          "distanceKm",
+          "offersJain"
+        ]
+      },
+      "ChefProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "headline": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "bio": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "yearsCooking": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "jobsDone": {
+            "type": "integer"
+          },
+          "maxGuests": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "hasHelper": {
+            "type": "boolean"
+          },
+          "cuisines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cuisine": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string",
+                  "enum": [
+                    "good",
+                    "great",
+                    "expert"
+                  ]
+                }
+              },
+              "required": [
+                "cuisine",
+                "level"
+              ]
+            }
+          },
+          "foodRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "occasions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "proofs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "kitchen",
+                    "training",
+                    "certificate"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "title",
+                "detail"
+              ]
+            }
+          },
+          "reviews": {
+            "type": "object",
+            "properties": {
+              "ratingAvg": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "ratingCount": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "ratingAvg",
+              "ratingCount"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "displayName",
+          "headline",
+          "bio",
+          "yearsCooking",
+          "jobsDone",
+          "maxGuests",
+          "hasHelper",
+          "cuisines",
+          "foodRules",
+          "occasions",
+          "proofs",
+          "reviews"
+        ]
+      },
+      "ChefMenus": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChefMenu"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "ChefMenu": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "event",
+              "meal_prep"
+            ]
+          },
+          "minBookingPaise": {
+            "type": "integer"
+          },
+          "grocerySavingPaise": {
+            "type": "integer"
+          },
+          "offersJain": {
+            "type": "boolean"
+          },
+          "offersNog": {
+            "type": "boolean"
+          },
+          "bands": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "minGuests": {
+                  "type": "integer"
+                },
+                "maxGuests": {
+                  "type": "integer"
+                },
+                "pricePerGuestPaise": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "minGuests",
+                "maxGuests",
+                "pricePerGuestPaise"
+              ]
+            }
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "dishName": {
+                        "type": "string"
+                      },
+                      "extraPaise": {
+                        "type": "integer"
+                      },
+                      "jainFlag": {
+                        "type": "string",
+                        "enum": [
+                          "ok",
+                          "jain_version",
+                          "not_jain"
+                        ]
+                      },
+                      "needsOven": {
+                        "type": "boolean"
+                      },
+                      "ovenAltText": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "dishName",
+                      "extraPaise",
+                      "jainFlag",
+                      "needsOven",
+                      "ovenAltText"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "options"
+              ]
+            }
+          },
+          "addons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "pricePerGuestPaise": {
+                  "type": "integer"
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "pricePerGuestPaise",
+                "note"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "summary",
+          "kind",
+          "minBookingPaise",
+          "grocerySavingPaise",
+          "offersJain",
+          "offersNog",
+          "bands",
+          "courses",
+          "addons"
+        ]
+      },
+      "ChefReviews": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChefReview"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ]
+      },
+      "ChefReview": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "stars": {
+            "type": "integer"
+          },
+          "text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "author",
+          "stars",
+          "text",
+          "tags",
+          "guests",
+          "createdAt"
+        ]
       }
     },
     "parameters": {}
@@ -914,6 +1375,290 @@
           },
           "404": {
             "description": "Chef not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chefs": {
+      "get": {
+        "operationId": "listChefs",
+        "tags": [
+          "discovery"
+        ],
+        "summary": "Home rail and search (G04, G05): live chefs, ranked",
+        "parameters": [
+          {
+            "schema": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -90,
+              "maximum": 90
+            },
+            "required": false,
+            "name": "lat",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -180,
+              "maximum": 180
+            },
+            "required": false,
+            "name": "lng",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "required": false,
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "jain",
+                "no_onion_garlic"
+              ]
+            },
+            "required": false,
+            "name": "rule",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "required": false,
+            "name": "cuisine",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "required": false,
+            "name": "guests",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "name": "date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "lunch",
+                "dinner",
+                "late"
+              ]
+            },
+            "required": false,
+            "name": "slot",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ranked chef cards",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChefList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chefs/{slug}": {
+      "get": {
+        "operationId": "getChefProfile",
+        "tags": [
+          "discovery"
+        ],
+        "summary": "Chef profile with verified proofs only (G07)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "slug",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChefProfile"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Chef not found or not live",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chefs/{chefId}/menus": {
+      "get": {
+        "operationId": "getChefMenus",
+        "tags": [
+          "discovery"
+        ],
+        "summary": "Live set menus with bands, courses, options and add-ons (G07, G22)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "chefId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Menus",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChefMenus"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Chef not found or not live",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chefs/{chefId}/reviews": {
+      "get": {
+        "operationId": "getChefReviews",
+        "tags": [
+          "discovery"
+        ],
+        "summary": "Public guest reviews, newest first (G07)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "chefId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChefReviews"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Chef not found or not live",
             "content": {
               "application/problem+json": {
                 "schema": {

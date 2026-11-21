@@ -13,6 +13,7 @@ const plan: [SQLiteTable, object[]][] = [
   [schema.chefFoodRules, data.chefFoodRules],
   [schema.chefOccasions, data.chefOccasions],
   [schema.cookingDays, data.cookingDays],
+  [schema.chefProofs, data.chefProofs],
   [schema.dishes, data.dishes],
   [schema.setMenus, data.setMenus],
   [schema.menuBands, data.menuBands],
@@ -27,6 +28,7 @@ const plan: [SQLiteTable, object[]][] = [
   [schema.reviews, data.reviews],
   [schema.promoCodes, data.promoCodes],
   [schema.ledgerAccounts, data.ledgerAccounts],
+  [schema.searchSynonyms, data.searchSynonyms],
 ];
 
 /** One row per statement: D1 caps a query at 100 bound parameters. */

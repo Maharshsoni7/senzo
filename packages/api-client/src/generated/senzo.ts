@@ -313,6 +313,167 @@ export interface ChefMonthAvailability {
   days: ChefMonthAvailabilityDaysItem[];
 }
 
+export interface ChefCard {
+  id: string;
+  slug: string;
+  displayName: string;
+  /** @nullable */
+  headline: string | null;
+  cuisines: string[];
+  /** @nullable */
+  ratingAvg: number | null;
+  ratingCount: number;
+  fromPricePaise: number;
+  /** @nullable */
+  distanceKm: number | null;
+  offersJain: boolean;
+}
+
+export interface ChefList {
+  items: ChefCard[];
+  /** @nullable */
+  nextCursor: string | null;
+}
+
+export type ChefProfileCuisinesItemLevel =
+  (typeof ChefProfileCuisinesItemLevel)[keyof typeof ChefProfileCuisinesItemLevel];
+
+export const ChefProfileCuisinesItemLevel = {
+  good: 'good',
+  great: 'great',
+  expert: 'expert',
+} as const;
+
+export type ChefProfileCuisinesItem = {
+  cuisine: string;
+  level: ChefProfileCuisinesItemLevel;
+};
+
+export type ChefProfileProofsItemKind =
+  (typeof ChefProfileProofsItemKind)[keyof typeof ChefProfileProofsItemKind];
+
+export const ChefProfileProofsItemKind = {
+  kitchen: 'kitchen',
+  training: 'training',
+  certificate: 'certificate',
+} as const;
+
+export type ChefProfileProofsItem = {
+  kind: ChefProfileProofsItemKind;
+  title: string;
+  /** @nullable */
+  detail: string | null;
+};
+
+export type ChefProfileReviews = {
+  /** @nullable */
+  ratingAvg: number | null;
+  ratingCount: number;
+};
+
+export interface ChefProfile {
+  id: string;
+  slug: string;
+  displayName: string;
+  /** @nullable */
+  headline: string | null;
+  /** @nullable */
+  bio: string | null;
+  /** @nullable */
+  yearsCooking: number | null;
+  jobsDone: number;
+  /** @nullable */
+  maxGuests: number | null;
+  hasHelper: boolean;
+  cuisines: ChefProfileCuisinesItem[];
+  foodRules: string[];
+  occasions: string[];
+  proofs: ChefProfileProofsItem[];
+  reviews: ChefProfileReviews;
+}
+
+export type ChefMenuKind = (typeof ChefMenuKind)[keyof typeof ChefMenuKind];
+
+export const ChefMenuKind = {
+  event: 'event',
+  meal_prep: 'meal_prep',
+} as const;
+
+export type ChefMenuCoursesItemOptionsItemJainFlag =
+  (typeof ChefMenuCoursesItemOptionsItemJainFlag)[keyof typeof ChefMenuCoursesItemOptionsItemJainFlag];
+
+export const ChefMenuCoursesItemOptionsItemJainFlag = {
+  ok: 'ok',
+  jain_version: 'jain_version',
+  not_jain: 'not_jain',
+} as const;
+
+export type ChefMenuBandsItem = {
+  minGuests: number;
+  maxGuests: number;
+  pricePerGuestPaise: number;
+};
+
+export type ChefMenuCoursesItemOptionsItem = {
+  id: string;
+  dishName: string;
+  extraPaise: number;
+  jainFlag: ChefMenuCoursesItemOptionsItemJainFlag;
+  needsOven: boolean;
+  /** @nullable */
+  ovenAltText: string | null;
+};
+
+export type ChefMenuCoursesItem = {
+  id: string;
+  name: string;
+  options: ChefMenuCoursesItemOptionsItem[];
+};
+
+export type ChefMenuAddonsItem = {
+  id: string;
+  name: string;
+  pricePerGuestPaise: number;
+  /** @nullable */
+  note: string | null;
+};
+
+export interface ChefMenu {
+  id: string;
+  name: string;
+  /** @nullable */
+  summary: string | null;
+  kind: ChefMenuKind;
+  minBookingPaise: number;
+  grocerySavingPaise: number;
+  offersJain: boolean;
+  offersNog: boolean;
+  bands: ChefMenuBandsItem[];
+  courses: ChefMenuCoursesItem[];
+  addons: ChefMenuAddonsItem[];
+}
+
+export interface ChefMenus {
+  items: ChefMenu[];
+}
+
+export interface ChefReview {
+  id: string;
+  author: string;
+  stars: number;
+  /** @nullable */
+  text: string | null;
+  tags: string[];
+  guests: number;
+  createdAt: string;
+}
+
+export interface ChefReviews {
+  items: ChefReview[];
+  /** @nullable */
+  nextCursor: string | null;
+}
+
 export type GetHealth200 = {
   ok: true;
 };
@@ -320,6 +481,62 @@ export type GetHealth200 = {
 export type GetChefAvailabilityParams = {
   /** @pattern ^\d{4}-(0[1-9]|1[0-2])$ */
   month: string;
+};
+
+export type ListChefsParams = {
+  /**
+   * @minimum -90
+   * @maximum 90
+   * @nullable
+   */
+  lat?: number | null;
+  /**
+   * @minimum -180
+   * @maximum 180
+   * @nullable
+   */
+  lng?: number | null;
+  /** @maxLength 60 */
+  q?: string;
+  rule?: ListChefsRule;
+  cuisine?: string | string[];
+  /**
+   * @minimum 1
+   * @maximum 100
+   */
+  guests?: number;
+  date?: string;
+  slot?: ListChefsSlot;
+  cursor?: string;
+  /**
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+};
+
+export type ListChefsRule = (typeof ListChefsRule)[keyof typeof ListChefsRule];
+
+export const ListChefsRule = {
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export type ListChefsSlot = (typeof ListChefsSlot)[keyof typeof ListChefsSlot];
+
+export const ListChefsSlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export type GetChefReviewsParams = {
+  cursor?: string;
+  /**
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
 };
 
 const getHeaders = (
@@ -476,6 +693,106 @@ export const getChefAvailability = async (
   options?: Parameters<typeof senzoFetch>[1],
 ): Promise<ChefMonthAvailability> => {
   return senzoFetch<ChefMonthAvailability>(getGetChefAvailabilityUrl(chefId, params), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getListChefsUrl = (params?: ListChefsParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    const explodeParameters = ['cuisine'];
+
+    if (Array.isArray(value) && explodeParameters.includes(key)) {
+      value.forEach((v) => {
+        normalizedParams.append(key, v === null ? 'null' : String(v));
+      });
+      return;
+    }
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value));
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/v1/chefs?${stringifiedParams}` : `/v1/chefs`;
+};
+
+/**
+ * @summary Home rail and search (G04, G05): live chefs, ranked
+ */
+export const listChefs = async (
+  params?: ListChefsParams,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<ChefList> => {
+  return senzoFetch<ChefList>(getListChefsUrl(params), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getGetChefProfileUrl = (slug: string) => {
+  return `/v1/chefs/${slug}`;
+};
+
+/**
+ * @summary Chef profile with verified proofs only (G07)
+ */
+export const getChefProfile = async (
+  slug: string,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<ChefProfile> => {
+  return senzoFetch<ChefProfile>(getGetChefProfileUrl(slug), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getGetChefMenusUrl = (chefId: string) => {
+  return `/v1/chefs/${chefId}/menus`;
+};
+
+/**
+ * @summary Live set menus with bands, courses, options and add-ons (G07, G22)
+ */
+export const getChefMenus = async (
+  chefId: string,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<ChefMenus> => {
+  return senzoFetch<ChefMenus>(getGetChefMenusUrl(chefId), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getGetChefReviewsUrl = (chefId: string, params?: GetChefReviewsParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value));
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0
+    ? `/v1/chefs/${chefId}/reviews?${stringifiedParams}`
+    : `/v1/chefs/${chefId}/reviews`;
+};
+
+/**
+ * @summary Public guest reviews, newest first (G07)
+ */
+export const getChefReviews = async (
+  chefId: string,
+  params?: GetChefReviewsParams,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<ChefReviews> => {
+  return senzoFetch<ChefReviews>(getGetChefReviewsUrl(chefId, params), {
     ...options,
     method: 'GET',
   });
