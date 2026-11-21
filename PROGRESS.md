@@ -51,7 +51,7 @@ Last updated: 21 Nov 2026
 - ✅ Price engine `apps/api/src/modules/quotes/engine.ts` (bands, upgrades, add-ons, grocery saving, Jain auto-swap, no-oven alternative, induction, chef minimum, promo, fees) + `POST /v1/quotes`; fee constants in `apps/api/src/config/fees.ts`
 - ✅ `bookings.platform_fee_gst_paise` (migration 0001) — Q2 default deducts 18% GST on the fee from the chef
 - ✅ Cancellation policy `modules/bookings/policy.ts` (48 h / 24 h windows, Q3 fee rule, Q4 chef-cancel credit, promo never refunded as cash, card/wallet split, one free reschedule ≥ 48 h); rates in `src/config/policy.ts`; slot times in `src/lib/time.ts`
-- ⬜ Ledger (balanced postings)
+- ✅ Ledger `modules/ledger`: pure line builders (capture, cancellation, tip, payout) that must sum to zero + `ledgerTxn()` returning inserts for the caller's batch; tested across promo/wallet/window combinations. Partial-refund GST treatment → CA (Q6)
 - ⬜ Booking state machine `bookings.transition()`
 - ⬜ Create booking + soft lock + Razorpay order (test mode) + webhooks
 - ⬜ Workflows timers (accept 2 h, reminders, auto-complete, payout release)
