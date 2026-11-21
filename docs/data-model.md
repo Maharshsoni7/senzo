@@ -1,6 +1,6 @@
 # Senzo — data model (Cloudflare D1 / SQLite + Drizzle)
 
-One D1 database per environment (dev, staging, prod), APAC location hint. Schema lives in `apps/api/src/db/schema/*.ts` (Drizzle); SQL migrations in `apps/api/migrations/`, applied with Wrangler. This file is the reference; the Drizzle schema is the truth once it exists — keep both in sync in the same PR.
+One D1 database per environment (dev, staging, prod), APAC location hint. Schema lives in `apps/api/src/db/schema/*.ts` (Drizzle); SQL migrations in `apps/api/migrations/`, applied with Wrangler. This file is the reference; the Drizzle schema is the truth once it exists — keep both in sync in the same PR. Enum values live once in `packages/schemas/src/enums.ts` and feed both the zod schemas and the CHECK constraints.
 
 ## Conventions
 
@@ -68,7 +68,7 @@ One D1 database per environment (dev, staging, prod), APAC location hint. Schema
 | Table | Key columns | Notes |
 | --- | --- | --- |
 | `service_areas` | id, city, name, polygon (GeoJSON), is_live | "Not in Sanand yet" |
-| `chef_search` (FTS5 virtual table) | chef_id, name, cuisines, dishes, tags | Kept in sync by queue consumer |
+| `chef_search` (FTS5 virtual table) | chef_id, name, cuisines, dishes, tags | Kept in sync by queue consumer. Not created yet: hand-written SQL migration with the search module (Drizzle can't declare FTS5) |
 | `search_synonyms` | term, synonym | dhokla ↔ dhokra ↔ ઢોકળા |
 | `menu_requests` | id, code (`REQ-`), guest_id, occasion, guests, visits_per_week, date, slot, cuisines (JSON), food_rule, budget_tier, must_haves, groceries (`chef`,`guest`), address_id, status (`open`,`closed`,`booked`,`expired`), reply_deadline_at | G23 |
 | `request_invites` | request_id, chef_id, invited_at, seen_at | Who was asked |
@@ -98,7 +98,7 @@ CREATE UNIQUE INDEX one_booking_per_slot
 | `payments` | id, booking_id, razorpay_order_id, razorpay_payment_id, method, amount_paise, status, captured_at | Updated only from verified webhooks |
 | `transfers` | id, booking_id, razorpay_transfer_id, chef_id, amount_paise, on_hold, released_at, reversed_at | Route |
 | `refunds` | id, booking_id, razorpay_refund_id, amount_paise, reason, status | |
-| `ledger_accounts` | id, kind (`guest_cash`,`chef_payable`,`platform_revenue`,`gateway_fee`,`gst_payable`,`tds_payable`,`wallet_liability`,`promo_expense`), owner_id | |
+| `ledger_accounts` | id, kind (`guest_cash`,`chef_payable`,`platform_revenue`,`gateway_fee`,`gst_payable`,`tds_payable`,`wallet_liability`,`promo_expense`), owner_id | Unique (kind, owner_id); owner_id is `''` for platform-wide accounts |
 | `ledger_entries` | id, txn_id, account_id, amount_paise (±), booking_id, memo, at | Σ per `txn_id` = 0; Σ per booking = 0 at the end |
 | `payouts` | id, chef_id, amount_paise, razorpay_payout_ref, status (`queued`,`sent`,`failed`,`paid`), failure_reason, attempted_at | C09, C17 |
 | `tips` | id, booking_id, amount_paise, payment_id | 100% to the chef |
@@ -126,7 +126,7 @@ CREATE UNIQUE INDEX one_booking_per_slot
 | --- | --- | --- |
 | `outbox_events` | id, type (`booking.confirmed`…), payload (JSON), created_at, published_at | Written in the same batch as the change |
 | `webhook_events` | id, provider, event_id (unique per provider), signature_ok, payload, processed_at | Idempotency for webhooks |
-| `idempotency_keys` | key, user_id, route, response (JSON), created_at | 24 h |
+| `idempotency_keys` | key, user_id, route, request_hash, status_code, content_type, response, created_at | PK (user_id, key). Kept 24 h. `status_code` null = first request still running (409); different body = 422; 5xx not stored |
 | `audit_logs` | id, admin_id, action, entity, entity_id, before (JSON), after (JSON), at | Append-only |
 | `admin_users` | id, email, role (`support`,`operations`,`finance`,`admin`) | Sign-in via Cloudflare Access |
 | `feature_flags` | key, value | Or PostHog flags |

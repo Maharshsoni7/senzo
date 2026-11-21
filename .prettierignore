@@ -1,2 +1,4 @@
 design/mockups/
 pnpm-lock.yaml
+*.md
+apps/api/migrations/

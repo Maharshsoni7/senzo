@@ -8,20 +8,26 @@
     "deploy": "wrangler deploy",
     "typecheck": "tsc",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply senzo-dev --local"
   },
   "dependencies": {
     "@hono/zod-openapi": "^1.6.3",
     "@senzo/schemas": "workspace:*",
+    "drizzle-orm": "^0.45.4",
     "hono": "^4.13.19",
+    "ulidx": "^2.4.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.9.0",
     "@cloudflare/workers-types": "^5.20261121.1",
     "@senzo/config": "workspace:*",
+    "drizzle-kit": "^0.31.11",
     "eslint": "^10.0.0",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.0",
+    "vitest": "^5.1.1",
     "wrangler": "^4.166.0"
   }
 }

@@ -25,6 +25,7 @@ Decisions already made. **Do not reverse or work around these without a new entr
 | D19 | Nov 2026 | Launch Ahmedabad first; scale by measured gates (5 cities → D1 per city; national → ledger to Postgres via Hyperdrive) | Avoid premature microservices | Multi-city from day one |
 
 | D20 | 21 Nov 2026 | If the guest never shares the finish OTP, the job auto-completes **2 h after the chef taps "done"** (mockup C08) | Chefs can't be held hostage; clearer than a slot-end rule | "2 h after the slot ends" (earlier wording in the architecture doc) |
+| D21 | 21 Nov 2026 | Open questions Q1–Q7 in `business-rules.md`: build with the **"Default until decided"** column for now (provisional) | Unblocks building; founder will confirm, Q2 and Q6 still need a CA | Waiting for final answers before building |
 
 ## Template for a new decision
 

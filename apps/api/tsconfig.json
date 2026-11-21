@@ -1,4 +1,7 @@
 {
   "extends": "@senzo/config/tsconfig/workers.json",
-  "include": ["src"]
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-plugin/types"]
+  },
+  "include": ["src", "test", "vitest.config.ts", "drizzle.config.ts"]
 }

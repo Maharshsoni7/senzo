@@ -49,11 +49,13 @@ pnpm install
 pnpm --filter api dev            # wrangler dev on :8787 (GET /v1/health, /openapi.json)
 pnpm --filter guest dev          # expo start (Razorpay needs a dev build, not Expo Go)
 pnpm --filter chef dev
-pnpm test                        # Vitest (schemas, api)
+pnpm test                        # Vitest; api tests run in workerd with a local D1 + all migrations
 pnpm typecheck && pnpm lint
+pnpm --filter api db:generate --name <what>   # drizzle-kit generate SQL migration
+pnpm --filter api db:migrate:local   # wrangler d1 migrations apply senzo-dev --local
 ```
 
-Not set up yet: `db:generate` / `db:migrate:local` (Drizzle task), `api-client generate` (orval task).
+Not set up yet: `api-client generate` (orval task). `wrangler.jsonc` has a placeholder D1 `database_id` until Cloudflare is connected.
 
 Before saying a task is done: `pnpm typecheck && pnpm lint && pnpm test` pass for the packages you touched.
 
