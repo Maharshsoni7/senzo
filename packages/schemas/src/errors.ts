@@ -21,6 +21,8 @@ export const ErrorCode = z.enum([
   'FOOD_RULE_UNAVAILABLE',
   'GUESTS_OUT_OF_RANGE',
   'PROMO_INVALID',
+  'INVALID_TRANSITION',
+  'STATE_CONFLICT',
 ]);
 export type ErrorCode = z.infer<typeof ErrorCode>;
 
