@@ -19,7 +19,7 @@ Last updated: 21 Nov 2026
 ## Phase 0 · Setup and decisions
 
 - ✅ Repo created at `D:\Project\senzo`, starter pack copied, `git init`
-- ⬜ First commit
+- ✅ First commit `9768640` (author `Maharshsoni7`, repo-local git config)
 - ⬜ `/mcp` sign-in: Expo, Cloudflare
 - ⬜ Decide open questions Q1–Q7 (`docs/business-rules.md`) — Q2, Q3 needed before Phase 2
 - ⬜ Decide payout model: Razorpay Route only vs RazorpayX Payouts (blocks ledger)
