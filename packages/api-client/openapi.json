@@ -19,7 +19,9 @@
             "type": "integer"
           }
         },
-        "required": ["retryAfterSec"]
+        "required": [
+          "retryAfterSec"
+        ]
       },
       "Problem": {
         "type": "object",
@@ -55,7 +57,9 @@
               "SESSION_REVOKED",
               "FOOD_RULE_UNAVAILABLE",
               "GUESTS_OUT_OF_RANGE",
-              "PROMO_INVALID"
+              "PROMO_INVALID",
+              "INVALID_TRANSITION",
+              "STATE_CONFLICT"
             ]
           },
           "detail": {
@@ -74,7 +78,12 @@
             "type": "integer"
           }
         },
-        "required": ["type", "title", "status", "code"]
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code"
+        ]
       },
       "OtpRequest": {
         "type": "object",
@@ -88,11 +97,17 @@
           },
           "channel": {
             "type": "string",
-            "enum": ["sms", "voice"],
+            "enum": [
+              "sms",
+              "voice"
+            ],
             "default": "sms"
           }
         },
-        "required": ["phone", "turnstileToken"]
+        "required": [
+          "phone",
+          "turnstileToken"
+        ]
       },
       "AuthResult": {
         "type": "object",
@@ -118,7 +133,10 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["guest", "chef"]
+              "enum": [
+                "guest",
+                "chef"
+              ]
             }
           }
         },
@@ -146,20 +164,34 @@
             "properties": {
               "platform": {
                 "type": "string",
-                "enum": ["android", "ios", "web"]
+                "enum": [
+                  "android",
+                  "ios",
+                  "web"
+                ]
               },
               "app": {
                 "type": "string",
-                "enum": ["guest", "partner"]
+                "enum": [
+                  "guest",
+                  "partner"
+                ]
               },
               "pushToken": {
                 "type": "string"
               }
             },
-            "required": ["platform", "app"]
+            "required": [
+              "platform",
+              "app"
+            ]
           }
         },
-        "required": ["phone", "code", "device"]
+        "required": [
+          "phone",
+          "code",
+          "device"
+        ]
       },
       "TokenPair": {
         "type": "object",
@@ -179,7 +211,12 @@
             "format": "date-time"
           }
         },
-        "required": ["accessToken", "accessExpiresAt", "refreshToken", "refreshExpiresAt"]
+        "required": [
+          "accessToken",
+          "accessExpiresAt",
+          "refreshToken",
+          "refreshExpiresAt"
+        ]
       },
       "RefreshRequest": {
         "type": "object",
@@ -189,7 +226,9 @@
             "minLength": 1
           }
         },
-        "required": ["refreshToken"]
+        "required": [
+          "refreshToken"
+        ]
       },
       "Quote": {
         "type": "object",
@@ -205,11 +244,18 @@
           },
           "foodRule": {
             "type": "string",
-            "enum": ["regular", "jain", "no_onion_garlic"]
+            "enum": [
+              "regular",
+              "jain",
+              "no_onion_garlic"
+            ]
           },
           "groceriesBy": {
             "type": "string",
-            "enum": ["chef", "guest"]
+            "enum": [
+              "chef",
+              "guest"
+            ]
           },
           "band": {
             "type": "object",
@@ -224,7 +270,11 @@
                 "type": "integer"
               }
             },
-            "required": ["minGuests", "maxGuests", "pricePerGuestPaise"]
+            "required": [
+              "minGuests",
+              "maxGuests",
+              "pricePerGuestPaise"
+            ]
           },
           "items": {
             "type": "array",
@@ -247,10 +297,16 @@
                   "type": "boolean"
                 },
                 "servedAs": {
-                  "type": ["string", "null"]
+                  "type": [
+                    "string",
+                    "null"
+                  ]
                 },
                 "swappedFrom": {
-                  "type": ["string", "null"]
+                  "type": [
+                    "string",
+                    "null"
+                  ]
                 }
               },
               "required": [
@@ -279,7 +335,11 @@
                   "type": "integer"
                 }
               },
-              "required": ["id", "name", "pricePerGuestPaise"]
+              "required": [
+                "id",
+                "name",
+                "pricePerGuestPaise"
+              ]
             }
           },
           "perGuestPaise": {
@@ -295,13 +355,18 @@
               "properties": {
                 "kind": {
                   "type": "string",
-                  "enum": ["induction"]
+                  "enum": [
+                    "induction"
+                  ]
                 },
                 "amountPaise": {
                   "type": "integer"
                 }
               },
-              "required": ["kind", "amountPaise"]
+              "required": [
+                "kind",
+                "amountPaise"
+              ]
             }
           },
           "menuTotalPaise": {
@@ -320,7 +385,10 @@
             "type": "integer"
           },
           "promo": {
-            "type": ["object", "null"],
+            "type": [
+              "object",
+              "null"
+            ],
             "properties": {
               "code": {
                 "type": "string"
@@ -329,7 +397,10 @@
                 "type": "integer"
               }
             },
-            "required": ["code", "discountPaise"]
+            "required": [
+              "code",
+              "discountPaise"
+            ]
           },
           "totalPaise": {
             "type": "integer"
@@ -352,7 +423,10 @@
                   "type": "string"
                 }
               },
-              "required": ["code", "message"]
+              "required": [
+                "code",
+                "message"
+              ]
             }
           }
         },
@@ -392,7 +466,11 @@
           },
           "foodRule": {
             "type": "string",
-            "enum": ["regular", "jain", "no_onion_garlic"],
+            "enum": [
+              "regular",
+              "jain",
+              "no_onion_garlic"
+            ],
             "default": "regular"
           },
           "options": {
@@ -413,7 +491,10 @@
           },
           "groceriesBy": {
             "type": "string",
-            "enum": ["chef", "guest"],
+            "enum": [
+              "chef",
+              "guest"
+            ],
             "default": "chef"
           },
           "kitchen": {
@@ -449,14 +530,21 @@
           },
           "slot": {
             "type": "string",
-            "enum": ["lunch", "dinner", "late"]
+            "enum": [
+              "lunch",
+              "dinner",
+              "late"
+            ]
           },
           "promo": {
             "type": "string",
             "minLength": 1
           }
         },
-        "required": ["menuId", "guests"]
+        "required": [
+          "menuId",
+          "guests"
+        ]
       }
     },
     "parameters": {}
@@ -465,7 +553,9 @@
     "/v1/health": {
       "get": {
         "operationId": "getHealth",
-        "tags": ["system"],
+        "tags": [
+          "system"
+        ],
         "responses": {
           "200": {
             "description": "API is up",
@@ -476,10 +566,14 @@
                   "properties": {
                     "ok": {
                       "type": "boolean",
-                      "enum": [true]
+                      "enum": [
+                        true
+                      ]
                     }
                   },
-                  "required": ["ok"]
+                  "required": [
+                    "ok"
+                  ]
                 }
               }
             }
@@ -490,7 +584,9 @@
     "/v1/auth/otp/request": {
       "post": {
         "operationId": "requestOtp",
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Send a login code by SMS or voice call",
         "requestBody": {
           "required": true,
@@ -539,7 +635,9 @@
     "/v1/auth/otp/verify": {
       "post": {
         "operationId": "verifyOtp",
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Check the code and start a session",
         "requestBody": {
           "required": true,
@@ -588,7 +686,9 @@
     "/v1/auth/refresh": {
       "post": {
         "operationId": "refreshSession",
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Swap a refresh token for a new pair; the old one stops working",
         "requestBody": {
           "required": true,
@@ -627,7 +727,9 @@
     "/v1/auth/logout": {
       "post": {
         "operationId": "logout",
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "security": [
           {
             "bearer": []
@@ -653,7 +755,9 @@
     "/v1/quotes": {
       "post": {
         "operationId": "createQuote",
-        "tags": ["menus"],
+        "tags": [
+          "menus"
+        ],
         "summary": "Price a menu choice on the server (G22, G08, G09)",
         "requestBody": {
           "required": true,

@@ -32,6 +32,8 @@ export const ProblemCode = {
   FOOD_RULE_UNAVAILABLE: 'FOOD_RULE_UNAVAILABLE',
   GUESTS_OUT_OF_RANGE: 'GUESTS_OUT_OF_RANGE',
   PROMO_INVALID: 'PROMO_INVALID',
+  INVALID_TRANSITION: 'INVALID_TRANSITION',
+  STATE_CONFLICT: 'STATE_CONFLICT',
 } as const;
 
 export type ProblemFields = { [key: string]: string[] };
