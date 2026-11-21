@@ -34,7 +34,7 @@ Last updated: 21 Nov 2026
 - 🟡 API skeleton: ✅ Hono + zod-openapi, problem+json errors, `/v1/health`, `/openapi.json` · ✅ redacting logger (`src/lib/log.ts`) · ✅ idempotency middleware (`src/middleware/idempotency.ts`) · ⬜ orval `packages/api-client`
 - ✅ API tests run in workerd via `@cloudflare/vitest-plugin` (renamed from vitest-pool-workers) with local D1 + migrations
 - ✅ Drizzle schema for all 63 tables in `docs/data-model.md` (`apps/api/src/db/schema/`) + migration `0000_init`; enum CHECKs, `one_booking_per_slot` partial index, ledger non-zero check — tested
-- ⬜ Seed data from the mockups (Ananya Mehta, Rahul Desai, SZ-1042…) in `apps/api/seed/`
+- ✅ Seed data from the mockups in `apps/api/seed/`: 8 live chefs (Ananya Mehta with 3 menus + full Gujarati Classic courses/options/add-ons), guests Rahul Desai & Krupa Shah, bookings SZ-1042 (paid out, ₹200 tip) and SZ-1048 (requested), FIRSTFEAST promo, platform ledger accounts. `pnpm --filter api db:seed:local`
 - ⬜ `chef_search` FTS5 table (hand-written migration, with the search module)
 - ⬜ Auth: phone OTP, rotating refresh tokens
 - ⬜ CI: typecheck, lint, test (GitHub Actions)
@@ -47,6 +47,7 @@ Last updated: 21 Nov 2026
 | # | Question | Status |
 | --- | --- | --- |
 | Q1–Q7 | See `docs/business-rules.md` | 🟡 defaults in use (D21), final answers pending; Q2/Q6 need a CA |
+| Q8 | GST on ₹149 fee: ₹27 (mockups, rounded) vs ₹26.82 (exact) | 🟡 default: round to rupee, as mockups; confirm with CA |
 | P1 | Payouts: Route settlement vs RazorpayX ("Withdraw now", 11 AM daily) | ⬜ open |
 | P2 | Workers Paid plan ($5/mo) from staging on (10 ms CPU limit on free) | ⬜ open |
 | P3 | Admin panel design (no mockup) | ⬜ open |

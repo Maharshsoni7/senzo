@@ -53,6 +53,7 @@ pnpm test                        # Vitest; api tests run in workerd with a local
 pnpm typecheck && pnpm lint
 pnpm --filter api db:generate --name <what>   # drizzle-kit generate SQL migration
 pnpm --filter api db:migrate:local   # wrangler d1 migrations apply senzo-dev --local
+pnpm --filter api db:seed:local      # mockup demo data (idempotent); tests import seed() from apps/api/seed
 ```
 
 Not set up yet: `api-client generate` (orval task). `wrangler.jsonc` has a placeholder D1 `database_id` until Cloudflare is connected.

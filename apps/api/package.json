@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
-    "db:migrate:local": "wrangler d1 migrations apply senzo-dev --local"
+    "db:migrate:local": "wrangler d1 migrations apply senzo-dev --local",
+    "db:seed:local": "tsx seed/run.ts"
   },
   "dependencies": {
     "@hono/zod-openapi": "^1.6.3",
@@ -26,6 +27,7 @@
     "@senzo/config": "workspace:*",
     "drizzle-kit": "^0.31.11",
     "eslint": "^10.0.0",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "vitest": "^5.1.1",
     "wrangler": "^4.166.0"

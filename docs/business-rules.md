@@ -139,3 +139,4 @@ The price is **snapshotted** on the booking at checkout; later menu edits by the
 | Q5 | Reply window for menu requests | 6 hours |
 | Q6 | Is GST due on the chef's cooking service through the platform (e-commerce operator rules)? | Written CA opinion needed before launch |
 | Q7 | Wallet: can credits expire? Can they be withdrawn? | No expiry for refunds-as-credit; promos expire in 90 days; never withdrawable |
+| Q8 | GST on the ₹149 convenience fee: exact 18% is ₹26.82, but the mockups charge ₹27 (SZ-1042 paid ₹10,976). Round GST to the whole rupee? | Round to the whole rupee (₹27), as in the mockups — confirm with CA |
