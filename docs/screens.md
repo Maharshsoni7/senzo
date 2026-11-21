@@ -89,3 +89,14 @@ From the mockup components: `ChefFig` (illustrated chef figure), `DishArt` (dish
 | G22 → G08 → G09 | Each mockup screen has its own demo state; choices don't carry over | One booking draft (Zustand) + `POST /quotes` on every change |
 | C02 | Lets chefs take requests after ID + bank | Follow `docs/business-rules.md` Q1 |
 | G09 | Promo shown applied while G10/G16 show the total without it | Use the server quote everywhere |
+
+### Mockup items not in the spec (founder to decide; built without them)
+
+| Screen | In the mockup | Built as |
+| --- | --- | --- |
+| G02 | "Continue with Google / Apple" | Phone OTP only (E1) |
+| G03 | "New here? Tell us a little" (name, area, food preference) | Not yet — needs `PATCH /me`; `isNewUser` is kept for it |
+| G04 | Chef preview bottom sheet | "View & book" opens the profile (G07) |
+| G05 | Sort menu | API ranking only ("recommended") |
+| G06 | Breakfast, rating, price range, "chef speaks", police-verified only, Vegan / Eggless / Non-veg | Date, meal (lunch/dinner/late), guests, cuisine, Jain / no onion-garlic |
+| G07 | Save to favourites, real guest photos | Not yet — needs `/me/favourites` and photo uploads |

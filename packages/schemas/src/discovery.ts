@@ -67,6 +67,10 @@ export const ChefProfile = z
     proofs: z.array(
       z.object({ kind: ProofKind, title: z.string(), detail: z.string().nullable() }),
     ),
+    /** Signature dishes that passed ops review. */
+    specialties: z.array(
+      z.object({ name: z.string(), course: z.string(), description: z.string().nullable() }),
+    ),
     reviews: z.object({
       ratingAvg: z.number().nullable(),
       ratingCount: z.number().int(),

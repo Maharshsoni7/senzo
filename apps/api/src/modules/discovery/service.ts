@@ -143,6 +143,7 @@ export async function chefProfile(db: Db, slug: string) {
     foodRules: p.rules.map((r) => r.rule),
     occasions: p.occasions.map((o) => o.occasion),
     proofs: p.proofs.map(({ kind, title, detail }) => ({ kind, title, detail })),
+    specialties: p.specialties,
     reviews: { ratingAvg: chef.ratingAvg, ratingCount: chef.ratingCount },
   };
 }

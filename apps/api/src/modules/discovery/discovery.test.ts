@@ -97,6 +97,13 @@ describe('GET /v1/chefs/:slug', () => {
       foodRules: expect.arrayContaining(['jain']),
       occasions: expect.arrayContaining(['Kitty party']),
       proofs: [{ kind: 'kitchen', title: 'Hotel kitchen, Ahmedabad' }],
+      specialties: expect.arrayContaining([
+        {
+          name: 'Khandvi Tacos',
+          course: 'Starter 1',
+          description: expect.stringContaining('khandvi'),
+        },
+      ]),
       reviews: { ratingAvg: 4.9, ratingCount: 126 },
     });
     expect(JSON.stringify(body)).not.toMatch(/\+91|phone|lat|lng/i);

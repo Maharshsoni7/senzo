@@ -230,7 +230,12 @@ const slug = (s: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '_')
     .replace(/_$/, '');
-const signature = new Set(['Khandvi Tacos', 'Deconstructed Undhiyu', 'Kesar Shrikhand Tart']);
+// Signature dishes and their G07 notes.
+const signature = new Map([
+  ['Deconstructed Undhiyu', 'Winter vegetables, methi muthia and green garlic'],
+  ['Khandvi Tacos', 'Soft khandvi shells with coconut and pomegranate'],
+  ['Kesar Shrikhand Tart', 'Saffron shrikhand on a butter crust'],
+]);
 
 export const dishes: Insert<S['dishes']>[] = ananyaOptions.map(([name, course]) => ({
   id: `dish_${slug(name)}`,
@@ -238,6 +243,7 @@ export const dishes: Insert<S['dishes']>[] = ananyaOptions.map(([name, course]) 
   name,
   course,
   foodType: 'veg',
+  description: signature.get(name) ?? null,
   isSignature: signature.has(name),
   reviewStatus: 'approved',
 }));

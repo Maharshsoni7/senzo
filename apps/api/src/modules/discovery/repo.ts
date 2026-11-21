@@ -98,7 +98,7 @@ export async function loadProfile(db: Db, slug: string) {
     .where(and(eq(chefs.slug, slug), eq(chefs.status, 'live')))
     .get();
   if (!chef) return null;
-  const [cuisines, rules, occasions, proofs] = await db.batch([
+  const [cuisines, rules, occasions, proofs, specialties] = await db.batch([
     db.select().from(chefCuisines).where(eq(chefCuisines.chefId, chef.id)),
     db.select().from(chefFoodRules).where(eq(chefFoodRules.chefId, chef.id)),
     db.select().from(chefOccasions).where(eq(chefOccasions.chefId, chef.id)),
@@ -106,8 +106,18 @@ export async function loadProfile(db: Db, slug: string) {
       .select()
       .from(chefProofs)
       .where(and(eq(chefProofs.chefId, chef.id), eq(chefProofs.status, 'ok'))),
+    db
+      .select({ name: dishes.name, course: dishes.course, description: dishes.description })
+      .from(dishes)
+      .where(
+        and(
+          eq(dishes.chefId, chef.id),
+          eq(dishes.isSignature, true),
+          eq(dishes.reviewStatus, 'approved'),
+        ),
+      ),
   ]);
-  return { chef, cuisines, rules, occasions, proofs };
+  return { chef, cuisines, rules, occasions, proofs, specialties };
 }
 
 export async function isLiveChef(db: Db, chefId: string) {

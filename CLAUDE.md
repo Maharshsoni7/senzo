@@ -62,6 +62,8 @@ After changing any route or schema, run `pnpm --filter api-client generate` and 
 
 Cloud dev environment: D1 `senzo-dev` (APAC) and Worker `senzo-api` at https://senzo-api.senzo-api.workers.dev, deployed with `npx wrangler deploy` from `apps/api` (ENVIRONMENT=development, so login code is 123456 and Turnstile uses Cloudflare's always-pass test secret). Remote migrations: `npx wrangler d1 migrations apply senzo-dev --remote`. Ask before any remote migration or deploy. Staging and production don't exist yet.
 
+Guest app: `pnpm --filter guest dev`, then scan the QR code with Expo Go (SDK 58). It talks to the live dev API unless `EXPO_PUBLIC_API_URL` is set (e.g. `http://<LAN-IP>:8787` for `wrangler dev`). In Expo Go, MMKV can't load, so the query cache is memory-only; a dev build persists it. Login code is 123456. App tests: `pnpm --filter guest test` (jest-expo + Testing Library; v14 `render`/`fireEvent` are async). After adding English strings run `node apps/guest/src/i18n/sync-locales.mjs`.
+
 Local API secrets: the developer copies `apps/api/.dev.vars.example` to `.dev.vars` (you can't read or edit it). Tests get their secrets from `apps/api/vitest.config.ts`; dev login code is `DEV_FIXED_OTP` (123456).
 
 Before saying a task is done: `pnpm typecheck && pnpm lint && pnpm test` pass for the packages you touched.

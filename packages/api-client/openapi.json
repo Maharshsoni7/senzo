@@ -804,6 +804,31 @@
               ]
             }
           },
+          "specialties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "course": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "course",
+                "description"
+              ]
+            }
+          },
           "reviews": {
             "type": "object",
             "properties": {
@@ -837,6 +862,7 @@
           "foodRules",
           "occasions",
           "proofs",
+          "specialties",
           "reviews"
         ]
       },

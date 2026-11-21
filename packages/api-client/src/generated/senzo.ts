@@ -365,6 +365,13 @@ export type ChefProfileProofsItem = {
   detail: string | null;
 };
 
+export type ChefProfileSpecialtiesItem = {
+  name: string;
+  course: string;
+  /** @nullable */
+  description: string | null;
+};
+
 export type ChefProfileReviews = {
   /** @nullable */
   ratingAvg: number | null;
@@ -389,6 +396,7 @@ export interface ChefProfile {
   foodRules: string[];
   occasions: string[];
   proofs: ChefProfileProofsItem[];
+  specialties: ChefProfileSpecialtiesItem[];
   reviews: ChefProfileReviews;
 }
 
