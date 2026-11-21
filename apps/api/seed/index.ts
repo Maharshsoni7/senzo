@@ -29,12 +29,18 @@ const plan: [SQLiteTable, object[]][] = [
   [schema.ledgerAccounts, data.ledgerAccounts],
 ];
 
+/** One row per statement: D1 caps a query at 100 bound parameters. */
+export const seedStatements = (db: Db) =>
+  plan.flatMap(([table, rows]) =>
+    rows.map((row) => db.insert(table).values(row).onConflictDoNothing()),
+  );
+
 /** Idempotent: rows that already exist are skipped. */
 export async function seed(db: Db) {
-  // One row per statement: D1 caps a query at 100 bound parameters.
-  const statements = plan.flatMap(([table, rows]) =>
-    rows.map((row) => db.insert(table).values(row).onConflictDoNothing()),
-  ) as unknown as [BatchItem<'sqlite'>, ...BatchItem<'sqlite'>[]];
+  const statements = seedStatements(db) as unknown as [
+    BatchItem<'sqlite'>,
+    ...BatchItem<'sqlite'>[],
+  ];
   await db.batch(statements);
   return statements.length;
 }

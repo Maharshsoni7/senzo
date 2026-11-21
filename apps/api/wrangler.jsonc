@@ -10,8 +10,7 @@
     {
       "binding": "DB",
       "database_name": "senzo-dev",
-      // Replace with the real id from `wrangler d1 create senzo-dev` once Cloudflare is connected.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "b430bbd0-a545-4e6e-a511-6918730a5e91",
       "migrations_dir": "migrations",
     },
   ],

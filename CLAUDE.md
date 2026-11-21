@@ -55,11 +55,12 @@ pnpm --filter api db:generate --name <what>   # drizzle-kit generate SQL migrati
 pnpm --filter api db:migrate:local   # wrangler d1 migrations apply senzo-dev --local
 pnpm --filter api db:seed:local      # mockup demo data (idempotent); tests import seed() from apps/api/seed
 pnpm --filter api-client generate   # export OpenAPI from route code + regenerate the typed client (orval)
+pnpm --filter api db:seed:sql <file>  # seed as plain SQL, for: wrangler d1 execute senzo-dev --remote --file <file>
 ```
 
 After changing any route or schema, run `pnpm --filter api-client generate` and commit `openapi.json` + `src/generated/`; CI fails if they're stale. Give every route an `operationId` (it becomes the client function name) and name shared schemas with `.meta({ id })`. The OpenAPI export runs in Node, so nothing reachable from `src/app.ts` may import `cloudflare:workers` at runtime (Durable Objects and Workflows stay in `src/durable`, `src/workflows`; put shared constants in `src/config`). Don't silence `generate`'s output: if it fails, the client silently stays stale.
 
-`wrangler.jsonc` has a placeholder D1 `database_id` until Cloudflare is connected.
+Cloud dev environment: D1 `senzo-dev` (APAC) and Worker `senzo-api` at https://senzo-api.senzo-api.workers.dev, deployed with `npx wrangler deploy` from `apps/api` (ENVIRONMENT=development, so login code is 123456 and Turnstile uses Cloudflare's always-pass test secret). Remote migrations: `npx wrangler d1 migrations apply senzo-dev --remote`. Ask before any remote migration or deploy. Staging and production don't exist yet.
 
 Local API secrets: the developer copies `apps/api/.dev.vars.example` to `.dev.vars` (you can't read or edit it). Tests get their secrets from `apps/api/vitest.config.ts`; dev login code is `DEV_FIXED_OTP` (123456).
 

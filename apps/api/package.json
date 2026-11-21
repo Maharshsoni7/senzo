@@ -12,7 +12,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply senzo-dev --local",
     "db:seed:local": "tsx seed/run.ts",
-    "openapi:export": "tsx scripts/export-openapi.ts"
+    "openapi:export": "tsx scripts/export-openapi.ts",
+    "db:seed:sql": "tsx seed/to-sql.ts"
   },
   "dependencies": {
     "@hono/zod-openapi": "^1.6.3",

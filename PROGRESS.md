@@ -21,7 +21,8 @@ Last updated: 21 Nov 2026
 - ✅ Repo created at `D:\Project\senzo`, starter pack copied, `git init`
 - ✅ First commit `9768640` (author `Maharshsoni7`, repo-local git config)
 - ✅ Pushed to GitHub: https://github.com/Maharshsoni7/senzo (`main`)
-- ⬜ `/mcp` sign-in: Expo, Cloudflare
+- ✅ Cloudflare: `wrangler login` done; D1 `senzo-dev` (APAC) created, both migrations + demo seed applied; Worker `senzo-api` deployed with secrets → https://senzo-api.senzo-api.workers.dev (health, quotes, availability, OTP login checked live)
+- ⬜ Expo sign-in (EAS)
 - ⬜ Decide open questions Q1–Q7 (`docs/business-rules.md`) — Q2, Q3 needed before Phase 2
 - ⬜ Decide payout model: Razorpay Route only vs RazorpayX Payouts (blocks ledger)
 - ⬜ Paperwork: Razorpay Route approval, MSG91 DLT, KYC provider, Exotel, trademark, domains
@@ -76,3 +77,4 @@ Last updated: 21 Nov 2026
 - **21 Nov 2026** — Q1–Q7 defaults adopted provisionally (D21). Database schema (63 tables, migration `0000_init`, applied locally), redacting logger, Idempotency-Key middleware. Vitest moved to 5.1 now that `@cloudflare/vitest-plugin` supports it. Schema changes vs `docs/data-model.md` recorded there: `idempotency_keys` gained request_hash/status_code/content_type; `ledger_accounts.owner_id` is `''` for platform accounts. 25 tests pass.
 - **21 Nov 2026** — Seed data from mockups (GST rounding logged as Q8). Phone OTP auth with rotating refresh tokens; `.dev.vars.example` added. 59 tests pass.
 - **21 Nov 2026** — CI on GitHub Actions (green). Typed API client generated from OpenAPI with orval. 61 tests pass. Phase 1 foundation done except the items still open above.
+- **22 Nov 2026** — Payments deferred to the end (founder). Checkout soft lock (Durable Object) + per-booking timer Workflow; G08 availability. Cloudflare connected: cloud D1 `senzo-dev` migrated and seeded, API live on workers.dev.
