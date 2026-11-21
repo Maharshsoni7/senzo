@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Search chefs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}input:focus-visible{outline:none}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F5F6; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <div style="background: #FFFFFF; padding: 52px 16px 12px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid #E1E3E5;">
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <a href="G04-Home.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 999px; display: grid; place-items: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+      <label style="flex: 1; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1.5px solid #1B1D1F; background: #FFFFFF;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input value="{{q}}" onInput="{{setQ}}" placeholder="Chef, cuisine or dish" aria-label="Search" style="flex: 1; min-width: 0; border: none; font-size: 15px; font-family: inherit; color: #1B1D1F; background: transparent;">
+      </label>
+      <a href="G06-Filters.dc.html" aria-label="Filters" style="position: relative; width: 46px; height: 46px; flex: none; border-radius: 12px; background: #1B1D1F; display: grid; place-items: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"></path></svg>
+        <span style="position: absolute; top: -5px; right: -5px; width: 18px; height: 18px; border-radius: 99px; background: #B8361F; color: #FFFFFF; font-size: 10px; font-weight: 700; display: grid; place-items: center;">3</span>
+      </a>
+    </div>
+    <div style="display: flex; gap: 6px; overflow-x: auto; margin: 0 -16px; padding: 0 16px;">
+      <span style="flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 12px; font-weight: 600;">Sat 7 Nov</span>
+      <span style="flex: none; display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 12px; font-weight: 600;">6 guests</span>
+      <span style="flex: none; display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 12px; font-weight: 600;">Dinner</span>
+      <span style="flex: none; display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CDD1; font-size: 12px; font-weight: 600;">Pure veg</span>
+      <span style="flex: none; display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CDD1; font-size: 12px; font-weight: 600;">Under ₹2,000</span>
+    </div>
+  </div>
+
+  <div style="flex: 1; overflow-y: auto; padding: 14px 16px 24px; display: flex; flex-direction: column; gap: 10px;">
+    <sc-if value="{{showRecent}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: .06em; color: #5A5F66;">RECENT</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <sc-for list="{{recent}}" as="r" hint-placeholder-count="4">
+            <button onClick="{{r.pick}}" style="min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; font-size: 13px; font-family: inherit; cursor: pointer; color: #1B1D1F;">{{r.t}}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+      <span style="color: #5A5F66;">{{countLabel}}</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 600;">Sort: Recommended
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+      </span>
+    </div>
+    <sc-for list="{{results}}" as="c" hint-placeholder-count="5">
+      <a href="G07-ChefProfile.dc.html" style="display: flex; gap: 12px; padding: 12px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E1E3E5; text-decoration: none;">
+        <span style="width: 72px; height: 72px; flex: none; border-radius: 14px; overflow: hidden; background: {{c.tint}};">
+          <dc-import name="ChefFig" skin="{{c.skin}}" hair="{{c.hair}}" apron="{{c.apron}}" long-op="{{c.l}}" beard-op="{{c.b}}" initials="{{c.ini}}" w="72" bust="1" hint-size="72px,72px"></dc-import>
+        </span>
+        <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+          <span style="display: flex; justify-content: space-between; gap: 8px;">
+            <span style="font-size: 15px; font-weight: 700;">{{c.n}}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600;">★ {{c.r}}</span>
+          </span>
+          <span style="font-size: 12px; color: #5A5F66;">{{c.cu}} · {{c.dist}}</span>
+          <span style="font-size: 12px; color: #5A5F66;">Known for {{c.dish}}</span>
+          <span style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">{{c.p}}<span style="font-weight: 400; color: #5A5F66;">/guest</span></span>
+            <span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: {{c.badgeBg}}; color: {{c.badgeFg}};">{{c.avail}}</span>
+          </span>
+        </span>
+      </a>
+    </sc-for>
+    <sc-if value="{{none}}" hint-placeholder-val="{{ false }}">
+      <div style="text-align: center; padding: 40px 12px; color: #5A5F66; font-size: 14px;">No chefs match “{{q}}”. Try a cuisine like “Gujarati” or a dish like “biryani”.</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { q: '' }; }
+  renderVals() {
+    const all = [
+      { n: 'Ananya Mehta', cu: 'Modern Gujarati', dish: 'Khandvi Tacos', r: '4.9', p: '₹1,800', dist: '2.1 km', ok: true, skin: '#D9A273', hair: '#1E1612', apron: '#B8361F', l: '1', b: '0', ini: 'AM', tint: '#FBEDEA' },
+      { n: 'Meera Iyer', cu: 'South Indian Coastal', dish: 'Appam & Stew', r: '4.9', p: '₹1,600', dist: '6.4 km', ok: true, skin: '#9C6440', hair: '#120E0C', apron: '#2F6B4F', l: '1', b: '0', ini: 'MI', tint: '#E6F2EA' },
+      { n: 'Ishita Patel', cu: 'Plant-based', dish: 'Millet Buddha Bowl', r: '4.9', p: '₹1,700', dist: '3.0 km', ok: true, skin: '#E0B08A', hair: '#3A281E', apron: '#3E7A3A', l: '1', b: '0', ini: 'IP', tint: '#E6F2EA' },
+      { n: 'Priya Nair', cu: 'Desserts & Patisserie', dish: 'Mango Entremet', r: '4.9', p: '₹1,500', dist: '4.8 km', ok: false, skin: '#B87D52', hair: '#20150F', apron: '#A23E6B', l: '1', b: '0', ini: 'PN', tint: '#F3EAF1' },
+      { n: 'Zoya Khan', cu: 'Mughlai', dish: 'Dum Biryani', r: '4.8', p: '₹2,000', dist: '5.2 km', ok: true, skin: '#C88B5E', hair: '#1B1310', apron: '#6B2D5C', l: '1', b: '0', ini: 'ZK', tint: '#F3EAF1' },
+      { n: 'Rohan Kapoor', cu: 'North Indian Tandoor', dish: 'Galouti Kebab', r: '4.8', p: '₹2,200', dist: '3.7 km', ok: false, skin: '#B67A4E', hair: '#1B1714', apron: '#7A3E1D', l: '0', b: '1', ini: 'RK', tint: '#F3EBE5' },
+      { n: 'Kabir Shah', cu: 'Italian', dish: 'Hand-rolled Pappardelle', r: '4.7', p: '₹2,500', dist: '1.4 km', ok: true, skin: '#D6A37A', hair: '#3B2A20', apron: '#2D4E86', l: '0', b: '0', ini: 'KS', tint: '#E7EDF7' }
+    ];
+    const q = this.state.q.trim().toLowerCase();
+    const results = all.filter((c) => !q || (c.n + ' ' + c.cu + ' ' + c.dish).toLowerCase().indexOf(q) >= 0).map((c) => Object.assign({}, c, {
+      avail: c.ok ? 'Free Sat 7 Nov' : 'Busy · next Sun',
+      badgeBg: c.ok ? '#E6F2EA' : '#F1F2F3', badgeFg: c.ok ? '#1E6B36' : '#5A5F66'
+    }));
+    return {
+      q: this.state.q,
+      setQ: (e) => this.setState({ q: e.target.value }),
+      showRecent: !q,
+      recent: ['Biryani', 'Gujarati thali', 'Jain', 'Birthday'].map((t) => ({ t, pick: () => this.setState({ q: t }) })),
+      results,
+      none: results.length === 0,
+      countLabel: results.length + ' chefs · ' + results.filter((c) => c.ok).length + ' free on your date'
+    };
+  }
+}
+</script>
+</body>
+</html>

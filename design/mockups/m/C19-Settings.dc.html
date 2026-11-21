@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Account settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C04-Dashboard.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-size: 22px;">Settings</h1>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #EAE5DC; overflow: hidden;">
+    <sc-for list="{{links}}" as="r" hint-placeholder-count="4">
+      <a href="{{r.href}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 54px; padding: 0 16px; border-bottom: 1px solid #F1EEE8; text-decoration: none; font-size: 15px; font-weight: 600;">{{r.l}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+    </sc-for>
+  </div>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600;">TAKE A BREAK</div>
+  <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #EAE5DC; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 14px; font-weight: 700;">{{pauseTitle}}</div>
+    <div style="font-size: 12px; color: #5A5F66;">You’ll be hidden from the rail. Accepted bookings stay as they are.</div>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <sc-for list="{{pauses}}" as="p" hint-placeholder-count="3">
+        <button onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="min-height: 38px; padding: 0 12px; border-radius: 999px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}};">{{p.l}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #8E2A17; font-weight: 600; margin-top: 4px;">DELETE ACCOUNT</div>
+  <div style="background: #FFFFFF; border-radius: 16px; border: 1.5px solid #F0C9C0; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 13px; line-height: 1.5;">Before you can delete:</div>
+    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+      <span style="display: flex; gap: 8px;"><span style="color: #9A5B00; font-weight: 800;">!</span>1 upcoming booking (Sun 15 Nov) — complete or cancel it</span>
+      <span style="display: flex; gap: 8px;"><span style="color: #9A5B00; font-weight: 800;">!</span>₹9,380 payout still on its way</span>
+    </div>
+    <div style="font-size: 12px; color: #5A5F66; line-height: 1.45;">Your profile and photos are removed. Invoices and tax records are kept only as long as the law requires.</div>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 700;">Type DELETE to confirm
+      <input value="{{typed}}" onInput="{{setTyped}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #D5D0C7; font-family: 'IBM Plex Mono', monospace; font-size: 15px; background: #FFFFFF; color: #1B1D1F;">
+    </label>
+    <button disabled="{{cantDelete}}" style="min-height: 48px; border-radius: 999px; border: none; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; background: {{delBg}}; color: {{delFg}};">{{delLabel}}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { pause: '', typed: '' }; }
+  renderVals() {
+    const s = this.state;
+    const ok = s.typed.trim().toUpperCase() === 'DELETE';
+    return {
+      links: [
+        { l: 'Edit profile & bank', href: 'C12-EditProfile.dc.html' },
+        { l: 'Past jobs', href: 'C16-PastJobs.dc.html' },
+        { l: 'Tax & statements', href: 'C18-Tax.dc.html' },
+        { l: 'Log out', href: 'C11-Login.dc.html' }
+      ],
+      pauseTitle: s.pause ? 'Paused · ' + s.pause.toLowerCase() : 'Pause new bookings',
+      pauses: ['1 week', '2 weeks', 'Until I turn it on'].map((l) => { const on = s.pause === l; return { l, on, bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#D5D0C7', pick: () => this.setState({ pause: on ? '' : l }) }; }),
+      typed: s.typed, setTyped: (e) => this.setState({ typed: e.target.value }),
+      cantDelete: true,
+      delBg: ok ? '#E1DCD3' : '#F1EEE8', delFg: '#5A5F66',
+      delLabel: ok ? 'Finish the 2 items above first' : 'Delete my account'
+    };
+  }
+}
+</script>
+</body>
+</html>

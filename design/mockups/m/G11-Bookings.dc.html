@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>My bookings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="100" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="G04-Home.dc.html" aria-label="Back to home" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-size: 24px;">My bookings</h1>
+  </div>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600; margin-top: 40px;">COMING UP</div>
+  <a href="G12-LiveBooking.dc.html" style="display: block; text-decoration: none; background: #FFFEFB; border-radius: 4px; box-shadow: 0 10px 18px rgba(0,0,0,.1); padding: 16px;">
+    <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .08em; color: #5A5F66;"><span>SZ-1042</span><span style="color: #1E6B36; font-weight: 600;">CONFIRMED</span></div>
+    <div style="display: flex; gap: 12px; align-items: center; margin-top: 12px;">
+      <span style="width: 60px; height: 60px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+        <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="60" bust="1" hint-size="60px,60px"></dc-import>
+      </span>
+      <div style="flex: 1;">
+        <div style="font-size: 17px; font-weight: 700;">Ananya Mehta</div>
+        <div style="font-size: 13px; color: #5A5F66;">Sat 7 Nov · 7:30 PM · 6 guests</div>
+      </div>
+    </div>
+    <div style="border-top: 1.5px dashed #C9CDD1; margin: 14px 0 10px;"></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+      <span>Start OTP <strong style="font-size: 16px; letter-spacing: .1em;">4821</strong></span>
+      <span style="font-weight: 600;">₹10,976 paid</span>
+    </div>
+  </a>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: -8px;">
+    <a href="G15-Chat.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 12px; background: #1B1D1F; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none;">Chat</a>
+    <a href="G16-Cancel.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 12px; background: #FFFFFF; border: 1px solid #C9CDD1; font-size: 13px; font-weight: 700; text-decoration: none;">Change</a>
+    <a href="G19-Report.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 12px; background: #FFFFFF; border: 1px solid #C9CDD1; font-size: 13px; font-weight: 700; color: #B8361F; text-decoration: none;">Report</a>
+  </div>
+
+  <a href="G17-Declined.dc.html" style="display: flex; align-items: center; gap: 12px; background: #FFFEFB; border-radius: 4px; padding: 12px 16px; text-decoration: none;">
+    <span style="flex: 1;"><span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; color: #1E6B36; font-weight: 600;">NOT ACCEPTED · REFUNDED</span><span style="display: block; font-size: 14px; font-weight: 700; margin-top: 2px;">Rohan Kapoor · Sun 15 Nov</span><span style="display: block; font-size: 12px; color: #5A5F66;">₹13,376 back to Google Pay · see similar chefs</span></span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+  </a>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600; margin-top: 6px;">PAST</div>
+  <sc-for list="{{past}}" as="b" hint-placeholder-count="2">
+    <div style="background: #FFFEFB; border-radius: 4px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; opacity: .92;">
+      <span style="width: 48px; height: 48px; border-radius: 99px; overflow: hidden; background: #F1F2F3; flex: none;">
+        <dc-import name="ChefFig" skin="{{b.skin}}" hair="{{b.hair}}" apron="{{b.apron}}" long-op="{{b.l}}" beard-op="{{b.bd}}" initials="{{b.ini}}" w="48" bust="1" hint-size="48px,48px"></dc-import>
+      </span>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 15px; font-weight: 700;">{{b.n}}</div>
+        <div style="font-size: 12px; color: #5A5F66;">{{b.when}} · {{b.paid}}</div>
+      </div>
+      <span style="display: flex; flex-direction: column; align-items: flex-end;">
+        <a href="G07-ChefProfile.dc.html" style="font-size: 13px; font-weight: 700; color: #B8361F; text-decoration: none; min-height: 32px; display: flex; align-items: center;">Book again</a>
+        <a href="G21-Invoice.dc.html" style="font-size: 12px; font-weight: 600; text-decoration: underline; min-height: 28px; display: flex; align-items: center;">Invoice</a>
+      </span>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      past: [
+        { n: 'Zoya Khan', when: '18 Oct · 14 guests', paid: '₹28,350', skin: '#C88B5E', hair: '#1B1310', apron: '#6B2D5C', l: '1', bd: '0', ini: 'ZK' },
+        { n: 'Kabir Shah', when: '26 Sep · 4 guests', paid: '₹10,176', skin: '#D6A37A', hair: '#3B2A20', apron: '#2D4E86', l: '0', bd: '0', ini: 'KS' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

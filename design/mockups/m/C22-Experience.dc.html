@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Experience and proof</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}.lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;font-weight:600;color:#3D4247}.card{background:#FFFFFF;border-radius:16px;border:1px solid #EAE5DC}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+  <div style="padding: 52px 20px 10px; display: flex; align-items: center; gap: 12px;">
+    <a href="C12-EditProfile.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div style="flex: 1; min-width: 0;">
+      <h1 style="margin: 0; font-size: 22px; line-height: 1.1;">Experience &amp; proof</h1>
+      <div style="font-size: 12px; color: #5A5F66; margin-top: 2px;">Verified items get a green tick on your profile</div>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; top: 112px; bottom: 96px; overflow-y: auto; padding: 4px 16px 28px; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 14px;">
+
+    <div style="display: flex; align-items: center; gap: 12px; background: #1B1D1F; color: #FFFFFF; border-radius: 16px; padding: 14px;">
+      <span style="width: 46px; height: 46px; border-radius: 99px; flex: none; display: grid; place-items: center; background: #1E7A3C; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600;">{{vCount}}</span>
+      <span style="flex: 1; font-size: 13px; line-height: 1.45;"><strong style="font-size: 15px;">Trust score: strong</strong><br><span style="color: #C8CDD2;">Chefs with 4+ verified items get 2× more menu requests</span></span>
+    </div>
+
+    <!-- years + kitchens -->
+    <span class="lbl" style="margin-top: 4px;">WHERE YOU’VE COOKED</span>
+    <div class="card" style="padding: 12px 14px; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-size: 14px; font-weight: 700;">Years cooking professionally</span>
+      <span style="display: flex; align-items: center; gap: 4px; border: 1px solid #D5D0C7; border-radius: 999px; padding: 2px;">
+        <button onClick="{{yDec}}" aria-label="Fewer years" style="width: 36px; height: 36px; border-radius: 99px; border: none; background: #F1EEE8; font-size: 16px; cursor: pointer; color: #1B1D1F;">−</button>
+        <span style="min-width: 30px; text-align: center; font-weight: 800;">{{years}}</span>
+        <button onClick="{{yInc}}" aria-label="More years" style="width: 36px; height: 36px; border-radius: 99px; border: none; background: #F1EEE8; font-size: 16px; cursor: pointer; color: #1B1D1F;">+</button>
+      </span>
+    </div>
+    <div class="card" style="padding: 2px 14px;">
+      <sc-for list="{{kitchens}}" as="k" hint-placeholder-count="2">
+        <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; border-bottom: 1px solid {{k.line}};">
+          <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 14px; font-weight: 700;">{{k.n}}</span><span style="display: block; font-size: 12px; color: #5A5F66;">{{k.d}}</span></span>
+          <span style="font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; background: {{k.stBg}}; color: {{k.stFg}};">{{k.st}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <button onClick="{{addKitchen}}" style="min-height: 48px; border-radius: 14px; border: 2px dashed #B9B2A6; background: rgba(255,255,255,.5); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #1B1D1F;">+ Add a kitchen · upload a letter or photo ID card</button>
+
+    <!-- training -->
+    <span class="lbl" style="margin-top: 4px;">TRAINING &amp; CERTIFICATES</span>
+    <div class="card" style="padding: 2px 14px;">
+      <sc-for list="{{certs}}" as="c" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; border-bottom: 1px solid {{c.line}};">
+          <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 14px; font-weight: 700;">{{c.n}}</span><span style="display: block; font-size: 12px; color: #5A5F66;">{{c.d}}</span></span>
+          <span style="font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; background: {{c.stBg}}; color: {{c.stFg}};">{{c.st}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- cuisines -->
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
+      <span class="lbl">CUISINE STRENGTH</span>
+      <span style="font-size: 11px; color: #5A5F66;">Be honest — guests rate this</span>
+    </div>
+    <div class="card" style="padding: 8px 14px; display: flex; flex-direction: column; gap: 8px;">
+      <sc-for list="{{cuisines}}" as="c" hint-placeholder-count="4">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="flex: 1; font-size: 14px; font-weight: 700;">{{c.n}}</span>
+          <span role="radiogroup" aria-label="{{c.aria}}" style="display: grid; grid-template-columns: repeat(3, 62px); background: #F1EEE8; border-radius: 999px; padding: 3px;">
+            <sc-for list="{{c.levels}}" as="v" hint-placeholder-count="3">
+              <button role="radio" onClick="{{v.pick}}" aria-checked="{{v.on}}" style="min-height: 34px; border: none; border-radius: 999px; font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer; background: {{v.bg}}; color: {{v.fg}};">{{v.l}}</button>
+            </sc-for>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- food rules + occasions -->
+    <span class="lbl" style="margin-top: 4px;">FOOD RULES YOU CAN FOLLOW</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+      <sc-for list="{{rules}}" as="t" hint-placeholder-count="5">
+        <button onClick="{{t.toggle}}" aria-pressed="{{t.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+      </sc-for>
+    </div>
+    <span class="lbl" style="margin-top: 4px;">OCCASIONS &amp; LIVE COUNTERS</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+      <sc-for list="{{occ}}" as="t" hint-placeholder-count="8">
+        <button onClick="{{t.toggle}}" aria-pressed="{{t.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+      </sc-for>
+    </div>
+
+    <!-- capacity -->
+    <span class="lbl" style="margin-top: 4px;">HOW BIG CAN YOU GO?</span>
+    <div class="card" style="padding: 4px 14px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; border-bottom: 1px solid #F1EEE8;">
+        <span style="font-size: 14px; font-weight: 700;">Most guests I can cook for</span>
+        <span style="display: flex; align-items: center; gap: 4px; border: 1px solid #D5D0C7; border-radius: 999px; padding: 2px;">
+          <button onClick="{{gDec}}" aria-label="Fewer guests" style="width: 36px; height: 36px; border-radius: 99px; border: none; background: #F1EEE8; font-size: 16px; cursor: pointer; color: #1B1D1F;">−</button>
+          <span style="min-width: 30px; text-align: center; font-weight: 800;">{{maxG}}</span>
+          <button onClick="{{gInc}}" aria-label="More guests" style="width: 36px; height: 36px; border-radius: 99px; border: none; background: #F1EEE8; font-size: 16px; cursor: pointer; color: #1B1D1F;">+</button>
+        </span>
+      </div>
+      <button onClick="{{toggleHelper}}" aria-pressed="{{helper}}" style="width: 100%; display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0; border: none; background: transparent; font-family: inherit; cursor: pointer; color: #1B1D1F; text-align: left;">
+        <span><span style="display: block; font-size: 14px; font-weight: 700;">I have a helper</span><span style="display: block; font-size: 12px; color: #5A5F66;">Helper must also pass ID check</span></span>
+        <span style="width: 46px; height: 28px; border-radius: 99px; position: relative; background: {{swBg}}; flex: none;"><span style="position: absolute; top: 3px; left: {{knob}}; width: 22px; height: 22px; border-radius: 99px; background: #FFFFFF;"></span></span>
+      </button>
+    </div>
+
+    <!-- cooked on senzo -->
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
+      <span class="lbl">COOKED ON SENZO</span>
+      <span style="font-size: 11px; color: #5A5F66;">Real photos from guests</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+      <sc-for list="{{photos}}" as="p" hint-placeholder-count="6">
+        <div style="background: #FFFFFF; border-radius: 12px; border: 1px solid #EAE5DC; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+          <dc-import name="DishArt" kind="{{p.k}}" c1="{{p.c}}" w="70" hint-size="70px,70px"></dc-import>
+          <span style="font-size: 10px; color: #5A5F66; text-align: center; line-height: 1.3;">{{p.by}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <button onClick="{{togglePhotos}}" aria-pressed="{{autoPhotos}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 14px; border-radius: 14px; border: 1px solid #EAE5DC; background: #FFFFFF; font-family: inherit; cursor: pointer; color: #1B1D1F; text-align: left;">
+      <span><span style="display: block; font-size: 14px; font-weight: 700;">Add photos guests share</span><span style="display: block; font-size: 12px; color: #5A5F66;">Only with the guest’s OK · faces blurred</span></span>
+      <span style="width: 46px; height: 28px; border-radius: 99px; position: relative; background: {{phBg}}; flex: none;"><span style="position: absolute; top: 3px; left: {{phKnob}}; width: 22px; height: 22px; border-radius: 99px; background: #FFFFFF;"></span></span>
+    </button>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; display: flex; align-items: center; gap: 12px; padding: 0 16px 14px; box-sizing: border-box;">
+    <div style="flex: 1; min-width: 0; color: #FFFFFF;">
+      <div style="font-size: 14px; font-weight: 700;">{{footTitle}}</div>
+      <div style="font-size: 11px; color: #B9C6BF;">Proof checked in 24 h</div>
+    </div>
+    <a href="G07-ChefProfile.dc.html" style="display: flex; align-items: center; min-height: 52px; padding: 0 14px; border-radius: 999px; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none;">Preview</a>
+    <button onClick="{{save}}" style="min-height: 52px; padding: 0 22px; border-radius: 999px; border: none; background: #B8361F; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;">{{saveLabel}}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      years: 8, added: false, maxG: 40, helper: true, autoPhotos: true, saved: false,
+      levels: { Gujarati: 2, Kathiyawadi: 2, Punjabi: 1, 'Indo-Chinese': 0 },
+      rules: ['Jain', 'No onion-garlic', 'Kids menu'],
+      occ: ['Kitty party', 'Birthday', 'Festival / puja', 'Live jalebi', 'Live khandvi']
+    };
+  }
+  chip(on) { return on ? { bg: '#1B1D1F', fg: '#FFFFFF', bd: '#1B1D1F' } : { bg: '#FFFFFF', fg: '#1B1D1F', bd: '#D5D0C7' }; }
+  status(st) {
+    if (st === 'ok') return { st: '✓ Verified', stBg: '#E6F2EA', stFg: '#1E6B36' };
+    if (st === 'review') return { st: 'In review', stBg: '#FFF4DE', stFg: '#9A5B00' };
+    return { st: 'Add proof', stBg: '#FBEDEA', stFg: '#9E2C17' };
+  }
+  renderVals() {
+    const s = this.state;
+    const kit = [['Heritage hotel kitchen, Ahmedabad', 'Commis → chef de partie · 2018–2022', 'ok'], ['Own home catering', '2022–now · 212 Senzo jobs', 'ok']];
+    if (s.added) kit.push(['New kitchen', 'Tap to add name and dates', 'need']);
+    const certs = [['IHM Ahmedabad', 'Diploma in food production', 'ok'], ['Bakery & desserts course', 'Certificate uploaded today', 'review']];
+    const all = kit.concat(certs);
+    const tog = (key, l) => { const on = s[key].indexOf(l) >= 0; this.setState({ [key]: on ? s[key].filter((x) => x !== l) : s[key].concat([l]), saved: false }); };
+    return {
+      vCount: all.filter((x) => x[2] === 'ok').length + '/' + all.length,
+      years: s.years,
+      yDec: () => this.setState({ years: Math.max(0, s.years - 1), saved: false }),
+      yInc: () => this.setState({ years: Math.min(50, s.years + 1), saved: false }),
+      kitchens: kit.map((k, i) => Object.assign({ n: k[0], d: k[1], line: i === kit.length - 1 ? 'transparent' : '#F1EEE8' }, this.status(k[2]))),
+      addKitchen: () => this.setState({ added: true, saved: false }),
+      certs: certs.map((c, i) => Object.assign({ n: c[0], d: c[1], line: i === certs.length - 1 ? 'transparent' : '#F1EEE8' }, this.status(c[2]))),
+      cuisines: Object.keys(s.levels).map((n) => ({
+        n, aria: n + ' skill level',
+        levels: ['Good', 'Great', 'Expert'].map((l, k) => { const on = s.levels[n] === k; return { l, on, bg: on ? '#1B1D1F' : 'transparent', fg: on ? '#FFFFFF' : '#3D4247', pick: () => this.setState({ levels: Object.assign({}, s.levels, { [n]: k }), saved: false }) }; })
+      })),
+      rules: ['Jain', 'No onion-garlic', 'Vegan', 'Eggless baking', 'Kids menu'].map((l) => Object.assign({ l, on: s.rules.indexOf(l) >= 0, toggle: () => tog('rules', l) }, this.chip(s.rules.indexOf(l) >= 0))),
+      occ: ['Kitty party', 'Birthday', 'Festival / puja', 'Small wedding function', 'Live jalebi', 'Live dosa', 'Live pani puri', 'Live khandvi'].map((l) => Object.assign({ l, on: s.occ.indexOf(l) >= 0, toggle: () => tog('occ', l) }, this.chip(s.occ.indexOf(l) >= 0))),
+      maxG: s.maxG,
+      gDec: () => this.setState({ maxG: Math.max(4, s.maxG - 5), saved: false }),
+      gInc: () => this.setState({ maxG: Math.min(150, s.maxG + 5), saved: false }),
+      helper: s.helper, toggleHelper: () => this.setState({ helper: !s.helper, saved: false }),
+      swBg: s.helper ? '#1E7A3C' : '#D5D0C7', knob: s.helper ? '21px' : '3px',
+      photos: [['taco', '#F0D9A0', 'Krupa S. · Oct'], ['bowl', '#6E8B3D', 'Harsh P. · Sep'], ['tart', '#F2C14E', 'Neha M. · Sep'], ['platter', '#F2D16B', 'Rahul D. · Aug'], ['thali', '#E2B33C', 'Mitali J. · Aug'], ['tart', '#E9A23B', 'Dev K. · Jul']].map((p) => ({ k: p[0], c: p[1], by: p[2] })),
+      autoPhotos: s.autoPhotos, togglePhotos: () => this.setState({ autoPhotos: !s.autoPhotos, saved: false }),
+      phBg: s.autoPhotos ? '#1E7A3C' : '#D5D0C7', phKnob: s.autoPhotos ? '21px' : '3px',
+      footTitle: s.saved ? 'Saved' : s.years + ' yrs · up to ' + s.maxG + ' guests',
+      save: () => this.setState({ saved: true }),
+      saveLabel: s.saved ? '✓ Saved' : 'Save'
+    };
+  }
+}
+</script>
+</body>
+</html>

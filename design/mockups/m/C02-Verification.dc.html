@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verify and get paid</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 16px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="100" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <a href="C01-Onboarding.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3D4247; font-weight: 600;">STEP 2 OF 3</span>
+    <span style="width: 44px;"></span>
+  </div>
+  <div style="margin-top: 40px;">
+    <h1 style="margin: 0; font-size: 26px; line-height: 1.15;">Verify &amp; get paid</h1>
+    <p style="margin: 6px 0 0; font-size: 14px; color: #3D4247; line-height: 1.5;">Guests trust verified chefs. Payouts go straight to your bank.</p>
+  </div>
+  <div style="background: #FFFEFB; border-radius: 4px; box-shadow: 0 10px 18px rgba(0,0,0,.08); overflow: hidden;">
+    <sc-for list="{{items}}" as="i" hint-placeholder-count="5">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 0 16px; border-bottom: 1px solid #F1F2F3;">
+        <span style="width: 28px; height: 28px; border-radius: 99px; flex: none; display: grid; place-items: center; background: {{i.bg}};">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" opacity="{{i.tick}}"><path d="M5 12l5 5 9-10"></path></svg>
+        </span>
+        <span style="flex: 1; min-width: 0;">
+          <span style="display: block; font-size: 15px; font-weight: 700;">{{i.t}}</span>
+          <span style="display: block; font-size: 12px; color: #5A5F66;">{{i.d}}</span>
+        </span>
+        <span style="font-size: 12px; font-weight: 700; color: {{i.fg}};">{{i.s}}</span>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin: 0; font-size: 12px; color: #3D4247; line-height: 1.5;">You can start getting requests once ID and bank are verified. The police check badge appears on your profile when it clears.</p>
+  <a href="C03-MenuPricing.dc.html" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Next: menu &amp; price</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const done = (t, d) => ({ t, d, s: 'Verified', fg: '#1E6B36', bg: '#1E7A3C', tick: 1 });
+    const wait = (t, d, s) => ({ t, d, s, fg: '#9A5B00', bg: '#E1A33A', tick: 0 });
+    const todo = (t, d) => ({ t, d, s: 'Add', fg: '#B8361F', bg: '#C9CDD1', tick: 0 });
+    return {
+      items: [
+        done('Aadhaar e-KYC', 'Name & address matched'),
+        done('PAN card', 'For TDS on earnings'),
+        done('Bank account', 'HDFC ···· 1290 · ₹1 test credit OK'),
+        wait('Police verification', 'Usually 2–3 days', 'In review')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

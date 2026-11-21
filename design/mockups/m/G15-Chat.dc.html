@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chat with chef</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}.ns>*{flex-shrink:0}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 48px 14px 10px; background: #FFFEFB; border-bottom: 1px solid #EAE5DC;">
+    <a href="G11-Bookings.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="width: 42px; height: 42px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+      <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="42" bust="1" hint-size="42px,42px"></dc-import>
+    </span>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 16px; font-weight: 800;">Ananya Mehta</div>
+      <div style="font-size: 12px; color: #5A5F66;">Sat 7 Nov · 7:30 PM · 6 guests</div>
+    </div>
+    <button aria-label="Call chef (your number stays hidden)" style="width: 44px; height: 44px; border-radius: 99px; border: 1px solid #D5D0C7; background: #FFFFFF; display: grid; place-items: center; cursor: pointer; color: #1B1D1F;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
+    </button>
+  </div>
+
+  <div class="ns" style="flex: 1; overflow-y: auto; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="align-self: center; font-size: 11px; color: #5A5F66; background: #EAE5DC; padding: 6px 12px; border-radius: 999px; text-align: center;">Numbers are hidden · keep payments in the app</div>
+
+    <div style="align-self: flex-end; max-width: 78%; background: #1B1D1F; color: #FFFFFF; padding: 10px 12px; border-radius: 16px 16px 4px 16px; font-size: 14px; line-height: 1.45;">Hi Ananya! Can we do khandvi tacos, undhiyu and something sweet? 2 guests are Jain.</div>
+    <div style="align-self: flex-start; max-width: 78%; background: #FFFFFF; padding: 10px 12px; border-radius: 16px 16px 16px 4px; font-size: 14px; line-height: 1.45; border: 1px solid #EAE5DC;">Of course! I’ll make the undhiyu Jain-friendly for everyone. Here’s my menu:</div>
+
+    <!-- proposed menu card -->
+    <div style="align-self: flex-start; width: 86%; background: #FFFEFB; border-radius: 6px; box-shadow: inset 0 0 0 1.5px {{frame}}, inset 0 0 0 5px #FFFEFB, inset 0 0 0 6px {{frame}}, 0 8px 16px rgba(0,0,0,.08); padding: 14px;">
+      <div style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .2em; color: #B8361F; font-weight: 600;">PROPOSED MENU</div>
+      <div style="text-align: center; font-size: 16px; font-weight: 800; margin-top: 2px;">Dinner for 6 · ₹10,800</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+        <sc-for list="{{items}}" as="i" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="flex: none;"><dc-import name="DishArt" kind="{{i.kind}}" c1="{{i.c}}" w="38" hint-size="38px,38px"></dc-import></span>
+            <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 14px; font-weight: 700;">{{i.n}}</span><span style="display: block; font-size: 11px; color: #5A5F66;">{{i.d}}</span></span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top: 1.5px dashed #D5D0C7; margin: 12px 0 10px;"></div>
+      <div style="font-size: 12px; color: #3D4247;">Groceries included · peanut-free kitchen</div>
+      <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+          <button onClick="{{change}}" style="flex: 1; min-height: 44px; border-radius: 999px; border: 1px solid #1B1D1F; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Ask for changes</button>
+          <button onClick="{{accept}}" style="flex: 1; min-height: 44px; border-radius: 999px; border: none; background: #B8361F; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #FFFFFF;">Accept menu</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{accepted}}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 10px; text-align: center; font-size: 13px; font-weight: 800; color: #1E6B36;">✓ Menu accepted · locked for Sat 7 Nov</div>
+      </sc-if>
+    </div>
+
+    <sc-for list="{{msgs}}" as="m" hint-placeholder-count="1">
+      <div style="align-self: {{m.side}}; max-width: 80%; background: {{m.bg}}; color: {{m.fg}}; padding: 10px 12px; border-radius: 16px; font-size: 14px; line-height: 1.45; border: 1px solid {{m.bd}};">{{m.t}}</div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; gap: 8px; padding: 10px 12px 28px; background: #FFFEFB; border-top: 1px solid #EAE5DC;">
+    <input value="{{draft}}" onInput="{{setDraft}}" placeholder="Message Ananya…" aria-label="Message" style="flex: 1; min-width: 0; min-height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 15px; color: #1B1D1F; background: #FFFFFF;">
+    <button onClick="{{send}}" aria-label="Send" style="width: 46px; height: 46px; border-radius: 99px; border: none; background: #1B1D1F; display: grid; place-items: center; cursor: pointer;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-2-7z"></path></svg>
+    </button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { st: 'pending', msgs: [], draft: '' }; }
+  renderVals() {
+    const s = this.state;
+    const sys = (t) => ({ t, side: 'center', bg: '#E6F2EA', fg: '#1E4D2E', bd: '#E6F2EA' });
+    const me = (t) => ({ t, side: 'flex-end', bg: '#1B1D1F', fg: '#FFFFFF', bd: '#1B1D1F' });
+    const chef = (t) => ({ t, side: 'flex-start', bg: '#FFFFFF', fg: '#1B1D1F', bd: '#EAE5DC' });
+    return {
+      items: [
+        { n: 'Khandvi Tacos', d: 'Starter · coconut, pomegranate', kind: 'taco', c: '#F0D9A0' },
+        { n: 'Jain Undhiyu', d: 'Main · no root vegetables', kind: 'bowl', c: '#6E8B3D' },
+        { n: 'Phulka & Jeera Rice', d: 'Main', kind: 'thali', c: '#E2B33C' },
+        { n: 'Kesar Shrikhand Tart', d: 'Dessert', kind: 'tart', c: '#F2C14E' }
+      ],
+      pending: s.st === 'pending', accepted: s.st === 'accepted',
+      frame: s.st === 'accepted' ? '#1E7A3C' : '#1B1D1F',
+      accept: () => this.setState({ st: 'accepted', msgs: s.msgs.concat([sys('Menu locked · Ananya will share the grocery list by Fri')]) }),
+      change: () => this.setState({ msgs: s.msgs.concat([me('Can we swap the tart for jalebi?'), chef('Sure — I’ll update the menu.')]) }),
+      msgs: s.msgs, draft: s.draft,
+      setDraft: (e) => this.setState({ draft: e.target.value }),
+      send: () => { const t = s.draft.trim(); if (!t) return; this.setState({ msgs: s.msgs.concat([me(t)]), draft: '' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edit chef profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}.up{animation:up .28s ease-out}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C04-Dashboard.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-size: 22px;">My profile</h1>
+  </div>
+
+  <div style="display: flex; gap: 14px; align-items: center; background: #FFFFFF; border-radius: 16px; padding: 14px; border: 1px solid #EAE5DC;">
+    <span style="width: 64px; height: 64px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+      <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="64" bust="1" hint-size="64px,64px"></dc-import>
+    </span>
+    <div style="flex: 1;">
+      <div style="font-size: 18px; font-weight: 800;">Ananya Mehta</div>
+      <div style="font-size: 12px; color: #5A5F66;">Live on the rail · ★ 4.9 · 212 jobs</div>
+    </div>
+    <a href="G07-ChefProfile.dc.html" style="font-size: 13px; font-weight: 700; color: #B8361F;">Preview</a>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #EAE5DC; overflow: hidden;">
+    <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+      <a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 16px; border-bottom: 1px solid #F1EEE8; text-decoration: none;">
+        <span style="flex: 1;"><span style="display: block; font-size: 15px; font-weight: 700;">{{r.l}}</span><span style="display: block; font-size: 12px; color: #5A5F66;">{{r.v}}</span></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </a>
+    </sc-for>
+  </div>
+  <div style="font-size: 12px; color: #5A5F66; margin-top: -6px;">Changes to photos and dishes go live after a quick review.</div>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600;">PAYOUT ACCOUNT</div>
+  <div style="display: flex; gap: 12px; align-items: center; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; border: 1px solid #EAE5DC;">
+    <span style="width: 40px; height: 40px; border-radius: 10px; background: #2D4E86; color: #FFFFFF; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; flex: none;">BANK</span>
+    <span style="flex: 1;"><span style="display: block; font-size: 15px; font-weight: 700;">{{bankName}}</span><span style="display: block; font-size: 12px; color: {{bankFg}}; font-weight: 600;">{{bankStatus}}</span></span>
+    <button onClick="{{openBank}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #1B1D1F; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Change</button>
+  </div>
+
+  <sc-if value="{{sheet}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(27,29,31,.5); z-index: 20;">
+      <div class="up" role="dialog" aria-modal="true" aria-label="Change bank account" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFEFB; border-radius: 22px 22px 0 0; padding: 14px 20px 30px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2 style="margin: 0; font-size: 20px;">New bank account</h2>
+          <button onClick="{{closeBank}}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 99px; border: none; background: #F1EEE8; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </div>
+        <div style="background: #FFF4DE; border-radius: 12px; padding: 10px 12px; font-size: 12px; color: #6B4300; line-height: 1.45;">For your safety, payouts pause for 24 hours after a change. We’ll also confirm with an OTP on your registered phone.</div>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">Account holder name<input value="Ananya Mehta" style="min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 15px; background: #FFFFFF; color: #1B1D1F;"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">Account number<input value="5010 0234 7781" style="min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: 'IBM Plex Mono', monospace; font-size: 15px; background: #FFFFFF; color: #1B1D1F;"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">IFSC<input value="ICIC0001234" style="min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: 'IBM Plex Mono', monospace; font-size: 15px; background: #FFFFFF; color: #1B1D1F;"></label>
+        <button onClick="{{verify}}" style="min-height: 54px; border-radius: 999px; border: none; background: #B8361F; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;">Verify with ₹1 test credit</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sheet: false, changed: false }; }
+  renderVals() {
+    const s = this.state;
+    return {
+      rows: [
+        { l: 'Photo & avatar', v: 'How guests see you', href: 'C01-Onboarding.dc.html' },
+        { l: 'Set menus & group prices', v: '3 menus live · from ₹750/guest', href: 'C20-SetMenus.dc.html' },
+        { l: 'Specialties', v: '3 signature dishes', href: 'C03-MenuPricing.dc.html' },
+        { l: 'Experience & proof', v: 'IHM, hotel kitchen · 3 of 4 verified', href: 'C22-Experience.dc.html' },
+        { l: 'Availability', v: 'Fri, Sat, Sun · dinner', href: 'C10-Calendar.dc.html' },
+        { l: 'Bio, cuisines & languages', v: 'Gujarati, Kathiyawadi · ગુજરાતી, हिंदी', href: 'C12-EditProfile.dc.html' },
+        { l: 'Documents', v: 'Aadhaar, PAN, bank · all verified', href: 'C02-Verification.dc.html' }
+      ],
+      sheet: s.sheet,
+      openBank: () => this.setState({ sheet: true }),
+      closeBank: () => this.setState({ sheet: false }),
+      verify: () => this.setState({ sheet: false, changed: true }),
+      bankName: s.changed ? 'ICICI ···· 7781' : 'HDFC ···· 1290',
+      bankStatus: s.changed ? 'Verifying · payouts resume in 24 hrs' : '✓ Verified · daily payouts at 11 AM',
+      bankFg: s.changed ? '#9A5B00' : '#1E6B36'
+    };
+  }
+}
+</script>
+</body>
+</html>

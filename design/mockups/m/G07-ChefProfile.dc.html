@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chef profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+.bob{animation:bob 2.8s ease-in-out infinite}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #FFFEFB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+  <div style="height: 752px; overflow-y: auto;">
+
+    <!-- hero: chef in the kitchen -->
+    <div style="position: relative; height: 300px; background: #ECE8E1; overflow: hidden;">
+      <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px;">
+        <dc-import name="KitchenBg" floor="276" hint-size="390px,844px"></dc-import>
+      </div>
+      <span style="position: absolute; left: 50%; top: 266px; width: 150px; height: 20px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.3), transparent);"></span>
+      <div class="bob" style="position: absolute; left: 50%; top: 26px; margin-left: -60px;">
+        <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="120" hint-size="120px,252px"></dc-import>
+      </div>
+      <div style="position: absolute; left: 16px; right: 16px; top: 48px; display: flex; justify-content: space-between;">
+        <a href="G04-Home.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+        </a>
+        <div style="display: flex; gap: 8px;">
+          <button aria-label="Share chef" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; cursor: pointer; color: #1B1D1F;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v7h14v-7"></path></svg>
+          </button>
+          <button onClick="{{fav}}" aria-label="Save to favourites" aria-pressed="{{saved}}" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; cursor: pointer;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="{{heart}}" stroke="#B8361F" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- paper sheet -->
+    <div style="position: relative; margin-top: -12px; background: #FFFEFB; border-radius: 18px 18px 0 0; box-shadow: 0 -8px 16px rgba(0,0,0,.12); padding: 22px 0 28px; display: flex; flex-direction: column; gap: 18px;">
+      <div style="padding: 0 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+          <div>
+            <h1 style="margin: 0; font-size: 26px; line-height: 1.1;">Ananya Mehta</h1>
+            <div style="font-size: 14px; color: #3D4247; margin-top: 4px;">Modern Gujarati · Bodakdev · 8 yrs</div>
+          </div>
+          <div style="text-align: center; background: #1B1D1F; color: #FFFFFF; border-radius: 12px; padding: 6px 10px; flex: none;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600;">★ 4.9</div>
+            <div style="font-size: 10px; color: #C8CDD2;">126 reviews</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;">
+          <span style="font-size: 11px; font-weight: 700; padding: 5px 9px; border-radius: 6px; background: #E6F2EA; color: #1E6B36;">✓ Police verified</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 6px; background: #F1EEE8; display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border: 1.5px solid #1E7A3C; display: inline-grid; place-items: center;"><span style="width: 4px; height: 4px; border-radius: 9px; background: #1E7A3C;"></span></span>Pure veg</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 6px; background: #F1EEE8;">Jain options</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 6px; background: #F1EEE8;">212 dinners cooked</span>
+        </div>
+      </div>
+
+      <!-- signature dishes -->
+      <div>
+        <div style="padding: 0 20px; display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; font-weight: 600; color: #3D4247;">HER SPECIALTIES</span>
+          <span style="font-size: 12px; color: #5A5F66;">swipe →</span>
+        </div>
+        <div style="display: flex; gap: 12px; overflow-x: auto; padding: 12px 20px 6px; scroll-snap-type: x mandatory;">
+          <sc-for list="{{dishes}}" as="d" hint-placeholder-count="4">
+            <div style="flex: none; width: 210px; scroll-snap-align: start; background: #F4F1EB; border-radius: 20px; padding: 16px 14px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: center;">
+                <dc-import name="DishArt" kind="{{d.kind}}" c1="{{d.c}}" w="160" hint-size="160px,160px"></dc-import>
+              </div>
+              <div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 10px; height: 10px; border: 1.5px solid #1E7A3C; display: grid; place-items: center; flex: none;"><span style="width: 4px; height: 4px; border-radius: 9px; background: #1E7A3C;"></span></span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .12em; color: #5A5F66;">{{d.course}}</span>
+                </div>
+                <div style="font-size: 16px; font-weight: 800; margin-top: 4px;">{{d.n}}</div>
+                <div style="font-size: 12px; color: #3D4247; line-height: 1.45; margin-top: 2px;">{{d.note}}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- tabs -->
+      <div role="tablist" style="margin: 0 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #F1EEE8; border-radius: 999px; padding: 4px;">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+          <button role="tab" onClick="{{t.pick}}" aria-selected="{{t.on}}" style="min-height: 40px; border: none; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+        </sc-for>
+      </div>
+
+      <!-- set menus -->
+      <sc-if value="{{isMenus}}" hint-placeholder-val="{{ true }}">
+        <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 14px;">
+          <sc-for list="{{menus}}" as="m" hint-placeholder-count="3">
+            <div style="background: #FFFFFF; border-radius: 16px; border: 1.5px solid {{m.bd}}; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <div style="min-width: 0;">
+                  <sc-if value="{{m.hasTag}}" hint-placeholder-val="{{ false }}"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #B8361F; font-weight: 600;">{{m.tag}}</div></sc-if>
+                  <div style="font-size: 17px; font-weight: 800;">{{m.n}}</div>
+                  <div style="font-size: 12px; color: #5A5F66; line-height: 1.4; margin-top: 2px;">{{m.d}}</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 4px;">
+                <sc-for list="{{m.plates}}" as="p" hint-placeholder-count="5">
+                  <dc-import name="DishArt" kind="{{p.k}}" c1="{{p.c}}" w="44" hint-size="44px,44px"></dc-import>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                <sc-for list="{{m.chips}}" as="c" hint-placeholder-count="3">
+                  <span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; background: #E6F2EA; color: #1E6B36;">✓ {{c}}</span>
+                </sc-for>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
+                <sc-for list="{{m.bands}}" as="b" hint-placeholder-count="3">
+                  <div style="background: #F4F1EB; border-radius: 10px; padding: 6px; text-align: center;">
+                    <div style="font-size: 10px; font-weight: 700; color: #5A5F66;">{{b.l}}</div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600;">{{b.p}}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; color: #5A5F66;">{{m.foot}}</span>
+                <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap;">{{m.cta}}</a>
+              </div>
+            </div>
+          </sc-for>
+          <p style="margin: 0; font-size: 12px; color: #5A5F66; text-align: center;">Swap or add dishes · Jain versions · buy groceries yourself and save</p>
+        </div>
+      </sc-if>
+
+      <!-- experience -->
+      <sc-if value="{{isCooks}}" hint-placeholder-val="{{ true }}">
+        <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 18px;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #3D4247; margin-bottom: 8px;">VERIFIED EXPERIENCE</div>
+            <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #EAE5DC; padding: 2px 14px;">
+              <sc-for list="{{proof}}" as="p" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 12px; min-height: 56px; border-bottom: 1px solid {{p.line}};">
+                  <span style="width: 22px; height: 22px; border-radius: 99px; background: #1E7A3C; flex: none; display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+                  <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 14px; font-weight: 700;">{{p.n}}</span><span style="display: block; font-size: 12px; color: #5A5F66;">{{p.d}}</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #3D4247; margin-bottom: 8px;">CUISINES</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{cuisines}}" as="c" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                  <span style="width: 110px; font-weight: 700;">{{c.n}}</span>
+                  <span style="flex: 1; height: 6px; border-radius: 9px; background: #EEE9E1; overflow: hidden;"><span style="display: block; height: 100%; border-radius: 9px; background: #B8361F; width: {{c.w}};"></span></span>
+                  <span style="font-size: 11px; color: #5A5F66; width: 52px; text-align: right;">{{c.l}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #3D4247; margin-bottom: 8px;">CAN COOK FOR</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{diets}}" as="d" hint-placeholder-count="5">
+                <span style="font-size: 12px; font-weight: 600; padding: 7px 11px; border-radius: 999px; border: 1px solid #D5D0C7;">{{d}}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #3D4247; margin-bottom: 8px;">OCCASIONS &amp; LIVE COUNTERS</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{occasions}}" as="o" hint-placeholder-count="5">
+                <span style="font-size: 12px; font-weight: 600; padding: 7px 11px; border-radius: 999px; background: #F1EEE8;">{{o}}</span>
+              </sc-for>
+            </div>
+            <div style="font-size: 12px; color: #5A5F66; margin-top: 8px;">Cooks for up to 40 guests · brings a verified helper for 20+</div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #3D4247;">COOKED ON SENZO</span>
+              <span style="font-size: 11px; color: #5A5F66;">Real guest photos</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+              <sc-for list="{{photos}}" as="p" hint-placeholder-count="6">
+                <div style="background: #F4F1EB; border-radius: 12px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                  <dc-import name="DishArt" kind="{{p.k}}" c1="{{p.c}}" w="70" hint-size="70px,70px"></dc-import>
+                  <span style="font-size: 10px; color: #5A5F66; text-align: center; line-height: 1.3;">{{p.by}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <a href="G23-PlanEvent.dc.html" style="display: block; text-decoration: none; background: #FFFEFB; border-radius: 4px; box-shadow: inset 0 0 0 1.5px #1B1D1F, inset 0 0 0 5px #FFFEFB, inset 0 0 0 6px #1B1D1F; padding: 18px 16px; text-align: center;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .22em; color: #B8361F; font-weight: 600;">BIG PARTY OR SOMETHING NEW?</div>
+            <div style="font-size: 17px; font-weight: 800; margin-top: 4px;">Ask for a custom menu</div>
+            <div style="font-size: 13px; color: #3D4247; margin-top: 6px; line-height: 1.45;">Tell us the occasion and budget — Ananya and 2 other chefs send you a menu with a price.</div>
+          </a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isReviews}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px;">
+          <sc-for list="{{reviews}}" as="r" hint-placeholder-count="3">
+            <div style="background: #F4F1EB; border-radius: 16px; padding: 14px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="width: 34px; height: 34px; border-radius: 99px; background: #24282C; color: #FFFFFF; display: grid; place-items: center; font-size: 12px; font-weight: 700;">{{r.i}}</span>
+                <span style="flex: 1;"><strong style="font-size: 14px;">{{r.n}}</strong><br><span style="font-size: 11px; color: #5A5F66;">{{r.d}} · {{r.o}}</span></span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">★ {{r.s}}</span>
+              </div>
+              <p style="margin: 10px 0 0; font-size: 13px; color: #3D4247; line-height: 1.5;">{{r.t}}</p>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isAbout}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 14px;">
+          <p style="margin: 0; font-size: 14px; color: #3D4247; line-height: 1.6;">Home-style Gujarati flavours plated like a tasting menu. Trained at IHM Ahmedabad, four years in a heritage hotel kitchen before going independent. Happy to cook Jain and no-onion-garlic menus.</p>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+            <div style="background: #F4F1EB; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.6;"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; font-weight: 600; margin-bottom: 4px;">CHEF BRINGS</div>Groceries<br>Spices &amp; garnish<br>Plating ware<br>Apron &amp; cap</div>
+            <div style="background: #F4F1EB; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.6;"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; font-weight: 600; margin-bottom: 4px;">YOU PROVIDE</div>Gas / induction<br>Basic utensils<br>Serving plates<br>Water</div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- counter bar -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 92px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; display: flex; align-items: center; gap: 12px; padding: 0 16px 14px; box-sizing: border-box;">
+    <div style="flex: 1; min-width: 0; color: #FFFFFF;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600;">{{selPrice}}<span style="font-size: 12px; color: #B9C6BF; font-weight: 400;"> /guest</span></div>
+      <div style="font-size: 12px; color: #B9C6BF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{selName}}</div>
+    </div>
+    <a href="G08-Availability.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">Check availability</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'Set menus', saved: false }; }
+  renderVals() {
+    const s = this.state;
+    const unusedMenus = [
+      { tag: 'MENU I', n: 'Gujarati Tasting Menu', p: '₹1,800', g: '2–12 guests', courses: [
+        { t: 'STARTERS', items: [{ n: 'Farsan Trio', d: 'Khaman, sev khamani, patra', kind: 'platter', c: '#F2D16B' }, { n: 'Khandvi Tacos', d: 'Rolled khandvi, coconut, pomegranate', kind: 'taco', c: '#F0D9A0' }] },
+        { t: 'MAINS', items: [{ n: 'Deconstructed Undhiyu', d: 'Winter veg, methi muthia, green garlic', kind: 'bowl', c: '#6E8B3D' }, { n: 'Dal · Bhaat · Rotli', d: 'Sweet-sour Gujarati dal, jeera rice', kind: 'thali', c: '#E2B33C' }] },
+        { t: 'DESSERT', items: [{ n: 'Kesar Shrikhand Tart', d: 'Saffron shrikhand, pistachio crumb', kind: 'tart', c: '#F2C14E' }] }
+      ] },
+      { tag: 'MENU II', n: 'Festive Gujarati Thali', p: '₹2,200', g: '8–20 guests', courses: [
+        { t: 'ON THE THALI', items: [{ n: 'Full Festive Thali', d: '2 shaak, kadhi, dal, rice, puri, papad', kind: 'thali', c: '#E2B33C' }, { n: 'Live Puri Counter', d: 'Hot puris fried at the table', kind: 'platter', c: '#E8C99A' }] },
+        { t: 'SWEETS', items: [{ n: 'Jalebi & Rabdi', d: 'Fresh jalebi, chilled saffron rabdi', kind: 'tart', c: '#E9A23B' }] }
+      ] }
+    ];
+    return {
+      saved: s.saved, heart: s.saved ? '#B8361F' : 'none',
+      fav: () => this.setState({ saved: !s.saved }),
+      dishes: [
+        { n: 'Deconstructed Undhiyu', note: 'Winter vegetables, methi muthia and green garlic', course: 'MAIN', kind: 'bowl', c: '#6E8B3D' },
+        { n: 'Khandvi Tacos', note: 'Soft khandvi shells with coconut and pomegranate', course: 'STARTER', kind: 'taco', c: '#F0D9A0' },
+        { n: 'Kesar Shrikhand Tart', note: 'Saffron shrikhand on a butter crust', course: 'DESSERT', kind: 'tart', c: '#F2C14E' },
+        { n: 'Farsan Platter', note: 'Khaman, patra and chutneys', course: 'STARTER', kind: 'platter', c: '#F2D16B' }
+      ],
+      tabs: ['Set menus', 'Experience', 'Reviews'].map((l) => ({ l, on: s.tab === l, bg: s.tab === l ? '#1B1D1F' : 'transparent', fg: s.tab === l ? '#FFFFFF' : '#3D4247', pick: () => this.setState({ tab: l }) })),
+      isMenus: s.tab === 'Set menus', isCooks: s.tab === 'Experience', isReviews: s.tab === 'Reviews', isAbout: false,
+      menus: [
+        { n: 'Gujarati Classic', tag: 'MOST BOOKED', d: '2 starters · 2 mains · phulka & rice · 1 dessert', foot: 'per guest · groceries incl. · min ₹4,000', chips: ['Jain version', 'Swap or add dishes'], href: 'G22-MenuDetail.dc.html', cta: 'View & customise', bands: [['2–4 guests', '₹2,200'], ['5–10 guests', '₹1,800'], ['11–20 guests', '₹1,500']], plates: [['taco', '#F0D9A0'], ['platter', '#F2D16B'], ['bowl', '#6E8B3D'], ['thali', '#E2B33C'], ['tart', '#F2C14E']] },
+        { n: 'Festive Thali', tag: 'FOR 8+ GUESTS', d: '3 farsan · 3 shaak · kadhi, dal, rice, puri · 2 sweets · live jalebi', foot: 'per guest · groceries incl. · min 8 guests', chips: ['Jain version', 'Live counter'], href: 'G22-MenuDetail.dc.html', cta: 'View & customise', bands: [['8–10 guests', '₹2,300'], ['11–20 guests', '₹1,900'], ['21+ guests', '₹1,650']], plates: [['thali', '#E2B33C'], ['platter', '#F2D16B'], ['bowl', '#C98B2E'], ['bowl', '#E6B43F'], ['tart', '#E9A23B']] },
+        { n: 'Everyday Home-style', tag: '', d: '1 sabzi · dal · rice · rotli · salad · chaas', foot: 'per guest · groceries incl. · min ₹3,000', chips: ['Jain version'], href: 'G22-MenuDetail.dc.html', cta: 'View & customise', bands: [['2–4 guests', '₹1,100'], ['5–10 guests', '₹900'], ['11–20 guests', '₹750']], plates: [['bowl', '#6E8B3D'], ['bowl', '#E2B33C'], ['thali', '#E8C99A']] },
+        { n: 'Weekly meal prep', tag: 'NEW · REPEAT VISITS', d: '3-hour visit · 12–15 dishes for the week, packed in your boxes', foot: 'per visit · you buy groceries from her list', chips: ['Same chef every week', 'Pause anytime'], href: 'G23-PlanEvent.dc.html', cta: 'Set up', bands: [['1 × week', '₹1,400'], ['2 × week', '₹1,250'], ['3 × week', '₹1,100']], plates: [['bowl', '#6E8B3D'], ['bowl', '#E2B33C'], ['thali', '#E8C99A'], ['bowl', '#C9472E']] }
+      ].map((m, i) => ({ n: m.n, tag: m.tag, hasTag: !!m.tag, d: m.d, foot: m.foot, chips: m.chips, href: m.href, cta: m.cta, bd: i === 0 ? '#1B1D1F' : '#EAE5DC', bands: m.bands.map((b) => ({ l: b[0], p: b[1] })), plates: m.plates.map((p) => ({ k: p[0], c: p[1] })) })),
+      proof: [
+        ['IHM Ahmedabad', 'Diploma in food production'],
+        ['Heritage hotel kitchen · 4 yrs', 'Commis → chef de partie, 2018–2022'],
+        ['212 dinners on Senzo', '★ 4.9 from 126 reviews']
+      ].map((p, i, a) => ({ n: p[0], d: p[1], line: i === a.length - 1 ? 'transparent' : '#F1EEE8' })),
+      occasions: ['Kitty party', 'Birthday', 'Festival / puja', 'Live jalebi', 'Live khandvi'],
+      photos: [['taco', '#F0D9A0', 'Krupa S. · Oct'], ['bowl', '#6E8B3D', 'Harsh P. · Sep'], ['tart', '#F2C14E', 'Neha M. · Sep'], ['platter', '#F2D16B', 'Rahul D. · Aug'], ['thali', '#E2B33C', 'Mitali J. · Aug'], ['tart', '#E9A23B', 'Dev K. · Jul']].map((p) => ({ k: p[0], c: p[1], by: p[2] })),
+      cuisines: [
+        { n: 'Gujarati', w: '100%', l: 'Expert' }, { n: 'Kathiyawadi', w: '85%', l: 'Expert' },
+        { n: 'Punjabi', w: '65%', l: 'Great' }, { n: 'Indo-Chinese', w: '50%', l: 'Good' }
+      ],
+      diets: ['Pure veg', 'Jain', 'No onion-garlic', 'Vegan on request', 'Kids menu'],
+      selPrice: 'from ₹750', selName: '4 set menus · price drops for bigger groups',
+      reviews: [
+        { i: 'KS', n: 'Krupa S.', s: '5.0', d: 'Oct 2026', o: 'Birthday · 12 guests', t: 'The khandvi tacos were the hit of my mom’s birthday. Kitchen was cleaner than before she came!' },
+        { i: 'HP', n: 'Harsh P.', s: '5.0', d: 'Sep 2026', o: 'Jain dinner · 10 guests', t: 'Full Jain menu, on time and super organised.' },
+        { i: 'NM', n: 'Neha M.', s: '4.5', d: 'Sep 2026', o: 'Family lunch · 6 guests', t: 'Lovely food. Arrived 15 min late due to traffic but told us in advance.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

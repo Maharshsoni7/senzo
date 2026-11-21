@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Availability calendar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 16px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="100" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C04-Dashboard.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div>
+      <h1 style="margin: 0; font-size: 22px;">November</h1>
+      <div style="font-size: 12px; color: #3D4247;">Tap a day to switch it off or on</div>
+    </div>
+  </div>
+
+  <div style="background: #FFFEFB; border-radius: 4px; box-shadow: 0 10px 18px rgba(0,0,0,.08); padding: 14px;">
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 11px; font-weight: 700; color: #5A5F66; margin-bottom: 6px;">
+      <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;">
+      <sc-for list="{{days}}" as="d" hint-placeholder-count="30">
+        <button onClick="{{d.pick}}" disabled="{{d.lock}}" aria-label="{{d.aria}}" style="height: 46px; border-radius: 10px; border: 1px solid {{d.bd}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; background: {{d.bg}}; color: {{d.fg}}; text-decoration: {{d.strike}};">{{d.n}}</button>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 14px; justify-content: center; margin-top: 12px; font-size: 11px; color: #3D4247;">
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #1B1D1F;"></span>Booked</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #E6F2EA; border: 1px solid #1E7A3C;"></span>Open</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #F1F2F3;"></span>Off</span>
+    </div>
+  </div>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600;">BOOKED</div>
+  <div style="background: #FFFFFF; border-radius: 16px; padding: 4px 16px;">
+    <a href="C06-StartOtp.dc.html" style="display: flex; justify-content: space-between; align-items: center; min-height: 54px; border-bottom: 1px solid #F1F2F3; text-decoration: none;"><span><strong>Sat 7</strong> · Rahul Desai · dinner</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">6 guests</span></a>
+    <a href="C05-Request.dc.html" style="display: flex; justify-content: space-between; align-items: center; min-height: 54px; text-decoration: none;"><span><strong>Sun 15</strong> · Krupa Shah · lunch</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">10 guests</span></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { off: [9, 10, 11, 16, 17, 18, 23, 24, 25] }; }
+  renderVals() {
+    const off = this.state.off;
+    const booked = [7, 15];
+    const days = [];
+    for (let n = 1; n <= 30; n++) {
+      const past = n <= 2;
+      const isB = booked.indexOf(n) >= 0;
+      const isOff = off.indexOf(n) >= 0;
+      days.push({
+        n, lock: past || isB,
+        aria: n + ' November ' + (isB ? 'booked' : isOff ? 'off' : past ? 'past' : 'open'),
+        bg: isB ? '#1B1D1F' : past ? 'transparent' : isOff ? '#F1F2F3' : '#E6F2EA',
+        fg: isB ? '#FFFFFF' : past ? '#9EA4AA' : isOff ? '#5A5F66' : '#1E6B36',
+        bd: isB ? '#1B1D1F' : past || isOff ? 'transparent' : '#1E7A3C',
+        strike: isOff && !isB ? 'line-through' : 'none',
+        pick: () => this.setState({ off: isOff ? off.filter((x) => x !== n) : off.concat([n]) })
+      });
+    }
+    return { days };
+  }
+}
+</script>
+</body>
+</html>

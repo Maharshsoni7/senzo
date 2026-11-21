@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kitchen background</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; line-height: 0; color: #1B1D1F; font-family: system-ui, sans-serif;">
+<sc-if value="{{isHeader}}" hint-placeholder-val="{{ false }}">
+<svg width="390" height="844" viewBox="0 0 390 844" aria-hidden="true" style="display: block;">
+  <defs>
+    <pattern id="khTiles" width="30" height="15" patternUnits="userSpaceOnUse">
+      <rect width="30" height="15" fill="#EEEFEC"></rect>
+      <path d="M0 14.5H30M15 0V7.5M0 7.5H30M0 7.5V15M30 7.5V15" stroke="#E1E3DF" stroke-width="1" fill="none"></path>
+    </pattern>
+    <radialGradient id="khGlow" cx="50%" cy="0%" r="70%">
+      <stop offset="0" stop-color="#FFE3A8" stop-opacity=".5"></stop>
+      <stop offset="1" stop-color="#FFE3A8" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="khFloor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D6D0C6"></stop>
+      <stop offset=".08" stop-color="#E4DFD7"></stop>
+      <stop offset="1" stop-color="#ECE8E1"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="390" height="844" fill="url(#khFloor)"></rect>
+  <g transform="translate(0,{{sdy}})">
+  <rect x="0" y="-400" width="390" height="576" fill="url(#khTiles)"></rect>
+  <line x1="262" y1="-400" x2="262" y2="34" stroke="#3A4045" stroke-width="1.5"></line>
+  <path d="M246 52 Q262 30 278 52 Z" fill="#24282C"></path>
+  <ellipse cx="262" cy="52" rx="16" ry="2.5" fill="#F7D98C"></ellipse>
+  <path d="M232 54 L292 54 L312 170 L212 170 Z" fill="url(#khGlow)"></path>
+  <line x1="346" y1="-400" x2="346" y2="34" stroke="#3A4045" stroke-width="1.5"></line>
+  <path d="M330 52 Q346 30 362 52 Z" fill="#24282C"></path>
+  <ellipse cx="346" cy="52" rx="16" ry="2.5" fill="#F7D98C"></ellipse>
+  <path d="M316 54 L376 54 L396 170 L296 170 Z" fill="url(#khGlow)"></path>
+  <rect x="236" y="150" width="146" height="5" rx="1" fill="#9A7656"></rect>
+  <rect x="244" y="128" width="14" height="22" rx="4" fill="#D9CDB8"></rect>
+  <rect x="244" y="126" width="14" height="4" rx="2" fill="#9A7656"></rect>
+  <rect x="262" y="134" width="12" height="16" rx="3" fill="#E6B47A" opacity=".85"></rect>
+  <circle cx="290" cy="141" r="8" fill="none" stroke="#C9CDD1" stroke-width="3"></circle>
+  <rect x="306" y="124" width="9" height="26" rx="3" fill="#5E7D4A" opacity=".75"></rect>
+  <rect x="319" y="130" width="9" height="20" rx="3" fill="#B8361F" opacity=".55"></rect>
+  <path d="M344 150 L346 138 L360 138 L362 150 Z" fill="#B5694A"></path>
+  <path d="M353 138 Q346 124 340 120 M353 138 Q357 122 366 118" stroke="#5E7D4A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <rect x="0" y="176" width="390" height="9" fill="#F7F5F1"></rect>
+  <rect x="0" y="185" width="390" height="3" fill="#D8D4CC"></rect>
+  <rect x="0" y="188" width="390" height="22" fill="#2F3D37"></rect>
+  <rect x="30" y="194" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+  <rect x="108" y="194" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+  <rect x="186" y="194" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+  <rect x="264" y="194" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+  <rect x="342" y="194" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+  <rect x="0" y="210" width="390" height="4" fill="#1F2925"></rect>
+  </g>
+</svg>
+</sc-if>
+<sc-if value="{{isFull}}" hint-placeholder-val="{{ true }}">
+<svg width="390" height="844" viewBox="0 0 390 844" aria-hidden="true" style="display: block;">
+  <defs>
+    <pattern id="kbTiles" width="30" height="15" patternUnits="userSpaceOnUse">
+      <rect width="30" height="15" fill="#EEEFEC"></rect>
+      <path d="M0 14.5H30M15 0V7.5M0 7.5H30M0 7.5V15M30 7.5V15" stroke="#E1E3DF" stroke-width="1" fill="none"></path>
+    </pattern>
+    <radialGradient id="kbGlow" cx="50%" cy="0%" r="70%">
+      <stop offset="0" stop-color="#FFE3A8" stop-opacity=".55"></stop>
+      <stop offset="1" stop-color="#FFE3A8" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="kbFloor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#CFC9BF"></stop>
+      <stop offset=".12" stop-color="#E2DDD5"></stop>
+      <stop offset="1" stop-color="#E9E5DE"></stop>
+    </linearGradient>
+    <linearGradient id="kbWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity=".06"></stop>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,{{dy}})">
+    <!-- wall -->
+    <rect x="0" y="-400" width="390" height="830" fill="url(#kbTiles)"></rect>
+    <rect x="0" y="-400" width="390" height="830" fill="url(#kbWall)"></rect>
+
+    <!-- hood -->
+    <rect x="168" y="-400" width="54" height="586" fill="#D6D9DB"></rect>
+    <rect x="168" y="-400" width="6" height="586" fill="#E4E6E8"></rect>
+    <path d="M128 232 L262 232 L236 186 L154 186 Z" fill="#C7CBCE"></path>
+    <rect x="128" y="232" width="134" height="6" rx="2" fill="#AEB3B7"></rect>
+    <path d="M140 238 L250 238 L280 300 L110 300 Z" fill="#FFE9B8" opacity=".25"></path>
+
+    <!-- pendant lights -->
+    <line x1="64" y1="-400" x2="64" y2="96" stroke="#3A4045" stroke-width="1.5"></line>
+    <path d="M44 118 Q64 92 84 118 Z" fill="#24282C"></path>
+    <ellipse cx="64" cy="118" rx="20" ry="3" fill="#F7D98C"></ellipse>
+    <path d="M24 120 L104 120 L130 260 L-2 260 Z" fill="url(#kbGlow)"></path>
+    <line x1="326" y1="-400" x2="326" y2="96" stroke="#3A4045" stroke-width="1.5"></line>
+    <path d="M306 118 Q326 92 346 118 Z" fill="#24282C"></path>
+    <ellipse cx="326" cy="118" rx="20" ry="3" fill="#F7D98C"></ellipse>
+    <path d="M286 120 L366 120 L392 260 L260 260 Z" fill="url(#kbGlow)"></path>
+
+    <!-- left shelf -->
+    <rect x="14" y="300" width="112" height="6" rx="1" fill="#9A7656"></rect>
+    <rect x="22" y="272" width="16" height="28" rx="4" fill="#D9CDB8"></rect>
+    <rect x="22" y="270" width="16" height="5" rx="2" fill="#9A7656"></rect>
+    <rect x="42" y="280" width="14" height="20" rx="4" fill="#E6B47A" opacity=".85"></rect>
+    <rect x="42" y="278" width="14" height="4" rx="2" fill="#9A7656"></rect>
+    <circle cx="74" cy="290" r="10" fill="none" stroke="#C9CDD1" stroke-width="3"></circle>
+    <circle cx="74" cy="290" r="4" fill="#E9EBEC"></circle>
+    <path d="M98 300 L100 284 L116 284 L118 300 Z" fill="#B5694A"></path>
+    <path d="M108 284 Q100 266 94 262 M108 284 Q112 262 120 258 M108 284 Q106 270 108 258" stroke="#5E7D4A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+
+    <!-- right shelf + utensil rail -->
+    <rect x="264" y="300" width="112" height="6" rx="1" fill="#9A7656"></rect>
+    <rect x="272" y="282" width="34" height="18" rx="3" fill="#F5F3EF" stroke="#D5D8DB"></rect>
+    <rect x="276" y="276" width="26" height="6" rx="2" fill="#F5F3EF" stroke="#D5D8DB"></rect>
+    <rect x="314" y="268" width="10" height="32" rx="3" fill="#5E7D4A" opacity=".75"></rect>
+    <rect x="328" y="274" width="10" height="26" rx="3" fill="#B8361F" opacity=".55"></rect>
+    <rect x="344" y="262" width="22" height="38" rx="2" fill="#E1E3E5"></rect>
+    <rect x="348" y="268" width="14" height="4" fill="#C9CDD1"></rect>
+    <line x1="270" y1="344" x2="372" y2="344" stroke="#9EA4AA" stroke-width="3" stroke-linecap="round"></line>
+    <path d="M286 344 V386 M286 386 a7 7 0 1 0 0.1 0" stroke="#7E858C" stroke-width="3" fill="none"></path>
+    <path d="M314 344 V376" stroke="#7E858C" stroke-width="3"></path>
+    <rect x="308" y="376" width="12" height="18" rx="3" fill="#7E858C"></rect>
+    <path d="M342 344 V372" stroke="#9A7656" stroke-width="3"></path>
+    <ellipse cx="342" cy="384" rx="6" ry="12" fill="#9A7656"></ellipse>
+
+    <!-- left: knife strip + board -->
+    <rect x="22" y="352" width="84" height="6" rx="2" fill="#2E3236"></rect>
+    <path d="M32 358 L34 396 L38 358 Z M52 358 L54 390 L58 358 Z M72 358 L75 400 L79 358 Z" fill="#B7BCC0"></path>
+
+    <!-- countertop items -->
+    <rect x="18" y="384" width="54" height="34" rx="6" fill="#B58A62"></rect>
+    <circle cx="45" cy="392" r="3" fill="#8E6A48"></circle>
+    <path d="M300 418 L304 392 L312 392 L316 418 Z" fill="#6E8B3D" opacity=".7"></path>
+    <rect x="305" y="384" width="6" height="9" fill="#3A4045"></rect>
+    <path d="M326 418 L330 400 L338 400 L342 418 Z" fill="#E6B43F" opacity=".8"></path>
+    <path d="M350 418 L354 404 L370 404 L374 418 Z" fill="#B5694A"></path>
+    <path d="M362 404 Q352 388 346 386 M362 404 Q366 386 374 382" stroke="#5E7D4A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+    <rect x="150" y="392" width="40" height="26" rx="4" fill="#3A4045"></rect>
+    <rect x="146" y="388" width="48" height="6" rx="3" fill="#52595F"></rect>
+    <rect x="200" y="404" width="44" height="14" rx="7" fill="#2E3236"></rect>
+    <rect x="244" y="409" width="22" height="4" rx="2" fill="#2E3236"></rect>
+    <path d="M162 380 q4 -8 0 -16 M172 382 q4 -10 0 -20 M182 380 q4 -8 0 -16" stroke="#FFFFFF" stroke-width="2" fill="none" opacity=".8" stroke-linecap="round"></path>
+
+    <!-- counter -->
+    <rect x="0" y="418" width="390" height="14" fill="#F7F5F1"></rect>
+    <rect x="0" y="430" width="390" height="3" fill="#D8D4CC"></rect>
+    <rect x="0" y="433" width="390" height="131" fill="#2F3D37"></rect>
+    <path d="M78 440 V556 M156 440 V556 M234 440 V556 M312 440 V556" stroke="#25312C" stroke-width="2"></path>
+    <rect x="30" y="448" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+    <rect x="108" y="448" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+    <rect x="186" y="448" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+    <rect x="264" y="448" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+    <rect x="342" y="448" width="18" height="3" rx="1.5" fill="#C9A35B"></rect>
+    <rect x="0" y="556" width="390" height="8" fill="#1F2925"></rect>
+
+    <!-- floor -->
+    <rect x="0" y="564" width="390" height="700" fill="url(#kbFloor)"></rect>
+    <path d="M0 620 H390 M0 700 H390 M0 800 H390 M0 920 H390" stroke="#D9D4CB" stroke-width="1"></path>
+  </g>
+</svg>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"floor":{"editor":"int","default":564,"min":100,"max":760},"variant":{"editor":"enum","options":["full","header"],"default":"full"},"strip":{"editor":"int","default":176,"min":40,"max":400},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const f = Number(this.props.floor ?? 564) || 564;
+    const header = this.props.variant === 'header';
+    const st = Number(this.props.strip ?? 176) || 176;
+    return { dy: f - 564, sdy: st - 176, isHeader: header, isFull: !header };
+  }
+}
+</script>
+</body>
+</html>

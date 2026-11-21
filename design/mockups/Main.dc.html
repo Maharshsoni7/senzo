@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Senzo – Browse chefs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9EBEC}
+a{color:#1B1D1F}a:hover{color:#B8361F}
+@keyframes swing{0%{transform:translateY(0)}50%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+.swing{animation:swing 2.8s ease-in-out infinite}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.pop{animation:pop .3s ease-out}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.fade{animation:fade .2s ease-out}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+.bump{animation:bump .5s ease-out}
+@keyframes drop{0%{opacity:0;transform:translateY(-40px) rotate(-6deg)}60%{opacity:1;transform:translateY(6px) rotate(2deg)}100%{transform:none}}
+.drop{animation:drop .6s cubic-bezier(.2,.8,.3,1)}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:3px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 100vh; font-family: 'Archivo', system-ui, sans-serif; color: #1B1D1F; background-color: #E9EBEC; background-image: linear-gradient(#DADDDF 1px, transparent 1px), linear-gradient(90deg, #DADDDF 1px, transparent 1px); background-size: 96px 48px; overflow-x: hidden;">
+
+  <!-- Top bar -->
+  <header style="position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 24px 0; flex-wrap: wrap;">
+    <a href="ChefSignup.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; text-decoration: none; font-size: 14px; font-weight: 600;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.9V20h12v-6.1"></path><path d="M6 14a4 4 0 0 1-.9-7.9A5 5 0 0 1 12 3a5 5 0 0 1 6.9 3.1A4 4 0 0 1 18 14"></path><path d="M6 17h12"></path></svg>
+      Become a chef
+    </a>
+
+    <!-- Hanging sign -->
+    <div style="position: absolute; left: 50%; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+      <div style="position: relative; width: 150px; height: 26px;">
+        <span style="position: absolute; left: 22px; top: 0; width: 2px; height: 30px; background: #6F757B; transform: rotate(14deg); transform-origin: top;"></span>
+        <span style="position: absolute; right: 22px; top: 0; width: 2px; height: 30px; background: #6F757B; transform: rotate(-14deg); transform-origin: top;"></span>
+      </div>
+      <div style="background: #24282C; color: #F4F2EE; padding: 10px 26px 12px; border-radius: 6px; box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 0 0 3px #3A4045; text-align: center;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .28em; color: #C8CDD2;">PRIVATE CHEFS</div>
+        <svg role="img" aria-label="Senzo" viewBox="51 28 2904 782" style="width: 132px; height: 36px; display: block; margin: 5px auto 0;"><path d="M252 600Q144 580 97.5 538.0Q51 496 51 427Q51 353 106.5 311.5Q162 270 274 270Q340 270 409 281Q433 285 448.5 304.0Q464 323 464 348V353Q464 374 447.5 387.0Q431 400 410 396Q345 383 290 383Q249 383 232.5 393.0Q216 403 216 423Q216 461 276 473Q390 492 435.5 533.0Q481 574 481 652Q481 727 425.0 768.5Q369 810 262 810Q184 810 114 795Q90 790 74.5 769.5Q59 749 59 723V715Q59 694 76.0 682.5Q93 671 114 676Q179 693 242 693Q316 693 316 650Q316 630 302.5 619.0Q289 608 252 600Z M821 379Q776 379 753.0 402.5Q730 426 724 483Q724 491 731 491H900Q909 491 909 482Q905 379 821 379ZM846 810Q710 810 636.5 741.0Q563 672 563 540Q563 409 628.5 339.5Q694 270 818 270Q1056 270 1060 530Q1060 554 1041.5 570.5Q1023 587 999 587H732Q722 587 724 596Q732 651 766.5 674.5Q801 698 870 698Q915 698 967 685Q988 680 1004.5 693.0Q1021 706 1021 727V729Q1021 754 1005.5 774.5Q990 795 966 799Q908 810 846 810Z M1218 800Q1195 800 1178.5 783.0Q1162 766 1162 743V337Q1162 314 1178.5 297.0Q1195 280 1218 280H1259Q1283 280 1299.5 296.5Q1316 313 1317 337L1318 345Q1318 346 1319 346L1321 344Q1386 270 1477.0 270.0Q1568 270 1608.0 321.5Q1648 373 1648 497V743Q1648 766 1631.5 783.0Q1615 800 1592 800H1548Q1525 800 1508.0 783.0Q1491 766 1491 743V502Q1491 442 1475.0 419.5Q1459 397 1417 397Q1382 397 1352.5 425.5Q1323 454 1323 487V743Q1323 766 1306.5 783.0Q1290 800 1267 800Z M1811 643 2013 396V394Q2013 393 2012 393H1832Q1809 393 1792.0 376.5Q1775 360 1775.0 337.0Q1775 314 1792.0 297.0Q1809 280 1832 280H2158Q2181 280 2198.0 297.0Q2215 314 2215 337Q2215 393 2179 437L1977 684V686Q1977 687 1978 687H2158Q2181 687 2198.0 703.5Q2215 720 2215.0 743.0Q2215 766 2198.0 783.0Q2181 800 2158 800H1832Q1809 800 1792.0 783.0Q1775 766 1775 743Q1775 687 1811 643Z" fill="#F6F1E7"></path><path d="M2405.5 606.0 A285.0 285.0 0 0 0 2872.4 606.0" fill="none" stroke="#F6F1E7" stroke-width="165" stroke-linecap="round"></path><path d="M2639.0 28.0 C2741.3 141.7 2809.5 244.0 2786.7 334.9 C2764.0 414.5 2707.2 460.0 2639.0 460.0 C2570.7 460.0 2513.9 414.5 2491.2 334.9 C2479.8 266.7 2525.3 209.9 2570.7 164.4 C2582.1 232.6 2604.9 266.7 2627.6 266.7 C2616.2 187.2 2604.9 107.6 2639.0 28.0 Z" fill="#C8372D"></path></svg>
+      </div>
+    </div>
+
+    <div style="position: relative;">
+      <button onClick="{{toggleDrawer}}" aria-label="My bookings" style="position: relative; width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; cursor: pointer; color: #1B1D1F;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6"></path></svg>
+        <span class="{{badgeCls}}" style="position: absolute; top: -4px; right: -4px; min-width: 20px; height: 20px; padding: 0 5px; box-sizing: border-box; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center;">{{bookingCount}}</span>
+      </button>
+      <sc-if value="{{drawer}}" hint-placeholder-val="{{ false }}">
+        <div class="fade" style="position: absolute; right: 0; top: 54px; width: 300px; max-width: 86vw; background: #FFFFFF; border: 1px solid #C9CDD1; border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,.16); padding: 14px; z-index: 30;">
+          <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px;">My bookings</div>
+          <sc-if value="{{noBookings}}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; font-size: 13px; color: #5A5F66;">No bookings yet. Pick a chef from the rail.</p>
+          </sc-if>
+          <sc-for list="{{bookings}}" as="b" hint-placeholder-count="2">
+            <div style="display: flex; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px dashed #C9CDD1;">
+              <span style="width: 34px; height: 34px; border-radius: 999px; flex: none; display: grid; place-items: center; color: #FFFFFF; font-size: 12px; font-weight: 700; background: {{b.color}};">{{b.initials}}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; min-width: 0;">
+                <strong style="font-size: 13px;">{{b.name}}</strong>
+                <span style="color: #5A5F66;">{{b.when}}</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; color: #5A5F66;">{{b.id}} · {{b.total}}</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <nav aria-label="Cuisine filter" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 70px 16px 0;">
+    <sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+      <button onClick="{{f.pick}}" style="min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{f.bd}}; background: {{f.bg}}; color: {{f.fg}};">{{f.label}}</button>
+    </sc-for>
+    <button onClick="{{toggleVeg}}" aria-pressed="{{vegOnly}}" style="min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; border: 1px solid {{veg.bd}}; background: {{veg.bg}}; color: {{veg.fg}};">
+      <span style="width: 10px; height: 10px; border: 1.5px solid #1E7A3C; display: grid; place-items: center; background: #FFFFFF;"><span style="width: 5px; height: 5px; border-radius: 99px; background: #1E7A3C;"></span></span>
+      Pure veg
+    </button>
+  </nav>
+
+  <!-- Rail stage -->
+  <section aria-label="Chef rail" style="position: relative; height: 540px; margin-top: 18px; overflow: hidden;">
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.05)); border-top: 1px solid rgba(0,0,0,.06);"></div>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+      <p style="position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-size: 15px; color: #5A5F66;">No chefs match these filters yet.</p>
+    </sc-if>
+    <div style="position: absolute; top: 30px; left: 50%; display: flex; gap: 28px; transition: transform .65s cubic-bezier(.25,.8,.25,1); transform: {{trackTf}}; z-index: 3;">
+      <sc-for list="{{tickets}}" as="c" hint-placeholder-count="7">
+        <div style="position: relative; width: 200px; height: 480px; flex: none;">
+          <span style="position: absolute; left: 50%; top: 424px; width: 200px; height: 30px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.26), transparent); opacity: {{c.op}};"></span>
+          <div style="position: absolute; left: 0; bottom: 40px; width: 200px; transform-origin: 50% 100%; transition: transform .5s ease, opacity .5s ease; transform: {{c.tf}}; opacity: {{c.op}};">
+            <div class="{{c.swing}}">
+              <button onClick="{{c.act}}" aria-label="{{c.aria}}" style="display: block; width: 200px; padding: 0; border: none; background: transparent; cursor: pointer;">
+                <svg width="200" height="420" viewBox="0 0 200 420" role="img" aria-label="{{c.name}}, {{c.cuisine}}" style="display: block;">
+                  <path d="M74 296 L96 296 L95 396 L76 396 Z" fill="#2B2F33"></path>
+                  <path d="M104 296 L126 296 L124 396 L105 396 Z" fill="#2B2F33"></path>
+                  <ellipse cx="83" cy="400" rx="17" ry="7" fill="#1B1D1F"></ellipse>
+                  <ellipse cx="117" cy="400" rx="17" ry="7" fill="#1B1D1F"></ellipse>
+                  <path d="M58 150 Q100 134 142 150 L150 302 L50 302 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+                  <path d="M58 152 Q40 170 38 252 L53 254 Q56 192 68 172 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+                  <path d="M142 152 Q160 170 162 252 L147 254 Q144 192 132 172 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+                  <circle cx="45" cy="261" r="9" fill="{{c.skin}}"></circle>
+                  <circle cx="155" cy="261" r="9" fill="{{c.skin}}"></circle>
+                  <path d="M66 214 L134 214 L140 322 L60 322 Z" fill="{{c.color}}"></path>
+                  <rect x="60" y="208" width="80" height="9" rx="3" fill="{{c.color}}"></rect>
+                  <path d="M86 228 L114 228 L114 246 L86 246 Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"></path>
+                  <circle cx="90" cy="172" r="3" fill="#9EA4AA"></circle>
+                  <circle cx="110" cy="172" r="3" fill="#9EA4AA"></circle>
+                  <circle cx="90" cy="192" r="3" fill="#9EA4AA"></circle>
+                  <circle cx="110" cy="192" r="3" fill="#9EA4AA"></circle>
+                  <path d="M64 92 Q60 152 80 154 L120 154 Q140 152 136 92 Z" fill="{{c.hair}}" opacity="{{c.longOp}}"></path>
+                  <rect x="90" y="118" width="20" height="26" fill="{{c.skin}}"></rect>
+                  <path d="M84 140 L116 140 L100 160 Z" fill="{{c.color}}"></path>
+                  <circle cx="70" cy="99" r="6" fill="{{c.skin}}"></circle>
+                  <circle cx="130" cy="99" r="6" fill="{{c.skin}}"></circle>
+                  <ellipse cx="100" cy="97" rx="30" ry="33" fill="{{c.skin}}"></ellipse>
+                  <path d="M72 106 Q74 140 100 134 Q126 140 128 106 Q122 128 100 128 Q78 128 72 106 Z" fill="{{c.hair}}" opacity="{{c.beardOp}}"></path>
+                  <path d="M70 90 Q100 64 130 90 L131 76 Q100 56 69 76 Z" fill="{{c.hair}}"></path>
+                  <path d="M83 90 L94 88" stroke="{{c.hair}}" stroke-width="3" stroke-linecap="round"></path>
+                  <path d="M106 88 L117 90" stroke="{{c.hair}}" stroke-width="3" stroke-linecap="round"></path>
+                  <circle cx="89" cy="99" r="3.2" fill="#1B1D1F"></circle>
+                  <circle cx="111" cy="99" r="3.2" fill="#1B1D1F"></circle>
+                  <path d="M90 113 Q100 121 110 113" fill="none" stroke="#1B1D1F" stroke-width="2.5" stroke-linecap="round"></path>
+                  <circle cx="78" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                  <circle cx="122" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                  <circle cx="100" cy="32" r="23" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                  <rect x="70" y="52" width="60" height="24" rx="4" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></rect>
+                  <rect x="116" y="164" width="24" height="13" rx="2" fill="#1B1D1F"></rect>
+                  <text x="128" y="174" text-anchor="middle" font-size="8.5" font-weight="700" fill="#FFFFFF" font-family="IBM Plex Mono, monospace">{{c.initials}}</text>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Caption + controls -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: -36px; padding: 0 16px 48px; position: relative; z-index: 4;">
+    <sc-if value="{{hasCurrent}}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: center;">
+        <div style="font-size: 18px; font-weight: 700;">{{cur.name}}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5A5F66; margin-top: 2px;">{{cur.cuisine}} · {{cur.price}} per guest</div>
+      </div>
+    </sc-if>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <button onClick="{{prev}}" aria-label="Previous chef" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <button onClick="{{openModal}}" disabled="{{empty}}" style="min-height: 44px; padding: 0 28px; border-radius: 999px; border: none; background: #1B1D1F; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">View &amp; book</button>
+      <button onClick="{{next}}" aria-label="Next chef" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A5F66;">{{counter}}</div>
+  </div>
+
+  <!-- Chef modal -->
+  <sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+    <div class="fade" style="position: fixed; inset: 0; background: rgba(27,29,31,.48); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+      <div class="pop" role="dialog" aria-modal="true" aria-label="{{cur.name}}" style="position: relative; width: 960px; max-width: 100%; max-height: 92vh; overflow: auto; background: #FFFFFF; border-radius: 16px; display: flex; flex-wrap: wrap; box-shadow: 0 30px 70px rgba(0,0,0,.3);">
+        <button onClick="{{closeModal}}" aria-label="Close" style="position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 999px; border: none; background: #F1F2F3; cursor: pointer; display: grid; place-items: center; z-index: 2; color: #1B1D1F;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+
+        <!-- Left: dish gallery -->
+        <div style="flex: 1 1 360px; min-width: 0; background: #F1F2F3; padding: 32px 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 18px; box-sizing: border-box;">
+          <div style="width: 270px; height: 270px; max-width: 70vw; max-height: 70vw; border-radius: 999px; background: #FFFFFF; box-shadow: 0 18px 30px rgba(0,0,0,.14), inset 0 0 0 14px #F7F7F5, inset 0 0 0 15px #E2E4E6; display: grid; place-items: center;">
+            <span style="width: 62%; height: 62%; border-radius: 999px; background: {{dish.bg}}; box-shadow: inset 0 -8px 16px rgba(0,0,0,.14);"></span>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #5A5F66;">SIGNATURE DISH</div>
+            <div style="font-size: 17px; font-weight: 700; margin-top: 4px;">{{dish.n}}</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <sc-for list="{{dishes}}" as="d" hint-placeholder-count="3">
+              <button onClick="{{d.pick}}" aria-label="{{d.n}}" style="width: 64px; height: 64px; border-radius: 12px; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; border: 2px solid {{d.bd}};">
+                <span style="width: 34px; height: 34px; border-radius: 999px; background: {{d.bg}}; box-shadow: 0 0 0 5px #F3F3F1;"></span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- Right: details / booking -->
+        <div style="flex: 1 1 400px; min-width: 0; padding: 30px 28px 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; gap: 14px; align-items: center; padding-right: 44px;">
+            <span style="width: 64px; height: 64px; border-radius: 999px; flex: none; overflow: hidden; background: #F1F2F3; display: block;">
+              <svg width="64" height="64" viewBox="50 6 100 100" aria-hidden="true" style="display: block;">
+                <path d="M64 92 Q60 152 80 154 L120 154 Q140 152 136 92 Z" fill="{{cur.hair}}" opacity="{{cur.longOp}}"></path>
+                <path d="M58 150 Q100 134 142 150 L150 302 L50 302 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+                <rect x="90" y="118" width="20" height="26" fill="{{cur.skin}}"></rect>
+                <path d="M84 140 L116 140 L100 160 Z" fill="{{cur.color}}"></path>
+                <circle cx="70" cy="99" r="6" fill="{{cur.skin}}"></circle>
+                <circle cx="130" cy="99" r="6" fill="{{cur.skin}}"></circle>
+                <ellipse cx="100" cy="97" rx="30" ry="33" fill="{{cur.skin}}"></ellipse>
+                <path d="M72 106 Q74 140 100 134 Q126 140 128 106 Q122 128 100 128 Q78 128 72 106 Z" fill="{{cur.hair}}" opacity="{{cur.beardOp}}"></path>
+                <path d="M70 90 Q100 64 130 90 L131 76 Q100 56 69 76 Z" fill="{{cur.hair}}"></path>
+                <circle cx="89" cy="99" r="3.2" fill="#1B1D1F"></circle>
+                <circle cx="111" cy="99" r="3.2" fill="#1B1D1F"></circle>
+                <path d="M90 113 Q100 121 110 113" fill="none" stroke="#1B1D1F" stroke-width="2.5" stroke-linecap="round"></path>
+                <circle cx="78" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                <circle cx="122" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                <circle cx="100" cy="32" r="23" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+                <rect x="70" y="52" width="60" height="24" rx="4" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></rect>
+              </svg>
+            </span>
+            <div style="min-width: 0;">
+              <h2 style="margin: 0; font-size: 24px; line-height: 1.1;">{{cur.name}}</h2>
+              <div style="font-size: 13px; color: #5A5F66; margin-top: 4px;">{{cur.cuisine}} · {{cur.city}} · {{cur.years}} yrs</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #FBEDEA; color: #8E2A17; font-weight: 600;">★ {{cur.rating}} · {{cur.reviews}} reviews</span>
+            <sc-for list="{{cur.tags}}" as="t" hint-placeholder-count="2">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #F1F2F3; color: #3D4247;">{{t}}</span>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{notBooked}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #3D4247;">{{cur.about}}</p>
+
+              <div>
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: .06em; margin-bottom: 8px;">DATE</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <sc-for list="{{dates}}" as="d" hint-placeholder-count="7">
+                    <button onClick="{{d.pick}}" disabled="{{d.off}}" aria-label="{{d.aria}}" style="width: 52px; height: 58px; border-radius: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border: 1px solid {{d.bd}}; background: {{d.bg}}; color: {{d.fg}}; text-decoration: {{d.strike}};">
+                      <span style="font-size: 10px; font-weight: 600; letter-spacing: .06em;">{{d.wd}}</span>
+                      <span style="font-size: 17px; font-weight: 700;">{{d.day}}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: .06em; margin-bottom: 8px;">TIME</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <sc-for list="{{slots}}" as="s" hint-placeholder-count="3">
+                    <button onClick="{{s.pick}}" disabled="{{s.off}}" style="min-height: 40px; padding: 0 14px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; text-decoration: {{s.strike}};">{{s.label}}</button>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                <div>
+                  <div style="font-size: 12px; font-weight: 700; letter-spacing: .06em;">GUESTS</div>
+                  <div style="font-size: 12px; color: #5A5F66; margin-top: 2px;">{{cur.minG}}–{{cur.maxG}} guests</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px; border: 1px solid #C9CDD1; border-radius: 999px; padding: 2px;">
+                  <button onClick="{{decG}}" aria-label="Fewer guests" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #F1F2F3; cursor: pointer; font-size: 18px; color: #1B1D1F;">−</button>
+                  <span style="min-width: 32px; text-align: center; font-weight: 700; font-size: 16px;">{{guests}}</span>
+                  <button onClick="{{incG}}" aria-label="More guests" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #F1F2F3; cursor: pointer; font-size: 18px; color: #1B1D1F;">+</button>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1.5px dashed #C9CDD1; padding-top: 12px; font-family: 'IBM Plex Mono', monospace;">
+                <span style="font-size: 13px; color: #5A5F66;">{{cur.price}} × {{guests}}</span>
+                <span style="font-size: 20px; font-weight: 600;">{{total}}</span>
+              </div>
+
+              <button onClick="{{book}}" disabled="{{cantBook}}" style="min-height: 50px; border-radius: 999px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; background: {{bookBg}}; color: {{bookFg}};">Request booking</button>
+              <div style="text-align: center; font-size: 12px; color: #5A5F66; margin-top: -8px;">{{bookHint}}</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{booked}}" hint-placeholder-val="{{ false }}">
+            <div class="drop" style="margin-top: 6px; border: 1.5px dashed #9EA4AA; border-radius: 6px; padding: 20px; font-family: 'IBM Plex Mono', monospace; background: #FFFEFB;">
+              <div style="font-size: 11px; letter-spacing: .16em; color: #1E7A3C; font-weight: 600;">BOOKING REQUESTED</div>
+              <div style="font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 800; margin: 8px 0 14px;">{{last.id}}</div>
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 12px;">
+                <div><div style="color: #5A5F66;">CHEF</div><div style="font-weight: 600;">{{last.name}}</div></div>
+                <div><div style="color: #5A5F66;">WHEN</div><div style="font-weight: 600;">{{last.when}}</div></div>
+                <div><div style="color: #5A5F66;">GUESTS</div><div style="font-weight: 600;">{{last.guests}}</div></div>
+                <div><div style="color: #5A5F66;">TOTAL</div><div style="font-weight: 600;">{{last.total}}</div></div>
+              </div>
+              <p style="font-family: 'Archivo', sans-serif; font-size: 13px; color: #3D4247; line-height: 1.5; margin: 16px 0 0;">The chef will confirm your request and share the menu. You can track it under My bookings.</p>
+            </div>
+            <button onClick="{{closeModal}}" style="min-height: 48px; border-radius: 999px; border: 1px solid #1B1D1F; background: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Back to the rail</button>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { active: 2, filter: 'All', vegOnly: false, open: false, dish: 0, date: null, slot: null, guests: 4, booked: false, bookings: [], drawer: false, bump: 0 };
+  }
+  chefs() {
+    if (this._chefs) return this._chefs;
+    this._chefs = [
+      { id: 1, name: 'Ananya Mehta', initials: 'AM', cuisine: 'Modern Gujarati', group: 'Gujarati', city: 'Ahmedabad', years: 8, price: 1800, rating: '4.9', reviews: 126, veg: true, color: '#B8361F', minG: 2, maxG: 12, off: [2], offSlots: [], tags: ['Pure veg', 'Jain options'], about: 'Home-style Gujarati flavours plated like a tasting menu. Seasonal farsan, a slow-cooked shaak and a dessert course built around kesar and fresh mango.', dishes: [{ n: 'Deconstructed Undhiyu', c: '#6E8B3D' }, { n: 'Khandvi Tacos', c: '#E2B33C' }, { n: 'Kesar Shrikhand Tart', c: '#E9A23B' }] },
+      { id: 2, name: 'Rohan Kapoor', initials: 'RK', cuisine: 'North Indian Tandoor', group: 'North Indian', city: 'Ahmedabad', years: 11, price: 2200, rating: '4.8', reviews: 98, veg: false, color: '#7A3E1D', minG: 4, maxG: 20, off: [0, 4], offSlots: [0], tags: ['Brings portable tandoor', 'Live counter'], about: 'Delhi-trained tandoor chef who sets up a live grill at your home. Smoky kebabs, a 24-hour dal and fresh breads straight off the coals.', dishes: [{ n: 'Galouti Kebab', c: '#8C4A2B' }, { n: '24-hour Dal Makhani', c: '#5B2A1A' }, { n: 'Tandoori Broccoli', c: '#5E7D2E' }] },
+      { id: 3, name: 'Meera Iyer', initials: 'MI', cuisine: 'South Indian Coastal', group: 'South Indian', city: 'Gandhinagar', years: 9, price: 1600, rating: '4.9', reviews: 143, veg: false, color: '#2F6B4F', minG: 2, maxG: 15, off: [5], offSlots: [2], tags: ['Banana-leaf service', 'Veg & non-veg'], about: 'Kerala and Chettinad recipes from her grandmother’s kitchen, served on banana leaf with all the trimmings.', dishes: [{ n: 'Appam & Vegetable Stew', c: '#E8DDC0' }, { n: 'Fish Moilee', c: '#E6B43F' }, { n: 'Payasam', c: '#D9B98A' }] },
+      { id: 4, name: 'Kabir Shah', initials: 'KS', cuisine: 'Italian', group: 'Italian', city: 'Ahmedabad', years: 7, price: 2500, rating: '4.7', reviews: 64, veg: true, color: '#2D4E86', minG: 2, maxG: 10, off: [1, 3], offSlots: [], tags: ['Fresh pasta', 'Eggless desserts'], about: 'Hand-rolled pasta made in front of your guests, a wood-fired-style pizza course and an eggless tiramisu everyone asks about.', dishes: [{ n: 'Hand-rolled Pappardelle', c: '#E3C26A' }, { n: 'Burrata & Heirloom Tomato', c: '#D2452B' }, { n: 'Eggless Tiramisu', c: '#8A6145' }] },
+      { id: 5, name: 'Zoya Khan', initials: 'ZK', cuisine: 'Mughlai', group: 'Mughlai', city: 'Ahmedabad', years: 12, price: 2000, rating: '4.8', reviews: 88, veg: false, color: '#6B2D5C', minG: 6, maxG: 25, off: [6], offSlots: [0], tags: ['Dum biryani', 'Large gatherings'], about: 'Old-city Mughlai cooking for big family dinners — slow-sealed dum biryani, rich nihari and shahi tukda to finish.', dishes: [{ n: 'Dum Biryani', c: '#C98B2E' }, { n: 'Nalli Nihari', c: '#6E3420' }, { n: 'Shahi Tukda', c: '#D6A55E' }] },
+      { id: 6, name: 'Daniel D’Souza', initials: 'DD', cuisine: 'Goan', group: 'Goan', city: 'Vadodara', years: 10, price: 1900, rating: '4.7', reviews: 57, veg: false, color: '#B5651D', minG: 2, maxG: 12, off: [0, 1], offSlots: [], tags: ['Seafood', 'Travels to Ahmedabad'], about: 'Coastal Goan Sunday lunches — spicy balchão, xacuti and a proper layered bebinca made the long way.', dishes: [{ n: 'Prawn Balchão', c: '#B23A22' }, { n: 'Chicken Xacuti', c: '#7B4A1E' }, { n: 'Bebinca', c: '#A8692E' }] },
+      { id: 7, name: 'Ishita Patel', initials: 'IP', cuisine: 'Plant-based', group: 'Vegan', city: 'Ahmedabad', years: 5, price: 1700, rating: '4.9', reviews: 71, veg: true, color: '#3E7A3A', minG: 2, maxG: 10, off: [3], offSlots: [2], tags: ['100% vegan', 'Gluten-free on request'], about: 'Colourful, fully plant-based menus with millets, cold-pressed dressings and desserts that skip dairy without missing it.', dishes: [{ n: 'Millet Buddha Bowl', c: '#7FA347' }, { n: 'Beetroot Carpaccio', c: '#9C2848' }, { n: 'Coconut Panna Cotta', c: '#EDE6D6' }] },
+      { id: 8, name: 'Arjun Rao', initials: 'AR', cuisine: 'Pan-Asian', group: 'Pan-Asian', city: 'Ahmedabad', years: 9, price: 2400, rating: '4.8', reviews: 82, veg: false, color: '#1F5F6B', minG: 4, maxG: 16, off: [4, 5], offSlots: [], tags: ['Dim sum bar', 'Sushi (veg option)'], about: 'A dim sum and noodle bar in your living room — hand-pleated dumplings, Thai curries and a build-your-own ramen station.', dishes: [{ n: 'Crystal Dim Sum', c: '#D8E1C8' }, { n: 'Thai Green Curry', c: '#7FA347' }, { n: 'Miso Ramen', c: '#C88B3A' }] },
+      { id: 9, name: 'Priya Nair', initials: 'PN', cuisine: 'Desserts & Patisserie', group: 'Desserts', city: 'Ahmedabad', years: 6, price: 1500, rating: '4.9', reviews: 104, veg: true, color: '#A23E6B', minG: 2, maxG: 30, off: [2, 6], offSlots: [0], tags: ['Eggless', 'Dessert tables'], about: 'Plated dessert courses and full dessert tables for parties — entremets, choux and eggless bakes that travel well.', dishes: [{ n: 'Mango Entremet', c: '#EBA634' }, { n: 'Pistachio Choux', c: '#9BB55A' }, { n: 'Dark Chocolate Tart', c: '#3A2219' }] }
+    ];
+    const looks = {
+      1: ['#D9A273', '#1E1612', 1, 0], 2: ['#B67A4E', '#1B1714', 0, 1], 3: ['#9C6440', '#120E0C', 1, 0],
+      4: ['#D6A37A', '#3B2A20', 0, 0], 5: ['#C88B5E', '#1B1310', 1, 0], 6: ['#A06A44', '#2A2420', 0, 1],
+      7: ['#E0B08A', '#3A281E', 1, 0], 8: ['#8E5B39', '#151210', 0, 0], 9: ['#B87D52', '#20150F', 1, 0]
+    };
+    this._chefs.forEach((c) => { c.look = looks[c.id]; c.skin = c.look[0]; c.hair = c.look[1]; c.longOp = c.look[2]; c.beardOp = c.look[3]; });
+    return this._chefs;
+  }
+  list() {
+    const s = this.state;
+    return this.chefs().filter((c) => (s.filter === 'All' || c.group === s.filter) && (!s.vegOnly || c.veg));
+  }
+  rupees(n) { return '₹' + n.toLocaleString('en-IN'); }
+  days() {
+    const out = [];
+    const wd = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const mo = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const now = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1 + i);
+      out.push({ wd: wd[d.getDay()], day: d.getDate(), label: wd[d.getDay()].charAt(0) + wd[d.getDay()].slice(1).toLowerCase() + ', ' + d.getDate() + ' ' + mo[d.getMonth()] });
+    }
+    return out;
+  }
+  selStyle(sel, off) {
+    if (off) return { bg: '#F6F7F7', fg: '#8A9097', bd: '#E1E3E5', strike: 'line-through' };
+    return sel ? { bg: '#1B1D1F', fg: '#FFFFFF', bd: '#1B1D1F', strike: 'none' } : { bg: '#FFFFFF', fg: '#1B1D1F', bd: '#C9CDD1', strike: 'none' };
+  }
+  renderVals() {
+    const s = this.state;
+    const list = this.list();
+    const active = Math.min(s.active, Math.max(0, list.length - 1));
+    const cur = list[active];
+    const slotsBase = ['Lunch · 12:30', 'Dinner · 19:30', 'Late · 21:30'];
+    const groups = ['All', 'Gujarati', 'North Indian', 'South Indian', 'Mughlai', 'Italian', 'Pan-Asian', 'Goan', 'Vegan', 'Desserts'];
+    const filters = groups.map((g) => Object.assign({ label: g, pick: () => this.setState({ filter: g, active: 0 }) }, this.selStyle(s.filter === g, false)));
+    const tickets = list.map((c, i) => {
+      const off = i - active;
+      const dist = Math.abs(off);
+      const scale = off === 0 ? 1.08 : 0.8;
+      const ty = 0;
+      return {
+        no: String(c.id).padStart(3, '0'), city: c.city.toUpperCase(), color: c.color, initials: c.initials, name: c.name, cuisine: c.cuisine,
+        skin: c.look[0], hair: c.look[1], longOp: c.look[2], beardOp: c.look[3],
+        price: this.rupees(c.price), rating: c.rating,
+        tf: 'translateY(' + ty + 'px) scale(' + scale + ')',
+        op: dist > 3 ? 0.25 : off === 0 ? 1 : 0.82,
+        swing: off === 0 ? 'swing' : '',
+        aria: off === 0 ? 'View ' + c.name : 'Show ' + c.name,
+        act: off === 0 ? () => this.openFor() : () => this.setState({ active: i })
+      };
+    });
+    const days = this.days();
+    const dates = days.map((d, i) => {
+      const isOff = cur ? cur.off.indexOf(i) >= 0 : false;
+      return Object.assign({ wd: d.wd, day: d.day, off: isOff, aria: d.label + (isOff ? ' (unavailable)' : ''), pick: () => this.setState({ date: i }) }, this.selStyle(s.date === i, isOff));
+    });
+    const slots = slotsBase.map((l, i) => {
+      const isOff = cur ? cur.offSlots.indexOf(i) >= 0 : false;
+      return Object.assign({ label: l, off: isOff, pick: () => this.setState({ slot: i }) }, this.selStyle(s.slot === i, isOff));
+    });
+    const dishes = cur ? cur.dishes.map((d, i) => ({ n: d.n, bg: this.plate(d.c), bd: i === s.dish ? '#1B1D1F' : 'transparent', pick: () => this.setState({ dish: i }) })) : [];
+    const dish = cur ? { n: cur.dishes[s.dish].n, bg: this.plate(cur.dishes[s.dish].c) } : { n: '', bg: '#ccc' };
+    const cantBook = s.date === null || s.slot === null;
+    const total = cur ? this.rupees(cur.price * s.guests) : '';
+    const veg = this.selStyle(s.vegOnly, false);
+    return {
+      filters, tickets, dates, slots, dishes, dish, veg,
+      vegOnly: s.vegOnly,
+      toggleVeg: () => this.setState({ vegOnly: !s.vegOnly, active: 0 }),
+      empty: list.length === 0,
+      hasCurrent: !!cur,
+      cur: cur ? Object.assign({}, cur, { price: this.rupees(cur.price) }) : { name: '', tags: [] },
+      trackTf: 'translateX(' + (-(active * 228 + 100)) + 'px)',
+      counter: list.length ? String(active + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0') + ' chefs' : '',
+      prev: () => this.setState({ active: active > 0 ? active - 1 : list.length - 1 }),
+      next: () => this.setState({ active: active < list.length - 1 ? active + 1 : 0 }),
+      openModal: () => this.openFor(),
+      closeModal: () => this.setState({ open: false, booked: false }),
+      open: s.open && !!cur,
+      guests: s.guests,
+      decG: () => cur && this.setState({ guests: Math.max(cur.minG, s.guests - 1) }),
+      incG: () => cur && this.setState({ guests: Math.min(cur.maxG, s.guests + 1) }),
+      total,
+      cantBook,
+      bookBg: cantBook ? '#E1E3E5' : '#B8361F',
+      bookFg: cantBook ? '#5A5F66' : '#FFFFFF',
+      bookHint: cantBook ? 'Choose a date and time to continue' : 'Groceries, cooking and clean-up included',
+      book: () => this.book(cur, days, slotsBase, total),
+      booked: s.booked,
+      notBooked: !s.booked,
+      last: s.bookings[0] || {},
+      bookings: s.bookings,
+      bookingCount: s.bookings.length,
+      noBookings: s.bookings.length === 0,
+      badgeCls: s.bump % 2 === 1 ? 'bump' : '',
+      drawer: s.drawer,
+      toggleDrawer: () => this.setState({ drawer: !s.drawer })
+    };
+  }
+  plate(c) { return 'radial-gradient(circle at 36% 32%, rgba(255,255,255,.45), transparent 42%), radial-gradient(circle at 64% 66%, rgba(0,0,0,.18), transparent 50%), ' + c; }
+  openFor() {
+    const list = this.list();
+    const cur = list[Math.min(this.state.active, list.length - 1)];
+    if (!cur) return;
+    this.setState({ open: true, booked: false, dish: 0, date: null, slot: null, guests: Math.max(cur.minG, Math.min(4, cur.maxG)), drawer: false });
+  }
+  book(cur, days, slotsBase, total) {
+    const s = this.state;
+    if (!cur || s.date === null || s.slot === null) return;
+    const id = 'SZ-' + (1041 + s.bookings.length + 1);
+    const rec = { id, name: cur.name, initials: cur.initials, color: cur.color, when: days[s.date].label + ' · ' + slotsBase[s.slot].split(' · ')[1], guests: s.guests + ' guests', total };
+    this.setState({ booked: true, bookings: [rec].concat(s.bookings), bump: s.bump + 1 });
+  }
+}
+</script>
+</body>
+</html>

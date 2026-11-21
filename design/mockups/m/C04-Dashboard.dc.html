@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chef home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(184,54,31,.45)}70%{box-shadow:0 0 0 12px rgba(184,54,31,0)}100%{box-shadow:0 0 0 0 rgba(184,54,31,0)}}
+.ring{animation:ring 1.8s ease-out infinite}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 16px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="108" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C12-EditProfile.dc.html" aria-label="My profile" style="display: block; width: 52px; height: 52px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+      <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="52" bust="1" hint-size="52px,52px"></dc-import>
+    </a>
+    <div style="flex: 1;">
+      <div style="font-size: 13px; color: #3D4247;">Good evening</div>
+      <div style="font-size: 20px; font-weight: 800;">Ananya</div>
+    </div>
+    <a href="C10-Calendar.dc.html" aria-label="My calendar" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+    </a>
+  </div>
+
+  <button onClick="{{toggle}}" aria-pressed="{{online}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 16px; border-radius: 16px; border: none; cursor: pointer; font-family: inherit; background: {{olBg}}; color: #FFFFFF;">
+    <span style="font-size: 15px; font-weight: 700;">{{olLabel}}</span>
+    <span style="width: 50px; height: 30px; border-radius: 99px; background: rgba(255,255,255,.3); position: relative;"><span style="position: absolute; top: 3px; width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF; left: {{knob}};"></span></span>
+  </button>
+
+  <a href="C09-Earnings.dc.html" style="display: block; text-decoration: none; text-align: center; padding: 8px 0;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600;">EARNED IN NOVEMBER</div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 40px; font-weight: 600; margin-top: 4px;">₹18,360</div>
+    <div style="font-size: 13px; color: #3D4247;">2 jobs done · ₹9,180 on the way to your bank</div>
+  </a>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600;">NEW REQUEST</div>
+  <a href="C05-Request.dc.html" class="ring" style="display: block; text-decoration: none; background: #FFFEFB; border-radius: 4px; padding: 16px; border-left: 0;">
+    <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .08em; color: #5A5F66;"><span>SZ-1048</span><span style="color: #B8361F; font-weight: 600;">REPLY IN 1H 42M</span></div>
+    <div style="font-size: 17px; font-weight: 700; margin-top: 8px;">Krupa Shah · Sun 15 Nov</div>
+    <div style="font-size: 13px; color: #5A5F66;">Lunch 12:30 · 10 guests · Satellite, 4.2 km</div>
+    <div style="border-top: 1.5px dashed #C9CDD1; margin: 12px 0 8px;"></div>
+    <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 13px;"><span>You earn</span><strong>₹15,300</strong></div>
+  </a>
+
+  <a href="C21-MenuRequest.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; background: #FFFFFF; border: 1.5px solid #1B1D1F; border-radius: 16px; padding: 12px 14px;">
+    <span style="width: 36px; height: 36px; border-radius: 99px; background: #B8361F; color: #FFFFFF; display: grid; place-items: center; font-size: 15px; font-weight: 800; flex: none;">2</span>
+    <span style="flex: 1; min-width: 0;">
+      <span style="display: block; font-size: 15px; font-weight: 700;">Menu requests</span>
+      <span style="display: block; font-size: 12px; color: #5A5F66; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kitty party · 25 guests · ₹800–1,500/guest</span>
+    </span>
+    <span style="font-size: 13px; font-weight: 700; color: #B8361F;">Send menu →</span>
+  </a>
+
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #3D4247; font-weight: 600;">NEXT JOB</div>
+  <a href="C13-OnMyWay.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; background: #24282C; color: #FFFFFF; border-radius: 16px; padding: 14px 16px;">
+    <span style="flex: 1;">
+      <span style="display: block; font-size: 16px; font-weight: 700;">Sat 7 Nov · Rahul Desai</span>
+      <span style="display: block; font-size: 12px; color: #C8CDD2; margin-top: 2px;">Reach by 5:30 PM · Bodakdev · 6 guests</span>
+    </span>
+    <span style="font-size: 13px; font-weight: 700; color: #9FE0B4;">On my way →</span>
+  </a>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+    <a href="C16-PastJobs.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D5D0C7; font-size: 13px; font-weight: 700; text-decoration: none;">Past jobs</a>
+    <a href="C12-EditProfile.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D5D0C7; font-size: 13px; font-weight: 700; text-decoration: none;">Profile</a>
+    <a href="C19-Settings.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D5D0C7; font-size: 13px; font-weight: 700; text-decoration: none;">Settings</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { on: true }; }
+  renderVals() {
+    const on = this.state.on;
+    return {
+      online: on, toggle: () => this.setState({ on: !on }),
+      olBg: on ? '#1E7A3C' : '#6F757B', olLabel: on ? 'You’re taking bookings' : 'Paused — not visible to guests',
+      knob: on ? '23px' : '3px'
+    };
+  }
+}
+</script>
+</body>
+</html>

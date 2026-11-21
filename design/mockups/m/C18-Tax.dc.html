@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tax statements</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C09-Earnings.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div>
+      <h1 style="margin: 0; font-size: 22px;">Tax &amp; statements</h1>
+      <div style="font-size: 12px; color: #5A5F66;">PAN ABCPM••••K · linked</div>
+    </div>
+  </div>
+  <div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: #EAE5DC; border-radius: 999px; padding: 4px;">
+    <sc-for list="{{years}}" as="y" hint-placeholder-count="2">
+      <button role="tab" onClick="{{y.pick}}" aria-selected="{{y.on}}" style="min-height: 40px; border: none; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; background: {{y.bg}}; color: {{y.fg}};">{{y.l}}</button>
+    </sc-for>
+  </div>
+  <div style="background: #FFFEFB; border-radius: 14px; padding: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 6px 14px rgba(0,0,0,.05);">
+    <div style="display: flex; justify-content: space-between;"><span>Booking value</span><span>{{gross}}</span></div>
+    <div style="display: flex; justify-content: space-between; color: #5A5F66;"><span>Platform fees (incl. GST)</span><span>{{fees}}</span></div>
+    <div style="display: flex; justify-content: space-between; color: #5A5F66;"><span>TDS deducted</span><span>{{tds}}</span></div>
+    <div style="border-top: 1.5px dashed #D5D0C7; padding-top: 8px; display: flex; justify-content: space-between; font-size: 16px; font-weight: 600;"><span>Paid to you</span><span>{{net}}</span></div>
+  </div>
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600;">DOWNLOADS</div>
+  <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #EAE5DC; padding: 4px 16px;">
+    <sc-for list="{{docs}}" as="d" hint-placeholder-count="5">
+      <div style="display: flex; align-items: center; gap: 10px; min-height: 54px; border-bottom: 1px solid #F1EEE8;">
+        <span style="width: 34px; height: 34px; border-radius: 8px; background: #F4F1EB; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; flex: none;">PDF</span>
+        <span style="flex: 1;"><span style="display: block; font-size: 14px; font-weight: 700;">{{d.t}}</span><span style="display: block; font-size: 11px; color: #5A5F66;">{{d.s}}</span></span>
+        <button onClick="{{d.get}}" aria-label="Download {{d.t}}" style="min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #1B1D1F; background: {{d.bg}}; color: {{d.fg}}; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer;">{{d.btn}}</button>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin: 0; font-size: 11px; color: #5A5F66; line-height: 1.5;">Figures are mock. TDS and GST treatment for chefs should be confirmed with a CA before launch.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { fy: 'FY 2026–27', got: [] }; }
+  renderVals() {
+    const s = this.state;
+    const cur = s.fy === 'FY 2026–27';
+    const docs = cur
+      ? [['Nov 2026 statement', 'Month to date · 3 jobs'], ['Oct 2026 statement', '14 jobs'], ['TDS certificate Q2', 'Jul–Sep 2026 · Form 16A'], ['TDS certificate Q1', 'Apr–Jun 2026 · Form 16A'], ['Annual earnings summary', 'Available after 31 Mar 2027']]
+      : [['Annual earnings summary', 'FY 2025–26'], ['TDS certificate Q4', 'Jan–Mar 2026'], ['TDS certificate Q3', 'Oct–Dec 2025']];
+    return {
+      years: ['FY 2026–27', 'FY 2025–26'].map((l) => ({ l, on: s.fy === l, bg: s.fy === l ? '#1B1D1F' : 'transparent', fg: s.fy === l ? '#FFFFFF' : '#3D4247', pick: () => this.setState({ fy: l }) })),
+      gross: cur ? '₹3,42,600' : '₹5,96,400', fees: cur ? '−₹60,640' : '−₹1,05,560', tds: cur ? '−₹2,820' : '−₹4,910', net: cur ? '₹2,79,140' : '₹4,85,930',
+      docs: docs.map((d) => { const k = s.fy + d[0]; const on = s.got.indexOf(k) >= 0; return { t: d[0], s: d[1], btn: on ? '✓ Saved' : 'Download', bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', get: () => this.setState({ got: s.got.concat([k]) }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Live booking</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+.bob{animation:bob 2.8s ease-in-out infinite}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pop{animation:pop .35s ease-out}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #E9EBEC; isolation: isolate;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" floor="462" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; top: 52px; display: flex; justify-content: space-between; align-items: center;">
+    <a href="G11-Bookings.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3D4247;">SZ-1042 · Sat 7 Nov</span>
+    <div style="display: flex; gap: 8px;">
+      <a href="G15-Chat.dc.html" aria-label="Chat with chef" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg>
+      </a>
+      <button aria-label="Call chef (number masked)" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; cursor: pointer; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 24px; right: 24px; top: 118px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;">
+    <sc-for list="{{bars}}" as="b" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="height: 5px; border-radius: 9px; background: {{b.c}};"></span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: .04em; color: {{b.fg}};">{{b.l}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; top: 170px; height: 330px; display: flex; justify-content: center;">
+    <span style="position: absolute; left: 50%; top: 300px; width: 160px; height: 24px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.25), transparent);"></span>
+    <div class="bob" style="position: absolute; top: 0; left: 50%; margin-left: -72px;">
+      <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="144" hint-size="144px,302px"></dc-import>
+    </div>
+  </div>
+
+  <div class="pop" style="position: absolute; left: 20px; right: 20px; top: 512px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;">
+    <h1 style="margin: 0; font-size: 24px;">{{title}}</h1>
+    <p style="margin: 0; font-size: 14px; color: #3D4247; line-height: 1.5;">{{sub}}</p>
+    <sc-if value="{{showOtp}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; background: #FFFEFB; border: 1.5px dashed #9EA4AA; border-radius: 14px; padding: 12px 20px; margin-top: 4px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; color: #5A5F66; font-weight: 600;">{{otpLabel}}</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; letter-spacing: .3em; padding-left: .3em;">{{otp}}</span>
+      </div>
+      <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+        <a href="G19-Report.dc.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 999px; background: #FBEDEA; color: #8E2A17; font-size: 13px; font-weight: 700; text-decoration: none;">Something wrong? Don’t share the code — tell us</a>
+      </sc-if>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 28px; display: flex; flex-direction: column; gap: 8px; align-items: center;">
+    <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+      <a href="G13-RateTip.dc.html" style="width: 100%; display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Rate &amp; tip Ananya</a>
+    </sc-if>
+    <button onClick="{{advance}}" style="min-height: 44px; padding: 0 16px; border: none; background: transparent; font-family: inherit; font-size: 13px; font-weight: 600; color: #5A5F66; cursor: pointer; text-decoration: underline;">{{demoLabel}}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { st: 1 }; }
+  renderVals() {
+    const st = this.state.st;
+    const stages = [
+      { t: 'Ananya is on the way', s: 'Arriving around 5:30 PM with special ingredients. You’ll get a ping when she’s at the door.' },
+      { t: 'Ananya has arrived', s: 'Share this code with her at the door. Cooking starts once she enters it.', otp: '4821', ol: 'START OTP' },
+      { t: 'Cooking in progress', s: 'Started 5:42 PM · dinner served by 7:30 PM. Relax — the kitchen is in good hands.' },
+      { t: 'Dinner is done!', s: 'Kitchen cleaned up. Share this code to confirm — that releases the payment to Ananya.', otp: '7395', ol: 'FINISH OTP' }
+    ];
+    const cur = stages[st];
+    const labels = ['ON THE WAY', 'ARRIVED', 'COOKING', 'DONE'];
+    return {
+      bars: labels.map((l, i) => ({ l, c: i <= st ? '#1E7A3C' : '#C9CDD1', fg: i <= st ? '#1B1D1F' : '#5A5F66' })),
+      title: cur.t, sub: cur.s,
+      showOtp: !!cur.otp, otp: cur.otp || '', otpLabel: cur.ol || '',
+      isDone: st === 3,
+      demoLabel: st === 3 ? 'Restart demo' : 'Demo: next step',
+      advance: () => this.setState({ st: st === 3 ? 0 : st + 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

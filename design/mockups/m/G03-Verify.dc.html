@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verify OTP</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #ECE8E1; isolation: isolate; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; display: flex; flex-direction: column; padding: 56px 24px 32px; gap: 24px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="110" hint-size="390px,844px"></dc-import>
+  </div>
+  <a href="G02-Login.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+  </a>
+  <div style="margin-top: 52px;">
+    <h1 style="margin: 0; font-size: 30px; line-height: 1.1;">Enter the code</h1>
+    <p style="margin: 8px 0 0; font-size: 15px; color: #5A5F66; line-height: 1.5;">Sent by SMS to +91 98250 41234. <a href="G02-Login.dc.html" style="font-weight: 600;">Change</a></p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; font-family: 'IBM Plex Mono', monospace;">
+    <span style="height: 58px; border-radius: 12px; border: 1.5px solid #1B1D1F; display: grid; place-items: center; font-size: 24px; font-weight: 600;">3</span>
+    <span style="height: 58px; border-radius: 12px; border: 1.5px solid #1B1D1F; display: grid; place-items: center; font-size: 24px; font-weight: 600;">8</span>
+    <span style="height: 58px; border-radius: 12px; border: 1.5px solid #1B1D1F; display: grid; place-items: center; font-size: 24px; font-weight: 600;">1</span>
+    <span style="height: 58px; border-radius: 12px; border: 1.5px solid #1B1D1F; display: grid; place-items: center; font-size: 24px; font-weight: 600;">0</span>
+    <span style="height: 58px; border-radius: 12px; border: 2px solid #B8361F; display: grid; place-items: center; font-size: 24px; font-weight: 600;"></span>
+    <span style="height: 58px; border-radius: 12px; border: 1.5px solid #C9CDD1; display: grid; place-items: center; font-size: 24px; font-weight: 600;"></span>
+  </div>
+  <p style="margin: 0; font-size: 13px; color: #5A5F66;">Resend code in <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #1B1D1F;">00:24</span></p>
+  <a href="G04-Home.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Verify &amp; continue</a>
+
+  <div style="margin-top: auto; background: #FFFEFB; box-shadow: 0 10px 18px rgba(0,0,0,.08); border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 13px; font-weight: 700;">New here? Tell us a little</div>
+    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+      <span style="display: flex; justify-content: space-between;"><span style="color: #5A5F66;">Name</span><span style="font-weight: 600;">Rahul Desai</span></span>
+      <span style="display: flex; justify-content: space-between;"><span style="color: #5A5F66;">Home area</span><span style="font-weight: 600;">Bodakdev, Ahmedabad</span></span>
+      <span style="display: flex; justify-content: space-between;"><span style="color: #5A5F66;">Food preference</span><span style="font-weight: 600;">Veg · Jain sometimes</span></span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

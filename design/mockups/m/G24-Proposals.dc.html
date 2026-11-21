@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Menus from chefs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+  <div style="padding: 52px 20px 10px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="G23-PlanEvent.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+      <div style="flex: 1; min-width: 0;">
+        <h1 style="margin: 0; font-size: 22px; line-height: 1.1;">3 menus for your party</h1>
+        <div style="font-size: 12px; color: #5A5F66; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kitty party · 25 guests · Sat 28 Nov lunch · Jain</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #1E6B36; background: #E6F2EA; padding: 6px 10px; border-radius: 999px;"><span style="width: 7px; height: 7px; border-radius: 9px; background: #1E7A3C;"></span>All 3 replied</span>
+      <span style="font-size: 12px; color: #5A5F66;">Prices held for 24 h</span>
+    </div>
+    <div role="radiogroup" aria-label="Sort menus" style="display: flex; gap: 6px;">
+      <sc-for list="{{sorts}}" as="t" hint-placeholder-count="3">
+        <button role="radio" onClick="{{t.pick}}" aria-checked="{{t.on}}" style="min-height: 36px; padding: 0 12px; border-radius: 999px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 1.5px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; top: 206px; bottom: 96px; overflow-y: auto; padding: 4px 16px 24px; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 14px;">
+    <sc-for list="{{props}}" as="p" hint-placeholder-count="3">
+      <article style="background: #FFFEFB; border-radius: 16px; border: 2px solid {{p.bd}}; box-shadow: {{p.sh}}; padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="width: 48px; height: 48px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+            <dc-import name="ChefFig" skin="{{p.skin}}" hair="{{p.hair}}" apron="{{p.apron}}" long-op="{{p.l}}" beard-op="{{p.b}}" initials="{{p.ini}}" w="48" bust="1" hint-size="48px,48px"></dc-import>
+          </span>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 15px; font-weight: 800;">{{p.chef}}</div>
+            <div style="font-size: 12px; color: #5A5F66;">★ {{p.r}} · {{p.jobs}} · {{p.km}}</div>
+          </div>
+          <span style="display: {{p.tagDisp}}; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: {{p.tagBg}}; color: {{p.tagFg}};">{{p.tag}}</span>
+        </div>
+
+        <div>
+          <div style="font-size: 17px; font-weight: 800;">{{p.menu}}</div>
+          <div style="display: flex; gap: 4px; margin-top: 8px;">
+            <sc-for list="{{p.plates}}" as="d" hint-placeholder-count="5">
+              <dc-import name="DishArt" kind="{{d.k}}" c1="{{d.c}}" w="40" hint-size="40px,40px"></dc-import>
+            </sc-for>
+          </div>
+          <div style="font-size: 13px; color: #3D4247; line-height: 1.5; margin-top: 8px;">{{p.dishes}}</div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <sc-for list="{{p.facts}}" as="f" hint-placeholder-count="3">
+            <span style="font-size: 11px; font-weight: 700; padding: 5px 8px; border-radius: 6px; background: #E6F2EA; color: #1E6B36;">✓ {{f}}</span>
+          </sc-for>
+        </div>
+
+        <div style="background: #F4F1EB; border-radius: 12px; padding: 10px 12px; font-size: 13px; line-height: 1.45; color: #3D4247;">“{{p.note}}”</div>
+
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; border-top: 1.5px dashed #D5D0C7; padding-top: 10px;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600;">{{p.per}}<span style="font-size: 12px; font-weight: 400; color: #5A5F66;"> /guest</span></div>
+            <div style="font-size: 12px; color: #5A5F66;">{{p.total}} for 25 · groceries incl.</div>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <a href="G15-Chat.dc.html" aria-label="{{p.chatAria}}" style="width: 44px; height: 44px; border-radius: 99px; border: 1px solid #D5D0C7; background: #FFFFFF; display: grid; place-items: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg>
+            </a>
+            <button onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; border: 1.5px solid #1B1D1F; background: {{p.btnBg}}; color: {{p.btnFg}};">{{p.btn}}</button>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+    <p style="margin: 0; font-size: 12px; color: #5A5F66; text-align: center; line-height: 1.5;">Want a change? Chat with a chef — they can update the menu before you book.</p>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; display: flex; align-items: center; gap: 12px; padding: 0 16px 14px; box-sizing: border-box;">
+    <div style="flex: 1; min-width: 0; color: #FFFFFF;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600;">{{selTotal}}</div>
+      <div style="font-size: 11px; color: #B9C6BF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{selLine}}</div>
+    </div>
+    <a href="G08-Availability.dc.html" style="display: flex; align-items: center; min-height: 52px; padding: 0 18px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap;">{{cta}}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sort: 'Best match', sel: 'BT' }; }
+  renderVals() {
+    const s = this.state;
+    const r = (n) => '₹' + n.toLocaleString('en-IN');
+    const list = [
+      { id: 'BT', first: 'Bhavna', chef: 'Bhavna Trivedi', r: 4.9, jobs: '312 dinners', km: '2.1 km', match: 1, skin: '#E0B08A', hair: '#8E9196', apron: '#6B2D5C', l: '1', b: '0',
+        menu: 'Jain Kitty Feast', per: 950, dishes: 'Khandvi · Jain undhiyu · kadhi & rice · puri · live jalebi · kesar shrikhand',
+        plates: [['taco', '#F0D9A0'], ['bowl', '#6E8B3D'], ['bowl', '#F3E2A8'], ['thali', '#E8C99A'], ['tart', '#E9A23B']],
+        facts: ['Fully Jain kitchen', 'Live jalebi', 'Brings a helper'],
+        note: 'Jalebi fried live while the ladies play tambola. My helper serves, so you can enjoy your party.' },
+      { id: 'AM', first: 'Ananya', chef: 'Ananya Mehta', r: 4.9, jobs: '212 dinners', km: '1.4 km', match: 2, skin: '#D9A273', hair: '#1E1612', apron: '#B8361F', l: '1', b: '0',
+        menu: 'Modern Gujarati Brunch', per: 1350, dishes: 'Khandvi tacos · Jain undhiyu · paneer lababdar · phulka · shrikhand tart · live jalebi',
+        plates: [['taco', '#F0D9A0'], ['bowl', '#6E8B3D'], ['bowl', '#D9783A'], ['thali', '#E2B33C'], ['tart', '#F2C14E']],
+        facts: ['Jain versions', 'Plated starters', 'IHM trained'],
+        note: 'Plated starters during the games, then a warm buffet. Everything Jain, same taste.' },
+      { id: 'HD', first: 'Hetal', chef: 'Hetal Desai', r: 4.8, jobs: '164 dinners', km: '3.8 km', match: 3, skin: '#C88B5E', hair: '#1B1310', apron: '#2D4E86', l: '1', b: '0',
+        menu: 'Kathiyawadi Lunch', per: 800, dishes: 'Jain sev tameta · bhinda shaak · bajra rotla · khichdi & kadhi · jalebi',
+        plates: [['bowl', '#C9472E'], ['bowl', '#7A8F3C'], ['thali', '#D9A441'], ['bowl', '#F3E2A8'], ['tart', '#E9A23B']],
+        facts: ['Jain versions', 'Lowest price'],
+        note: 'Village-style lunch on brass plates. Jalebi is made in the morning, not live.' }
+    ];
+    if (s.sort === 'Lowest price') list.sort((a, b) => a.per - b.per);
+    else if (s.sort === 'Top rated') list.sort((a, b) => b.r - a.r || a.match - b.match);
+    else list.sort((a, b) => a.match - b.match);
+    const tags = { BT: ['BEST MATCH', '#1B1D1F', '#FFFFFF'], HD: ['LOWEST PRICE', '#E6F2EA', '#1E6B36'] };
+    const cur = list.find((p) => p.id === s.sel) || list[0];
+    return {
+      sorts: ['Best match', 'Lowest price', 'Top rated'].map((l) => { const on = s.sort === l; return { l, on, bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#D5D0C7', pick: () => this.setState({ sort: l }) }; }),
+      props: list.map((p) => {
+        const on = s.sel === p.id;
+        const t = tags[p.id];
+        return {
+          chef: p.chef, r: p.r.toFixed(1), jobs: p.jobs, km: p.km, skin: p.skin, hair: p.hair, apron: p.apron, l: p.l, b: p.b, ini: p.id,
+          tag: t ? t[0] : '', tagDisp: t ? 'inline-block' : 'none', tagBg: t ? t[1] : 'transparent', tagFg: t ? t[2] : '#1B1D1F',
+          menu: p.menu, dishes: p.dishes, plates: p.plates.map((x) => ({ k: x[0], c: x[1] })), facts: p.facts, note: p.note,
+          per: r(p.per), total: r(p.per * 25), on,
+          bd: on ? '#1B1D1F' : '#EAE5DC', sh: on ? '0 10px 20px rgba(0,0,0,.10)' : 'none',
+          btn: on ? 'Chosen ✓' : 'Choose', btnBg: on ? '#1B1D1F' : '#FFFFFF', btnFg: on ? '#FFFFFF' : '#1B1D1F',
+          chatAria: 'Chat with ' + p.first,
+          pick: () => this.setState({ sel: p.id })
+        };
+      }),
+      selTotal: r(cur.per * 25),
+      selLine: cur.menu + ' · ' + r(cur.per) + ' × 25 guests',
+      cta: 'Book ' + cur.first
+    };
+  }
+}
+</script>
+</body>
+</html>

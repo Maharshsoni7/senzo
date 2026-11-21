@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Filters</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #8C9095; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; top: 60px; background: #FFFFFF; border-radius: 24px 24px 0 0; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: center; padding-top: 10px;"><span style="width: 40px; height: 5px; border-radius: 9px; background: #C9CDD1;"></span></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 12px 20px; border-bottom: 1px solid #E1E3E5;">
+      <h1 style="margin: 0; font-size: 20px;">Filters</h1>
+      <a href="G05-Search.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 999px; background: #F1F2F3; display: grid; place-items: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </a>
+    </div>
+    <div style="flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 20px;">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: .04em;">{{g.t}}</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{g.opts}}" as="o" hint-placeholder-count="4">
+              <button onClick="{{o.toggle}}" aria-pressed="{{o.on}}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}};">{{o.l}}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;"><span>PRICE PER GUEST</span><span style="font-family: 'IBM Plex Mono', monospace;">₹1,000 – ₹2,000</span></div>
+        <div style="position: relative; height: 28px;">
+          <span style="position: absolute; left: 0; right: 0; top: 12px; height: 4px; border-radius: 9px; background: #E1E3E5;"></span>
+          <span style="position: absolute; left: 20%; right: 40%; top: 12px; height: 4px; border-radius: 9px; background: #1B1D1F;"></span>
+          <span style="position: absolute; left: calc(20% - 12px); top: 2px; width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF; border: 2px solid #1B1D1F;"></span>
+          <span style="position: absolute; left: calc(60% - 12px); top: 2px; width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF; border: 2px solid #1B1D1F;"></span>
+        </div>
+      </div>
+      <label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px;">
+        <span><strong>Police-verified chefs only</strong><br><span style="font-size: 12px; color: #5A5F66;">ID, address and background checked</span></span>
+        <span style="width: 50px; height: 30px; border-radius: 99px; background: #1E7A3C; position: relative; flex: none;"><span style="position: absolute; right: 3px; top: 3px; width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF;"></span></span>
+      </label>
+    </div>
+    <div style="display: flex; gap: 10px; padding: 12px 20px 28px; border-top: 1px solid #E1E3E5;">
+      <button onClick="{{clear}}" style="min-height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; color: #1B1D1F;">Clear</button>
+      <a href="G05-Search.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">Show 5 chefs</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: ['DATE:Sat 7 Nov', 'MEAL:Dinner', 'GUESTS:5–8', 'CUISINE:Gujarati', 'CUISINE:South Indian', 'FOOD TYPE:Pure veg', 'RATING:4.5+', 'CHEF SPEAKS:Gujarati'] };
+  }
+  renderVals() {
+    const defs = [
+      ['DATE', ['Today', 'Tomorrow', 'Sat 7 Nov', 'Sun 8 Nov', 'Pick date']],
+      ['MEAL', ['Breakfast', 'Lunch', 'Dinner', 'Late night']],
+      ['GUESTS', ['1–4', '5–8', '9–15', '16+']],
+      ['CUISINE', ['Gujarati', 'North Indian', 'South Indian', 'Mughlai', 'Italian', 'Pan-Asian', 'Desserts']],
+      ['FOOD TYPE', ['Pure veg', 'Jain', 'Vegan', 'Eggless', 'Non-veg']],
+      ['RATING', ['4.5+', '4.0+', 'Any']],
+      ['CHEF SPEAKS', ['Gujarati', 'Hindi', 'English']]
+    ];
+    const on = this.state.on;
+    const toggle = (k) => this.setState({ on: on.indexOf(k) >= 0 ? on.filter((x) => x !== k) : on.concat([k]) });
+    return {
+      groups: defs.map((d) => ({ t: d[0], opts: d[1].map((l) => { const key = d[0] + ':' + l; const sel = on.indexOf(key) >= 0; return { l, on: sel, toggle: () => toggle(key), bg: sel ? '#1B1D1F' : '#FFFFFF', fg: sel ? '#FFFFFF' : '#1B1D1F', bd: sel ? '#1B1D1F' : '#C9CDD1' }; }) })),
+      clear: () => this.setState({ on: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

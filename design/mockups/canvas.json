@@ -1,0 +1,496 @@
+{
+"v": 3,
+"createdOnFiles": {
+"v": 1,
+"at": "2026-10-30T13:40:00Z"
+},
+"title": "Senzo – Chef Booking",
+"launch": {
+"view": "canvas"
+},
+"pages": [],
+"boards": {
+"Main.dc.html": {
+"x": 0,
+"y": 0,
+"w": 1440,
+"h": 900,
+"title": "Web · Browse & book chefs",
+"expand": "fill",
+"is_interactive": true
+},
+"ChefSignup.dc.html": {
+"x": 1520,
+"y": 0,
+"w": 1440,
+"h": 1240,
+"title": "Web · Chef profile upload",
+"expand": "fill",
+"is_interactive": true
+},
+"m/ChefFig.dc.html": {
+"x": 3040,
+"y": 0,
+"w": 200,
+"h": 420,
+"title": "Component · Chef figure"
+},
+"m/KitchenBg.dc.html": {
+"x": 3320,
+"y": 0,
+"w": 390,
+"h": 844,
+"title": "Component · Kitchen background"
+},
+"m/DishArt.dc.html": {
+"x": 3790,
+"y": 0,
+"w": 200,
+"h": 200,
+"title": "Component · Dish illustration"
+},
+"m/G01-Welcome.dc.html": {
+"x": 0,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G01 Welcome",
+"is_interactive": true
+},
+"m/G02-Login.dc.html": {
+"x": 470,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G02 Login",
+"is_interactive": true
+},
+"m/G03-Verify.dc.html": {
+"x": 940,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G03 Verify OTP",
+"is_interactive": true
+},
+"m/G04-Home.dc.html": {
+"x": 1410,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G04 Home · swipe chefs + search",
+"is_interactive": true
+},
+"m/G07-ChefProfile.dc.html": {
+"x": 1880,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G07 Chef profile + experience",
+"is_interactive": true
+},
+"m/G08-Availability.dc.html": {
+"x": 2350,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G08 Check availability",
+"is_interactive": true
+},
+"m/G09-Checkout.dc.html": {
+"x": 2820,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G09 Checkout & pay",
+"is_interactive": true
+},
+"m/G10-Confirmed.dc.html": {
+"x": 3290,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G10 Booked + start OTP",
+"is_interactive": true
+},
+"m/G11-Bookings.dc.html": {
+"x": 3760,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G11 My bookings",
+"is_interactive": true
+},
+"m/G12-LiveBooking.dc.html": {
+"x": 4230,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G12 Live booking + finish OTP",
+"is_interactive": true
+},
+"m/G13-RateTip.dc.html": {
+"x": 4700,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G13 Rate & tip",
+"is_interactive": true
+},
+"m/G14-Account.dc.html": {
+"x": 5170,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G14 Account + allergies",
+"is_interactive": true
+},
+"m/G15-Chat.dc.html": {
+"x": 5640,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G15 Chat + proposed menu",
+"is_interactive": true
+},
+"m/G16-Cancel.dc.html": {
+"x": 6110,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G16 Cancel / reschedule",
+"is_interactive": true
+},
+"m/G17-Declined.dc.html": {
+"x": 6580,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G17 Chef declined · refunded",
+"is_interactive": true
+},
+"m/G18-Address.dc.html": {
+"x": 7050,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G18 Add address",
+"is_interactive": true
+},
+"m/G19-Report.dc.html": {
+"x": 7520,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G19 Report a problem",
+"is_interactive": true
+},
+"m/G20-Notifications.dc.html": {
+"x": 7990,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G20 Notifications",
+"is_interactive": true
+},
+"m/G21-Invoice.dc.html": {
+"x": 8460,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G21 Invoice",
+"is_interactive": true
+},
+"m/G22-MenuDetail.dc.html": {
+"x": 8930,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G22 Set menu · Jain, add dishes, groceries",
+"is_interactive": true
+},
+"m/C01-Onboarding.dc.html": {
+"x": 0,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C01 Chef onboarding",
+"is_interactive": true
+},
+"m/C02-Verification.dc.html": {
+"x": 470,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C02 KYC & bank",
+"is_interactive": true
+},
+"m/C03-MenuPricing.dc.html": {
+"x": 940,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C03 Specialties & price",
+"is_interactive": true
+},
+"m/C04-Dashboard.dc.html": {
+"x": 1410,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C04 Chef home",
+"is_interactive": true
+},
+"m/C05-Request.dc.html": {
+"x": 1880,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C05 Booking request + allergy check",
+"is_interactive": true
+},
+"m/C06-StartOtp.dc.html": {
+"x": 2350,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C06 Arrive · enter start OTP",
+"is_interactive": true
+},
+"m/C07-Cooking.dc.html": {
+"x": 2820,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C07 Cooking in progress",
+"is_interactive": true
+},
+"m/C08-Completed.dc.html": {
+"x": 3290,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C08 Finish OTP · payout",
+"is_interactive": true
+},
+"m/C09-Earnings.dc.html": {
+"x": 3760,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C09 Earnings & withdraw",
+"is_interactive": true
+},
+"m/C10-Calendar.dc.html": {
+"x": 4230,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C10 Availability calendar",
+"is_interactive": true
+},
+"m/C11-Login.dc.html": {
+"x": 4700,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C11 Chef login",
+"is_interactive": true
+},
+"m/C12-EditProfile.dc.html": {
+"x": 5170,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C12 Edit profile + bank",
+"is_interactive": true
+},
+"m/C13-OnMyWay.dc.html": {
+"x": 5640,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C13 I'm on my way",
+"is_interactive": true
+},
+"m/C14-NoShow.dc.html": {
+"x": 6110,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C14 Guest not responding",
+"is_interactive": true
+},
+"m/C15-RateGuest.dc.html": {
+"x": 6580,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C15 Rate the guest",
+"is_interactive": true
+},
+"m/C16-PastJobs.dc.html": {
+"x": 7050,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C16 Past jobs",
+"is_interactive": true
+},
+"m/C17-PayoutFailed.dc.html": {
+"x": 7520,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C17 Payout failed",
+"is_interactive": true
+},
+"m/C18-Tax.dc.html": {
+"x": 7990,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C18 Tax statements",
+"is_interactive": true
+},
+"m/C19-Settings.dc.html": {
+"x": 8460,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C19 Pause / delete account",
+"is_interactive": true
+},
+"m/C20-SetMenus.dc.html": {
+"x": 8930,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C20 Set menus · prices, minimum, add-ons",
+"is_interactive": true
+},
+"m/G23-PlanEvent.dc.html": {
+"x": 9400,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G23 Plan my event · get menus",
+"is_interactive": true
+},
+"m/G24-Proposals.dc.html": {
+"x": 9870,
+"y": 1700,
+"w": 390,
+"h": 844,
+"title": "G24 Menus from 3 chefs",
+"is_interactive": true
+},
+"m/C21-MenuRequest.dc.html": {
+"x": 9400,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C21 Reply to menu request",
+"is_interactive": true
+},
+"m/C22-Experience.dc.html": {
+"x": 9870,
+"y": 2944,
+"w": 390,
+"h": 844,
+"title": "C22 Experience & proof",
+"is_interactive": true
+}
+},
+"order": [
+"Main.dc.html",
+"ChefSignup.dc.html",
+"m/ChefFig.dc.html",
+"m/KitchenBg.dc.html",
+"m/DishArt.dc.html",
+"m/G01-Welcome.dc.html",
+"m/G02-Login.dc.html",
+"m/G03-Verify.dc.html",
+"m/G04-Home.dc.html",
+"m/G07-ChefProfile.dc.html",
+"m/G08-Availability.dc.html",
+"m/G09-Checkout.dc.html",
+"m/G10-Confirmed.dc.html",
+"m/G11-Bookings.dc.html",
+"m/G12-LiveBooking.dc.html",
+"m/G13-RateTip.dc.html",
+"m/G14-Account.dc.html",
+"m/G15-Chat.dc.html",
+"m/G16-Cancel.dc.html",
+"m/G17-Declined.dc.html",
+"m/G18-Address.dc.html",
+"m/G19-Report.dc.html",
+"m/G20-Notifications.dc.html",
+"m/G21-Invoice.dc.html",
+"m/G22-MenuDetail.dc.html",
+"m/G23-PlanEvent.dc.html",
+"m/G24-Proposals.dc.html",
+"m/C01-Onboarding.dc.html",
+"m/C02-Verification.dc.html",
+"m/C03-MenuPricing.dc.html",
+"m/C04-Dashboard.dc.html",
+"m/C05-Request.dc.html",
+"m/C06-StartOtp.dc.html",
+"m/C07-Cooking.dc.html",
+"m/C08-Completed.dc.html",
+"m/C09-Earnings.dc.html",
+"m/C10-Calendar.dc.html",
+"m/C11-Login.dc.html",
+"m/C12-EditProfile.dc.html",
+"m/C13-OnMyWay.dc.html",
+"m/C14-NoShow.dc.html",
+"m/C15-RateGuest.dc.html",
+"m/C16-PastJobs.dc.html",
+"m/C17-PayoutFailed.dc.html",
+"m/C18-Tax.dc.html",
+"m/C19-Settings.dc.html",
+"m/C20-SetMenus.dc.html",
+"m/C21-MenuRequest.dc.html",
+"m/C22-Experience.dc.html"
+],
+"notes": {
+"intro": {
+"x": 0,
+"y": -260,
+"text": "Senzo — browse chefs on the ticket rail, book a date; chefs upload their own profile",
+"kind": "title1",
+"maxW": 2960
+},
+"guestTitle": {
+"x": 0,
+"y": 1440,
+"text": "Guest app — login → search → book → pay → chat menu → start OTP → finish OTP → rate · plus cancel, refunds, address, report, notifications, invoice",
+"kind": "title1",
+"maxW": 10300
+},
+"chefTitle": {
+"x": 0,
+"y": 2684,
+"text": "Chef app — login → onboard & KYC → accept → on my way → start OTP → cook → finish OTP → get paid · plus edit profile, no-show, rate guest, payouts, tax, settings",
+"kind": "title1",
+"maxW": 10300
+},
+"gaps": {
+"x": 10340,
+"y": 2944,
+"w": 460,
+"size": "m",
+"fill": "orange",
+"text": "STILL TO ADD (v4)\n• SOS / emergency share during a job\n• Admin panel: approve chefs, refunds, disputes, payouts\n• Promo codes, referral, gift a chef\n• Favourites / book again list\n• Meal-prep: weekly schedule & pause screens\n• Multi-language (Gujarati / Hindi)\n• Deep links + share chef profile"
+},
+"gapsFixed": {
+"x": 10340,
+"y": 1700,
+"w": 460,
+"size": "m",
+"fill": "green",
+"text": "GAPS FIXED (v4)\n• Not sure what to order → G23 request, G24 compare 3 chef menus, C21 chef replies\n• Add a dish → G22 add-ons, chef sets them in C20\n• Jain / no onion-garlic switch → G22, chef turns on in C20\n• Who buys groceries → G22 choice, chef sets saving in C20\n• Kitchen check (oven, gas) → G22\n• Each chef sets own minimum → C20\n• Weekly meal prep → G07 card + G23\n• Proof of experience → C22, shown on G07 Experience tab"
+}
+},
+"designSystems": []
+}

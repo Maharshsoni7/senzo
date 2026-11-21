@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your specialties</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.up{animation:up .28s ease-out}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.fade{animation:fade .2s ease-out}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+
+  <!-- header -->
+  <div style="padding: 52px 20px 12px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="C02-Verification.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 999px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+      <div style="flex: 1;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600;">STEP 3 OF 3</div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-top: 6px;">
+          <span style="height: 4px; border-radius: 9px; background: #1E7A3C;"></span>
+          <span style="height: 4px; border-radius: 9px; background: #1E7A3C;"></span>
+          <span style="height: 4px; border-radius: 9px; background: #B8361F;"></span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 style="margin: 0; font-size: 26px; line-height: 1.1;">Your specialties</h1>
+      <p style="margin: 6px 0 0; font-size: 14px; color: #3D4247; line-height: 1.45;">The dishes you’re known for. Guests see these first on your profile.</p>
+    </div>
+  </div>
+
+  <!-- scroll body -->
+  <div style="position: absolute; left: 0; right: 0; top: 196px; bottom: 96px; overflow-y: auto; padding: 4px 20px 24px; box-sizing: border-box; display: grid; align-content: start; gap: 12px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; font-weight: 600; color: #3D4247;">SIGNATURE DISHES</span>
+      <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: {{countBg}}; color: {{countFg}};">{{countLabel}}</span>
+    </div>
+
+    <sc-for list="{{dishes}}" as="d" hint-placeholder-count="3">
+      <div style="display: flex; gap: 12px; background: #FFFFFF; border-radius: 16px; padding: 10px; box-shadow: 0 6px 14px rgba(27,29,31,.06); border: 1px solid #EAE5DC;">
+        <span style="width: 88px; height: 88px; flex: none; border-radius: 12px; overflow: hidden; background: #F4F1EB; display: grid; place-items: center; position: relative;">
+          <sc-if value="{{d.hasImg}}" hint-placeholder-val="{{ false }}">
+            <img src="{{d.img}}" alt="{{d.n}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          </sc-if>
+          <sc-if value="{{d.noImg}}" hint-placeholder-val="{{ true }}">
+            <dc-import name="DishArt" kind="{{d.kind}}" c1="{{d.c}}" w="74" hint-size="74px,74px"></dc-import>
+          </sc-if>
+          <sc-if value="{{d.noImg}}" hint-placeholder-val="{{ true }}">
+            <span style="position: absolute; left: 4px; bottom: 4px; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 4px; background: rgba(27,29,31,.75); color: #FFFFFF;">ADD PHOTO</span>
+          </sc-if>
+        </span>
+        <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span style="width: 12px; height: 12px; border: 1.5px solid {{d.typeColor}}; display: grid; place-items: center; flex: none; border-radius: 2px;"><span style="width: 5px; height: 5px; border-radius: 9px; background: {{d.typeColor}};"></span></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; color: #5A5F66;">{{d.course}} · {{d.type}}</span>
+          </span>
+          <span style="font-size: 15px; font-weight: 800; line-height: 1.2;">{{d.n}}</span>
+          <span style="font-size: 12px; color: #5A5F66; line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{d.desc}}</span>
+          <span style="display: flex; gap: 14px; margin-top: auto;">
+            <button onClick="{{d.edit}}" style="border: none; background: transparent; padding: 0; min-height: 28px; font-family: inherit; font-size: 12px; font-weight: 700; color: #1B1D1F; cursor: pointer; text-decoration: underline;">Edit</button>
+            <button onClick="{{d.remove}}" style="border: none; background: transparent; padding: 0; min-height: 28px; font-family: inherit; font-size: 12px; font-weight: 700; color: #B8361F; cursor: pointer;">Remove</button>
+          </span>
+        </span>
+      </div>
+    </sc-for>
+
+    <sc-if value="{{canAdd}}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{openAdd}}" style="min-height: 64px; border-radius: 16px; border: 2px dashed #B9B2A6; background: rgba(255,255,255,.5); font-family: inherit; font-size: 15px; font-weight: 700; color: #1B1D1F; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span style="width: 28px; height: 28px; border-radius: 99px; background: #B8361F; color: #FFFFFF; display: grid; place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
+        Add a dish
+      </button>
+    </sc-if>
+
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; font-weight: 600; color: #3D4247; margin-top: 8px;">PRICE PER GUEST</div>
+    <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #EAE5DC; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+      <button onClick="{{dec}}" aria-label="Lower price" style="width: 44px; height: 44px; border-radius: 99px; border: 1px solid #D5D0C7; background: #FFFFFF; font-size: 20px; cursor: pointer; color: #1B1D1F;">−</button>
+      <div style="flex: 1; text-align: center;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600;">{{price}}</div>
+        <div style="font-size: 12px; color: #1E6B36; font-weight: 600;">You earn {{earn}} per guest</div>
+      </div>
+      <button onClick="{{inc}}" aria-label="Raise price" style="width: 44px; height: 44px; border-radius: 99px; border: 1px solid #D5D0C7; background: #FFFFFF; font-size: 20px; cursor: pointer; color: #1B1D1F;">+</button>
+    </div>
+    <div style="font-size: 12px; color: #5A5F66; margin-top: -4px;">Includes groceries · 15% platform fee · chefs near you charge ₹1,400–2,500</div>
+
+    <a href="C20-SetMenus.dc.html" style="display: flex; align-items: center; gap: 12px; background: #1B1D1F; color: #FFFFFF; border-radius: 16px; padding: 14px 16px; text-decoration: none;">
+      <span style="flex: 1;"><span style="display: block; font-size: 15px; font-weight: 800;">Create set menus</span><span style="display: block; font-size: 12px; color: #C8CDD2;">Ready menus with group prices · most guests book these</span></span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+    </a>
+
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; font-weight: 600; color: #3D4247; margin-top: 8px;">DAYS YOU COOK</div>
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px;">
+      <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+        <button onClick="{{d.pick}}" aria-pressed="{{d.on}}" aria-label="{{d.full}}" style="height: 46px; border-radius: 12px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid {{d.bd}}; background: {{d.bg}}; color: {{d.fg}};">{{d.l}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- counter bar -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; display: flex; align-items: center; gap: 12px; padding: 0 16px 14px; box-sizing: border-box;">
+    <div style="flex: 1; color: #FFFFFF; min-width: 0;">
+      <div style="font-size: 14px; font-weight: 700;">{{barTitle}}</div>
+      <div style="font-size: 12px; color: #B9C6BF;">{{barSub}}</div>
+    </div>
+    <sc-if value="{{ready}}" hint-placeholder-val="{{ true }}">
+      <a href="C04-Dashboard.dc.html" style="display: flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">Go live</a>
+    </sc-if>
+    <sc-if value="{{notReady}}" hint-placeholder-val="{{ false }}">
+      <span style="display: flex; align-items: center; min-height: 52px; padding: 0 20px; border-radius: 999px; background: #4A5853; color: #B9C6BF; font-size: 15px; font-weight: 700;">Go live</span>
+    </sc-if>
+  </div>
+
+  <!-- add / edit dish sheet -->
+  <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+    <div class="fade" style="position: absolute; inset: 0; background: rgba(27,29,31,.5); z-index: 20;">
+      <div class="up" role="dialog" aria-modal="true" aria-label="{{sheetTitle}}" style="position: absolute; left: 0; right: 0; bottom: 0; top: 70px; background: #FFFEFB; border-radius: 22px 22px 0 0; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: center; padding-top: 10px;"><span style="width: 40px; height: 5px; border-radius: 9px; background: #D5D0C7;"></span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 10px 20px;">
+          <h2 style="margin: 0; font-size: 20px;">{{sheetTitle}}</h2>
+          <button onClick="{{closeSheet}}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 99px; border: none; background: #F1EEE8; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </button>
+        </div>
+        <div style="flex: 1; overflow-y: auto; padding: 4px 20px 16px; display: grid; align-content: start; gap: 16px;">
+          <label style="position: relative; height: 170px; border-radius: 16px; border: 2px dashed #B9B2A6; background: #F4F1EB; display: grid; place-items: center; cursor: pointer; overflow: hidden; flex: none;">
+            <input type="file" accept="image/*" onChange="{{onPhoto}}" class="sr" aria-label="Upload dish photo">
+            <sc-if value="{{fHasImg}}" hint-placeholder-val="{{ false }}">
+              <img src="{{fImg}}" alt="Dish photo preview" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            </sc-if>
+            <sc-if value="{{fNoImg}}" hint-placeholder-val="{{ true }}">
+              <span style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; padding: 0 20px;">
+                <span style="width: 44px; height: 44px; border-radius: 99px; background: #FFFFFF; display: grid; place-items: center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B1D1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                </span>
+                <span style="font-size: 14px; font-weight: 700;">Add a photo of the dish</span>
+                <span style="font-size: 12px; color: #5A5F66;">Use your own cooking · bright, top-down shots look best</span>
+              </span>
+            </sc-if>
+          </label>
+
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">Dish name
+            <input value="{{fName}}" onInput="{{setName}}" placeholder="e.g. Khandvi Tacos" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 16px; color: #1B1D1F; background: #FFFFFF;">
+          </label>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 700;">Course</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{courses}}" as="c" hint-placeholder-count="5">
+                <button onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}};">{{c.l}}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 700;">Food type</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{types}}" as="c" hint-placeholder-count="5">
+                <button onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 38px; padding: 0 12px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}};">
+                  <span style="width: 10px; height: 10px; border: 1.5px solid {{c.mark}}; display: grid; place-items: center; border-radius: 2px; background: #FFFFFF;"><span style="width: 4px; height: 4px; border-radius: 9px; background: {{c.mark}};"></span></span>{{c.l}}
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">
+            <span style="display: flex; justify-content: space-between;">Short description <span style="font-weight: 500; color: #5A5F66; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">{{descCount}}/90</span></span>
+            <textarea rows="3" value="{{fDesc}}" onInput="{{setDesc}}" placeholder="What’s in it and why guests love it" style="padding: 12px 14px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 15px; line-height: 1.45; resize: none; color: #1B1D1F; background: #FFFFFF;"></textarea>
+          </label>
+        </div>
+        <div style="display: flex; gap: 10px; padding: 12px 20px 26px; border-top: 1px solid #EAE5DC;">
+          <button onClick="{{closeSheet}}" style="min-height: 52px; padding: 0 22px; border-radius: 999px; border: 1px solid #D5D0C7; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Cancel</button>
+          <button onClick="{{save}}" disabled="{{cantSave}}" style="flex: 1; min-height: 52px; border-radius: 999px; border: none; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; background: {{saveBg}}; color: {{saveFg}};">{{saveLabel}}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dishes: [
+        { id: 1, n: 'Khandvi Tacos', course: 'Starter', type: 'Veg', desc: 'Soft khandvi shells with coconut, pomegranate and green chutney', kind: 'taco', c: '#F0D9A0', img: '' },
+        { id: 2, n: 'Deconstructed Undhiyu', course: 'Main', type: 'Jain', desc: 'Winter vegetables, methi muthia and green garlic, plated', kind: 'bowl', c: '#6E8B3D', img: '' }
+      ],
+      nextId: 3, sheet: null,
+      form: { n: '', course: '', type: 'Veg', desc: '', img: '' },
+      p: 1800, days: [4, 5, 6]
+    };
+  }
+  fileUrl(e) { const f = e && e.target && e.target.files && e.target.files[0]; return f ? URL.createObjectURL(f) : ''; }
+  chip(on) { return on ? { bg: '#1B1D1F', fg: '#FFFFFF', bd: '#1B1D1F' } : { bg: '#FFFFFF', fg: '#1B1D1F', bd: '#D5D0C7' }; }
+  typeColor(t) { return t === 'Non-veg' ? '#8C3A1E' : t === 'Egg' ? '#C98A1E' : '#1E7A3C'; }
+  setForm(patch) { this.setState({ form: Object.assign({}, this.state.form, patch) }); }
+  renderVals() {
+    const s = this.state;
+    const f = s.form;
+    const r = (n) => '₹' + n.toLocaleString('en-IN');
+    const kinds = { Starter: ['platter', '#F2D16B'], Main: ['bowl', '#C98B2E'], Dessert: ['tart', '#F2C14E'], Snack: ['taco', '#F0D9A0'], Thali: ['thali', '#E2B33C'] };
+    const count = s.dishes.length;
+    const ready = count >= 3 && s.days.length > 0;
+    const cantSave = !f.n.trim() || !f.course;
+    return {
+      dishes: s.dishes.map((d) => Object.assign({}, d, {
+        hasImg: !!d.img, noImg: !d.img, typeColor: this.typeColor(d.type), course: d.course.toUpperCase(), type: d.type.toUpperCase(),
+        edit: () => this.setState({ sheet: d.id, form: { n: d.n, course: d.course, type: d.type, desc: d.desc, img: d.img } }),
+        remove: () => this.setState({ dishes: s.dishes.filter((x) => x.id !== d.id) })
+      })),
+      canAdd: count < 6,
+      countLabel: count + ' of 6' + (count < 3 ? ' · add ' + (3 - count) + ' more' : ''),
+      countBg: count < 3 ? '#FBEDEA' : '#E6F2EA', countFg: count < 3 ? '#8E2A17' : '#1E6B36',
+      openAdd: () => this.setState({ sheet: 'new', form: { n: '', course: '', type: 'Veg', desc: '', img: '' } }),
+      price: r(s.p), earn: r(Math.round(s.p * 0.85)),
+      dec: () => this.setState({ p: Math.max(500, s.p - 100) }),
+      inc: () => this.setState({ p: Math.min(10000, s.p + 100) }),
+      days: [['M', 'Monday'], ['T', 'Tuesday'], ['W', 'Wednesday'], ['T', 'Thursday'], ['F', 'Friday'], ['S', 'Saturday'], ['S', 'Sunday']].map((d, i) => { const on = s.days.indexOf(i) >= 0; return Object.assign({ l: d[0], full: d[1], on, pick: () => this.setState({ days: on ? s.days.filter((x) => x !== i) : s.days.concat([i]) }) }, this.chip(on)); }),
+      ready, notReady: !ready,
+      barTitle: ready ? 'Ready to go live' : 'Almost there',
+      barSub: ready ? count + ' dishes · ' + r(s.p) + '/guest · ' + s.days.length + ' days' : (count < 3 ? 'Add at least 3 signature dishes' : 'Pick at least one day'),
+
+      sheetOpen: s.sheet !== null,
+      sheetTitle: s.sheet === 'new' ? 'Add a dish' : 'Edit dish',
+      closeSheet: () => this.setState({ sheet: null }),
+      onPhoto: (e) => { const u = this.fileUrl(e); if (u) this.setForm({ img: u }); },
+      fHasImg: !!f.img, fNoImg: !f.img, fImg: f.img,
+      fName: f.n, setName: (e) => this.setForm({ n: e.target.value }),
+      fDesc: f.desc, setDesc: (e) => this.setForm({ desc: e.target.value.slice(0, 90) }), descCount: f.desc.length,
+      courses: ['Starter', 'Main', 'Dessert', 'Snack', 'Thali'].map((c) => Object.assign({ l: c, on: f.course === c, pick: () => this.setForm({ course: c }) }, this.chip(f.course === c))),
+      types: ['Veg', 'Jain', 'Vegan', 'Egg', 'Non-veg'].map((t) => Object.assign({ l: t, on: f.type === t, mark: this.typeColor(t), pick: () => this.setForm({ type: t }) }, this.chip(f.type === t))),
+      cantSave, saveBg: cantSave ? '#E1DCD3' : '#B8361F', saveFg: cantSave ? '#5A5F66' : '#FFFFFF',
+      saveLabel: s.sheet === 'new' ? 'Add to specialties' : 'Save changes',
+      save: () => {
+        if (cantSave) return;
+        const k = kinds[f.course] || ['bowl', '#C98B2E'];
+        if (s.sheet === 'new') {
+          this.setState({ dishes: s.dishes.concat([{ id: s.nextId, n: f.n.trim(), course: f.course, type: f.type, desc: f.desc.trim(), kind: k[0], c: k[1], img: f.img }]), nextId: s.nextId + 1, sheet: null });
+        } else {
+          this.setState({ dishes: s.dishes.map((d) => d.id === s.sheet ? Object.assign({}, d, { n: f.n.trim(), course: f.course, type: f.type, desc: f.desc.trim(), img: f.img }) : d), sheet: null });
+        }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chef login</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#FFFFFF}a:hover{color:#F3C9BF}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #F3C9BF;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #24282C; color: #F4F2EE; font-family: 'Archivo', system-ui, sans-serif; padding: 56px 24px 32px; display: flex; flex-direction: column; gap: 20px;">
+  <a href="G01-Welcome.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 99px; border: 1px solid #4A5056; display: grid; place-items: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+  </a>
+  <div style="display: flex; justify-content: center;">
+    <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="96" bust="1" hint-size="96px,96px"></dc-import>
+  </div>
+  <div style="text-align: center;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .24em; color: #C8CDD2;">SENZO PARTNER · FOR CHEFS</div>
+    <h1 style="margin: 6px 0 0; font-size: 28px; line-height: 1.1;">{{title}}</h1>
+    <p style="margin: 8px 0 0; font-size: 14px; color: #C8CDD2; line-height: 1.5;">{{sub}}</p>
+  </div>
+
+  <sc-if value="{{isPhone}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600;">Mobile number
+        <span style="display: flex; align-items: center; gap: 10px; min-height: 56px; border: 1.5px solid #6F757B; border-radius: 14px; padding: 0 14px; background: #2E3338;">
+          <span style="font-weight: 700; font-size: 16px;">+91</span>
+          <span style="width: 1px; height: 24px; background: #4A5056;"></span>
+          <input type="tel" value="{{phone}}" onInput="{{setPhone}}" style="flex: 1; min-width: 0; border: none; background: transparent; font-size: 18px; font-family: inherit; letter-spacing: .04em; color: #FFFFFF;">
+        </span>
+      </label>
+      <button onClick="{{send}}" style="min-height: 54px; border-radius: 999px; border: none; background: #B8361F; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer;">Send OTP</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isCode}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <input type="tel" maxlength="6" value="{{code}}" onInput="{{setCode}}" placeholder="• • • • • •" aria-label="6-digit code" style="height: 64px; border-radius: 16px; border: 2px solid {{codeBd}}; background: #2E3338; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .5em; padding-left: .5em; color: #FFFFFF;">
+      <div style="display: flex; justify-content: space-between; font-size: 13px; color: #C8CDD2;"><span>Resend in 00:24</span><button onClick="{{back}}" style="border: none; background: transparent; color: #F3C9BF; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;">Change number</button></div>
+      <div style="font-size: 12px; color: #9EA4AA; text-align: center;">Demo: any 6 digits work</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <a href="C04-Dashboard.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Go to my kitchen (returning chef)</a>
+      <a href="C01-Onboarding.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; border: 1.5px solid #6F757B; font-size: 16px; font-weight: 700; text-decoration: none;">Set up my chef profile (new)</a>
+    </div>
+  </sc-if>
+
+  <p style="margin: auto 0 0; text-align: center; font-size: 12px; color: #9EA4AA; line-height: 1.5;">Logged in on a new phone? We’ll sign you out everywhere else for safety.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { step: 'phone', phone: '98765 43210', code: '' }; }
+  renderVals() {
+    const s = this.state;
+    return {
+      isPhone: s.step === 'phone', isCode: s.step === 'code', isDone: s.step === 'done',
+      title: s.step === 'phone' ? 'Welcome, chef' : s.step === 'code' ? 'Enter the code' : 'You’re in',
+      sub: s.step === 'phone' ? 'Log in with your phone. We’ll send a 6-digit code.' : s.step === 'code' ? 'Sent by SMS to +91 ' + s.phone : 'Verified +91 ' + s.phone,
+      phone: s.phone, setPhone: (e) => this.setState({ phone: e.target.value }),
+      send: () => this.setState({ step: 'code' }),
+      back: () => this.setState({ step: 'phone', code: '' }),
+      code: s.code, codeBd: s.code.length === 6 ? '#1E7A3C' : '#6F757B',
+      setCode: (e) => { const v = e.target.value.replace(/\D/g, '').slice(0, 6); this.setState({ code: v, step: v.length === 6 ? 'done' : 'code' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

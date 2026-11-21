@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rate the guest</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 60px 22px 28px; display: flex; flex-direction: column; gap: 16px;">
+  <div style="text-align: center;">
+    <span style="display: inline-grid; place-items: center; width: 72px; height: 72px; border-radius: 99px; background: #24282C; color: #FFFFFF; font-size: 24px; font-weight: 800;">RD</span>
+    <h1 style="margin: 10px 0 0; font-size: 24px;">How was cooking for Rahul?</h1>
+    <p style="margin: 4px 0 0; font-size: 13px; color: #5A5F66;">Sat 7 Nov · 6 guests · only our team sees your note</p>
+  </div>
+  <div style="display: flex; justify-content: center; gap: 4px;" role="radiogroup" aria-label="Rating">
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="5">
+      <button onClick="{{s.pick}}" aria-label="{{s.aria}}" style="width: 48px; height: 48px; border: none; background: transparent; cursor: pointer; padding: 0;">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="{{s.fill}}" stroke="#B8361F" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;">
+    <sc-for list="{{tags}}" as="t" hint-placeholder-count="7">
+      <button onClick="{{t.pick}}" aria-pressed="{{t.on}}" style="min-height: 38px; padding: 0 12px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+    </sc-for>
+  </div>
+  <textarea rows="3" aria-label="Private note for support" placeholder="Anything our team should know? (private)" style="padding: 12px 14px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 14px; resize: none; background: #FFFFFF; color: #1B1D1F;"></textarea>
+  <button onClick="{{toggleBlock}}" aria-pressed="{{block}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 16px; border-radius: 14px; border: 1px solid #EAE5DC; background: #FFFFFF; font-family: inherit; cursor: pointer; color: #1B1D1F; text-align: left;">
+    <span><span style="display: block; font-size: 14px; font-weight: 700;">Don’t match me with Rahul again</span><span style="display: block; font-size: 12px; color: #5A5F66;">He won’t be told</span></span>
+    <span style="width: 50px; height: 30px; border-radius: 99px; position: relative; background: {{blockBg}}; flex: none;"><span style="position: absolute; top: 3px; left: {{knob}}; width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF;"></span></span>
+  </button>
+  <a href="C16-PastJobs.dc.html" style="margin-top: auto; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Submit</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { r: 5, tags: ['Kitchen ready on time', 'Friendly'], block: false }; }
+  renderVals() {
+    const s = this.state;
+    const all = ['Kitchen ready on time', 'Friendly', 'Clear instructions', 'Paid tip', 'Kitchen not ready', 'Asked for extra work', 'Rude behaviour'];
+    return {
+      stars: [1, 2, 3, 4, 5].map((n) => ({ aria: n + ' stars', fill: n <= s.r ? '#B8361F' : 'none', pick: () => this.setState({ r: n }) })),
+      tags: all.map((l, i) => { const on = s.tags.indexOf(l) >= 0; const neg = i >= 4; return { l, on, bg: on ? (neg ? '#8E2A17' : '#1B1D1F') : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? (neg ? '#8E2A17' : '#1B1D1F') : '#D5D0C7', pick: () => this.setState({ tags: on ? s.tags.filter((x) => x !== l) : s.tags.concat([l]) }) }; }),
+      block: s.block, toggleBlock: () => this.setState({ block: !s.block }),
+      blockBg: s.block ? '#B8361F' : '#D5D0C7', knob: s.block ? '23px' : '3px'
+    };
+  }
+}
+</script>
+</body>
+</html>

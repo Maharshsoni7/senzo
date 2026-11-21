@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+# React Native's Metro and autolinking expect a flat node_modules.
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20261121.1'
+  - '@cloudflare/workers-utils@0.56.0'
+  - miniflare@5.20261119.0-beta
+  - wrangler@4.166.0
+
+nodeLinker: hoisted
+
+allowBuilds:
+  esbuild: true
+  workerd: true

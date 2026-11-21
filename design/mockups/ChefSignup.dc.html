@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Senzo Partner – Upload your chef profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9EBEC}
+a{color:#1B1D1F}a:hover{color:#B8361F}
+button,input,textarea,select{font-family:inherit}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+@keyframes swing{0%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}100%{transform:rotate(-1.4deg)}}
+.swing{animation:swing 3.4s ease-in-out infinite;transform-origin:50% 0}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pop{animation:pop .35s ease-out}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</helmet>
+<div style="min-height: 100vh; font-family: 'Archivo', system-ui, sans-serif; color: #1B1D1F; background-color: #E9EBEC; background-image: linear-gradient(#DADDDF 1px, transparent 1px), linear-gradient(90deg, #DADDDF 1px, transparent 1px); background-size: 96px 48px;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 18px 24px;">
+    <a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; text-decoration: none; font-size: 14px; font-weight: 600;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      Back to the rail
+    </a>
+    <div style="background: #24282C; color: #F4F2EE; padding: 9px 20px; border-radius: 6px; box-shadow: inset 0 0 0 3px #3A4045; display: flex; align-items: center; gap: 10px;"><svg role="img" aria-label="Senzo" viewBox="51 28 2904 782" style="width: 92px; height: 25px; display: block;"><path d="M252 600Q144 580 97.5 538.0Q51 496 51 427Q51 353 106.5 311.5Q162 270 274 270Q340 270 409 281Q433 285 448.5 304.0Q464 323 464 348V353Q464 374 447.5 387.0Q431 400 410 396Q345 383 290 383Q249 383 232.5 393.0Q216 403 216 423Q216 461 276 473Q390 492 435.5 533.0Q481 574 481 652Q481 727 425.0 768.5Q369 810 262 810Q184 810 114 795Q90 790 74.5 769.5Q59 749 59 723V715Q59 694 76.0 682.5Q93 671 114 676Q179 693 242 693Q316 693 316 650Q316 630 302.5 619.0Q289 608 252 600Z M821 379Q776 379 753.0 402.5Q730 426 724 483Q724 491 731 491H900Q909 491 909 482Q905 379 821 379ZM846 810Q710 810 636.5 741.0Q563 672 563 540Q563 409 628.5 339.5Q694 270 818 270Q1056 270 1060 530Q1060 554 1041.5 570.5Q1023 587 999 587H732Q722 587 724 596Q732 651 766.5 674.5Q801 698 870 698Q915 698 967 685Q988 680 1004.5 693.0Q1021 706 1021 727V729Q1021 754 1005.5 774.5Q990 795 966 799Q908 810 846 810Z M1218 800Q1195 800 1178.5 783.0Q1162 766 1162 743V337Q1162 314 1178.5 297.0Q1195 280 1218 280H1259Q1283 280 1299.5 296.5Q1316 313 1317 337L1318 345Q1318 346 1319 346L1321 344Q1386 270 1477.0 270.0Q1568 270 1608.0 321.5Q1648 373 1648 497V743Q1648 766 1631.5 783.0Q1615 800 1592 800H1548Q1525 800 1508.0 783.0Q1491 766 1491 743V502Q1491 442 1475.0 419.5Q1459 397 1417 397Q1382 397 1352.5 425.5Q1323 454 1323 487V743Q1323 766 1306.5 783.0Q1290 800 1267 800Z M1811 643 2013 396V394Q2013 393 2012 393H1832Q1809 393 1792.0 376.5Q1775 360 1775.0 337.0Q1775 314 1792.0 297.0Q1809 280 1832 280H2158Q2181 280 2198.0 297.0Q2215 314 2215 337Q2215 393 2179 437L1977 684V686Q1977 687 1978 687H2158Q2181 687 2198.0 703.5Q2215 720 2215.0 743.0Q2215 766 2198.0 783.0Q2181 800 2158 800H1832Q1809 800 1792.0 783.0Q1775 766 1775 743Q1775 687 1811 643Z" fill="#F6F1E7"></path><path d="M2405.5 606.0 A285.0 285.0 0 0 0 2872.4 606.0" fill="none" stroke="#F6F1E7" stroke-width="165" stroke-linecap="round"></path><path d="M2639.0 28.0 C2741.3 141.7 2809.5 244.0 2786.7 334.9 C2764.0 414.5 2707.2 460.0 2639.0 460.0 C2570.7 460.0 2513.9 414.5 2491.2 334.9 C2479.8 266.7 2525.3 209.9 2570.7 164.4 C2582.1 232.6 2604.9 266.7 2627.6 266.7 C2616.2 187.2 2604.9 107.6 2639.0 28.0 Z" fill="#C8372D"></path></svg><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: #C8CDD2; letter-spacing: .14em;">PARTNER</span></div>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 64px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+
+    <!-- Form -->
+    <main style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border-radius: 16px; border: 1px solid #D5D8DB; padding: 32px; box-sizing: border-box;">
+      <sc-if value="{{notSubmitted}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <div>
+            <h1 style="margin: 0; font-size: 32px; line-height: 1.1;">Hang your ticket on the rail</h1>
+            <p style="margin: 8px 0 0; font-size: 15px; color: #5A5F66; line-height: 1.5;">Create your chef profile. Guests see it as a ticket on the rail and book you by date and time.</p>
+          </div>
+
+          <!-- 1. About you -->
+          <section style="display: flex; flex-direction: column; gap: 16px;">
+            <h2 style="margin: 0; font-size: 13px; letter-spacing: .1em; font-family: 'IBM Plex Mono', monospace; color: #5A5F66;">01 — ABOUT YOU</h2>
+            <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">
+              <label style="position: relative; width: 96px; height: 96px; border-radius: 999px; border: 2px dashed #9EA4AA; display: grid; place-items: center; cursor: pointer; overflow: hidden; background: #F6F7F7; flex: none;">
+                <input type="file" accept="image/*" onChange="{{onPhoto}}" class="sr" aria-label="Upload profile photo">
+                <sc-if value="{{photo}}" hint-placeholder-val="{{ false }}">
+                  <img src="{{photo}}" alt="Profile photo preview" style="width: 100%; height: 100%; object-fit: cover;">
+                </sc-if>
+                <sc-if value="{{noPhoto}}" hint-placeholder-val="{{ true }}">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5A5F66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                </sc-if>
+              </label>
+              <div style="font-size: 13px; color: #5A5F66; line-height: 1.5; flex: 1 1 200px;"><strong style="color: #1B1D1F;">Profile photo</strong><br>Shown on your full profile. On the browse page guests see your chef avatar.</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; background: #F6F7F7; border-radius: 12px; padding: 16px;">
+              <div style="font-size: 13px; font-weight: 700;">Style your chef avatar</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center;">
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <span style="font-size: 12px; color: #5A5F66; width: 44px;">Skin</span>
+                  <sc-for list="{{skins}}" as="k" hint-placeholder-count="5">
+                    <button onClick="{{k.pick}}" aria-label="{{k.aria}}" aria-pressed="{{k.on}}" style="width: 32px; height: 32px; border-radius: 999px; cursor: pointer; background: {{k.c}}; border: 3px solid {{k.ring}};"></button>
+                  </sc-for>
+                </div>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <span style="font-size: 12px; color: #5A5F66; width: 44px;">Apron</span>
+                  <sc-for list="{{aprons}}" as="k" hint-placeholder-count="5">
+                    <button onClick="{{k.pick}}" aria-label="{{k.aria}}" aria-pressed="{{k.on}}" style="width: 32px; height: 32px; border-radius: 8px; cursor: pointer; background: {{k.c}}; border: 3px solid {{k.ring}};"></button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <span style="font-size: 12px; color: #5A5F66; width: 44px;">Hair</span>
+                <sc-for list="{{hairStyles}}" as="k" hint-placeholder-count="4">
+                  <button onClick="{{k.pick}}" aria-pressed="{{k.on}}" style="min-height: 34px; padding: 0 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid {{k.bd}}; background: {{k.bg}}; color: {{k.fg}};">{{k.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Full name
+                <input value="{{name}}" onInput="{{setName}}" placeholder="e.g. Ananya Mehta" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">City
+                <select value="{{city}}" onChange="{{setCity}}" style="min-height: 44px; padding: 0 10px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; background: #FFFFFF; color: #1B1D1F;">
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="Gandhinagar">Gandhinagar</option>
+                  <option value="Vadodara">Vadodara</option>
+                  <option value="Surat">Surat</option>
+                  <option value="Rajkot">Rajkot</option>
+                </select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Years of experience
+                <input type="number" min="0" value="{{years}}" onInput="{{setYears}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Phone
+                <input type="tel" placeholder="+91 98XXX XXXXX" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Short bio
+              <textarea rows="3" value="{{about}}" onInput="{{setAbout}}" placeholder="Your cooking style, where you trained, what a dinner with you feels like." style="padding: 10px 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; line-height: 1.5; resize: vertical; color: #1B1D1F;"></textarea>
+            </label>
+          </section>
+
+          <!-- 2. Cuisine -->
+          <section style="display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="margin: 0; font-size: 13px; letter-spacing: .1em; font-family: 'IBM Plex Mono', monospace; color: #5A5F66;">02 — CUISINES YOU COOK</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{cuisines}}" as="c" hint-placeholder-count="8">
+                <button onClick="{{c.toggle}}" aria-pressed="{{c.on}}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}};">{{c.label}}</button>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{diets}}" as="c" hint-placeholder-count="4">
+                <button onClick="{{c.toggle}}" aria-pressed="{{c.on}}" style="min-height: 34px; padding: 0 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'IBM Plex Mono', monospace; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}};">{{c.label}}</button>
+              </sc-for>
+            </div>
+          </section>
+
+          <!-- 3. Signature dishes -->
+          <section style="display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="margin: 0; font-size: 13px; letter-spacing: .1em; font-family: 'IBM Plex Mono', monospace; color: #5A5F66;">03 — SIGNATURE DISHES</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px;">
+              <sc-for list="{{dishes}}" as="d" hint-placeholder-count="3">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <label style="position: relative; aspect-ratio: 4 / 3; border-radius: 12px; border: 2px dashed #9EA4AA; background: #F6F7F7; display: grid; place-items: center; cursor: pointer; overflow: hidden;">
+                    <input type="file" accept="image/*" onChange="{{d.onFile}}" class="sr" aria-label="{{d.aria}}">
+                    <sc-if value="{{d.img}}" hint-placeholder-val="{{ false }}">
+                      <img src="{{d.img}}" alt="{{d.aria}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </sc-if>
+                    <sc-if value="{{d.noImg}}" hint-placeholder-val="{{ true }}">
+                      <span style="display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: #5A5F66;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                        Add dish photo
+                      </span>
+                    </sc-if>
+                  </label>
+                  <input value="{{d.name}}" onInput="{{d.setName}}" placeholder="{{d.ph}}" aria-label="{{d.label}}" style="min-height: 40px; padding: 0 10px; border-radius: 8px; border: 1px solid #C9CDD1; font-size: 14px; color: #1B1D1F;">
+                </div>
+              </sc-for>
+            </div>
+          </section>
+
+          <!-- 4. Pricing & availability -->
+          <section style="display: flex; flex-direction: column; gap: 14px;">
+            <h2 style="margin: 0; font-size: 13px; letter-spacing: .1em; font-family: 'IBM Plex Mono', monospace; color: #5A5F66;">04 — PRICING &amp; AVAILABILITY</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px;">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Price per guest (₹)
+                <input type="number" min="0" step="100" value="{{price}}" onInput="{{setPrice}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Min guests
+                <input type="number" min="1" value="{{minG}}" onInput="{{setMin}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600;">Max guests
+                <input type="number" min="1" value="{{maxG}}" onInput="{{setMax}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CDD1; font-size: 15px; color: #1B1D1F;">
+              </label>
+            </div>
+            <div style="font-size: 13px; font-weight: 600;">Days you cook</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{weekdays}}" as="w" hint-placeholder-count="7">
+                <button onClick="{{w.toggle}}" aria-pressed="{{w.on}}" style="width: 52px; height: 44px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}};">{{w.label}}</button>
+              </sc-for>
+            </div>
+            <div style="font-size: 13px; font-weight: 600;">Time slots</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{slots}}" as="w" hint-placeholder-count="3">
+                <button onClick="{{w.toggle}}" aria-pressed="{{w.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}};">{{w.label}}</button>
+              </sc-for>
+            </div>
+          </section>
+
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1.5px dashed #C9CDD1; padding-top: 20px;">
+            <button onClick="{{submit}}" disabled="{{cantSubmit}}" style="min-height: 50px; padding: 0 28px; border-radius: 999px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; background: {{submitBg}}; color: {{submitFg}};">Submit profile for review</button>
+            <span style="font-size: 13px; color: #5A5F66;">{{submitHint}}</span>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+        <div class="pop" style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .16em; color: #1E7A3C; font-weight: 600;">PROFILE SUBMITTED</div>
+          <h1 style="margin: 0; font-size: 32px; line-height: 1.1;">Your ticket is in the queue, {{firstName}}.</h1>
+          <p style="margin: 0; font-size: 15px; color: #3D4247; line-height: 1.55; max-width: 520px;">Our team reviews new chefs before they go live on the rail. Once approved, guests in {{city}} can book you for the days and slots you picked.</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px;">
+            <button onClick="{{edit}}" style="min-height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid #1B1D1F; background: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Edit profile</button>
+            <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 14px; font-weight: 700; text-decoration: none;">See the rail</a>
+          </div>
+        </div>
+      </sc-if>
+    </main>
+
+    <!-- Live preview -->
+    <aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #3D4247; font-weight: 600;">LIVE PREVIEW</div>
+      <div style="position: relative; width: 100%; max-width: 360px; height: 440px; overflow: hidden; display: flex; justify-content: center;">
+        <span style="position: absolute; left: 50%; top: 404px; width: 210px; height: 28px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.24), transparent);"></span>
+        <div class="swing" style="position: absolute; top: 0; left: 50%; margin-left: -100px; width: 200px;">
+          <svg width="200" height="420" viewBox="0 0 200 420" role="img" aria-label="Your chef avatar" style="display: block;">
+            <path d="M74 296 L96 296 L95 396 L76 396 Z" fill="#2B2F33"></path>
+            <path d="M104 296 L126 296 L124 396 L105 396 Z" fill="#2B2F33"></path>
+            <ellipse cx="83" cy="400" rx="17" ry="7" fill="#1B1D1F"></ellipse>
+            <ellipse cx="117" cy="400" rx="17" ry="7" fill="#1B1D1F"></ellipse>
+            <path d="M58 150 Q100 134 142 150 L150 302 L50 302 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+            <path d="M58 152 Q40 170 38 252 L53 254 Q56 192 68 172 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+            <path d="M142 152 Q160 170 162 252 L147 254 Q144 192 132 172 Z" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></path>
+            <circle cx="45" cy="261" r="9" fill="{{skin}}"></circle>
+            <circle cx="155" cy="261" r="9" fill="{{skin}}"></circle>
+            <path d="M66 214 L134 214 L140 322 L60 322 Z" fill="{{apron}}"></path>
+            <rect x="60" y="208" width="80" height="9" rx="3" fill="{{apron}}"></rect>
+            <path d="M86 228 L114 228 L114 246 L86 246 Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"></path>
+            <circle cx="90" cy="172" r="3" fill="#9EA4AA"></circle>
+            <circle cx="110" cy="172" r="3" fill="#9EA4AA"></circle>
+            <circle cx="90" cy="192" r="3" fill="#9EA4AA"></circle>
+            <circle cx="110" cy="192" r="3" fill="#9EA4AA"></circle>
+            <path d="M64 92 Q60 152 80 154 L120 154 Q140 152 136 92 Z" fill="{{hair}}" opacity="{{longOp}}"></path>
+            <rect x="90" y="118" width="20" height="26" fill="{{skin}}"></rect>
+            <path d="M84 140 L116 140 L100 160 Z" fill="{{apron}}"></path>
+            <circle cx="70" cy="99" r="6" fill="{{skin}}"></circle>
+            <circle cx="130" cy="99" r="6" fill="{{skin}}"></circle>
+            <ellipse cx="100" cy="97" rx="30" ry="33" fill="{{skin}}"></ellipse>
+            <path d="M72 106 Q74 140 100 134 Q126 140 128 106 Q122 128 100 128 Q78 128 72 106 Z" fill="{{hair}}" opacity="{{beardOp}}"></path>
+            <path d="M70 90 Q100 64 130 90 L131 76 Q100 56 69 76 Z" fill="{{hair}}"></path>
+            <path d="M83 90 L94 88" stroke="{{hair}}" stroke-width="3" stroke-linecap="round"></path>
+            <path d="M106 88 L117 90" stroke="{{hair}}" stroke-width="3" stroke-linecap="round"></path>
+            <circle cx="89" cy="99" r="3.2" fill="#1B1D1F"></circle>
+            <circle cx="111" cy="99" r="3.2" fill="#1B1D1F"></circle>
+            <path d="M90 113 Q100 121 110 113" fill="none" stroke="#1B1D1F" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="78" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+            <circle cx="122" cy="42" r="18" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+            <circle cx="100" cy="32" r="23" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></circle>
+            <rect x="70" y="52" width="60" height="24" rx="4" fill="#FFFFFF" stroke="#D5D8DB" stroke-width="1.5"></rect>
+            <rect x="116" y="164" width="24" height="13" rx="2" fill="#1B1D1F"></rect>
+            <text x="128" y="174" text-anchor="middle" font-size="8.5" font-weight="700" fill="#FFFFFF" font-family="IBM Plex Mono, monospace">{{initials}}</text>
+          </svg>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: -6px;">
+        <div style="font-size: 19px; font-weight: 700;">{{displayName}}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5A5F66; margin-top: 3px;">{{cuisineLine}} · {{priceLabel}}/guest</div>
+      </div>
+      <div style="width: 100%; max-width: 360px; background: #FFFFFF; border: 1px solid #D5D8DB; border-radius: 12px; padding: 16px; box-sizing: border-box;">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;"><span>Profile strength</span><span style="font-family: 'IBM Plex Mono', monospace;">{{pct}}%</span></div>
+        <div style="height: 8px; border-radius: 99px; background: #E9EBEC; margin-top: 8px; overflow: hidden;">
+          <div style="height: 100%; border-radius: 99px; background: #1E7A3C; transition: width .4s ease; width: {{pct}}%;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 12px;">
+          <sc-for list="{{checks}}" as="k" hint-placeholder-count="5">
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 13px; color: {{k.fg}};">
+              <span style="width: 16px; height: 16px; border-radius: 99px; display: grid; place-items: center; flex: none; background: {{k.dot}};">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>
+              </span>
+              {{k.label}}
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo: '', name: 'Ananya Mehta', city: 'Ahmedabad', years: 8, about: 'Home-style Gujarati flavours plated like a tasting menu.',
+      cuisines: ['Gujarati'], diets: ['Pure veg', 'Jain options'],
+      dishes: [{ name: 'Deconstructed Undhiyu', img: '' }, { name: 'Khandvi Tacos', img: '' }, { name: '', img: '' }],
+      price: 1800, minG: 2, maxG: 12, days: [5, 6, 0], slots: [1], submitted: false,
+      skin: '#D9A273', apron: '#B8361F', hairStyle: 'long'
+    };
+  }
+  chip(on) { return on ? { bg: '#1B1D1F', fg: '#FFFFFF', bd: '#1B1D1F' } : { bg: '#FFFFFF', fg: '#1B1D1F', bd: '#C9CDD1' }; }
+  toggleIn(key, v) {
+    const arr = this.state[key];
+    this.setState({ [key]: arr.indexOf(v) >= 0 ? arr.filter((x) => x !== v) : arr.concat([v]) });
+  }
+  fileUrl(e) {
+    const f = e && e.target && e.target.files && e.target.files[0];
+    return f ? URL.createObjectURL(f) : '';
+  }
+  renderVals() {
+    const s = this.state;
+    const allC = ['Gujarati', 'North Indian', 'South Indian', 'Mughlai', 'Italian', 'Pan-Asian', 'Goan', 'Continental', 'Vegan', 'Desserts'];
+    const allD = ['Pure veg', 'Jain options', 'Vegan', 'Eggless', 'Non-veg'];
+    const wk = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const wkIdx = [1, 2, 3, 4, 5, 6, 0];
+    const sl = ['Lunch · 12:30', 'Dinner · 19:30', 'Late · 21:30'];
+    const name = (s.name || '').trim();
+    const initials = name ? name.split(/\s+/).slice(0, 2).map((p) => p.charAt(0).toUpperCase()).join('') : '?';
+    const price = Number(s.price) || 0;
+    const checks = [
+      { label: 'Profile photo', ok: !!s.photo },
+      { label: 'Name & bio', ok: !!name && (s.about || '').trim().length > 10 },
+      { label: 'At least one cuisine', ok: s.cuisines.length > 0 },
+      { label: 'Two signature dishes', ok: s.dishes.filter((d) => d.name.trim()).length >= 2 },
+      { label: 'Dish photos', ok: s.dishes.some((d) => d.img) },
+      { label: 'Price & availability', ok: price > 0 && s.days.length > 0 && s.slots.length > 0 }
+    ];
+    const done = checks.filter((c) => c.ok).length;
+    const cantSubmit = !name || s.cuisines.length === 0 || price <= 0 || s.days.length === 0 || s.slots.length === 0;
+    const skinList = ['#E8BE98', '#D9A273', '#B67A4E', '#9C6440', '#7A4A2C'];
+    const apronList = ['#B8361F', '#2F6B4F', '#2D4E86', '#6B2D5C', '#24282C'];
+    const hairList = [['short', 'Short'], ['long', 'Long'], ['beard', 'Short + beard'], ['grey', 'Grey']];
+    const hs = s.hairStyle;
+    return {
+      skin: s.skin, apron: s.apron,
+      hair: hs === 'grey' ? '#8E9196' : '#1E1612',
+      longOp: hs === 'long' ? 1 : 0,
+      beardOp: hs === 'beard' ? 1 : 0,
+      skins: skinList.map((c, i) => ({ c, on: s.skin === c, aria: 'Skin tone ' + (i + 1), ring: s.skin === c ? '#1B1D1F' : '#FFFFFF', pick: () => this.setState({ skin: c }) })),
+      aprons: apronList.map((c, i) => ({ c, on: s.apron === c, aria: 'Apron colour ' + (i + 1), ring: s.apron === c ? '#1B1D1F' : '#FFFFFF', pick: () => this.setState({ apron: c }) })),
+      hairStyles: hairList.map((h) => Object.assign({ label: h[1], on: hs === h[0], pick: () => this.setState({ hairStyle: h[0] }) }, this.chip(hs === h[0]))),
+      notSubmitted: !s.submitted, submitted: s.submitted,
+      photo: s.photo, noPhoto: !s.photo,
+      onPhoto: (e) => { const u = this.fileUrl(e); if (u) this.setState({ photo: u }); },
+      name: s.name, setName: (e) => this.setState({ name: e.target.value }),
+      city: s.city, setCity: (e) => this.setState({ city: e.target.value }),
+      years: s.years, setYears: (e) => this.setState({ years: e.target.value }),
+      about: s.about, setAbout: (e) => this.setState({ about: e.target.value }),
+      cuisines: allC.map((c) => Object.assign({ label: c, on: s.cuisines.indexOf(c) >= 0, toggle: () => this.toggleIn('cuisines', c) }, this.chip(s.cuisines.indexOf(c) >= 0))),
+      diets: allD.map((c) => Object.assign({ label: c, on: s.diets.indexOf(c) >= 0, toggle: () => this.toggleIn('diets', c) }, this.chip(s.diets.indexOf(c) >= 0))),
+      dishes: s.dishes.map((d, i) => ({
+        name: d.name, img: d.img, noImg: !d.img,
+        ph: ['e.g. Deconstructed Undhiyu', 'e.g. Khandvi Tacos', 'e.g. Kesar Shrikhand Tart'][i],
+        label: 'Signature dish ' + (i + 1) + ' name',
+        aria: 'Photo for signature dish ' + (i + 1),
+        setName: (e) => { const v = e.target.value; this.setState({ dishes: this.state.dishes.map((x, j) => j === i ? Object.assign({}, x, { name: v }) : x) }); },
+        onFile: (e) => { const u = this.fileUrl(e); if (u) this.setState({ dishes: this.state.dishes.map((x, j) => j === i ? Object.assign({}, x, { img: u }) : x) }); }
+      })),
+      price: s.price, setPrice: (e) => this.setState({ price: e.target.value }),
+      minG: s.minG, setMin: (e) => this.setState({ minG: e.target.value }),
+      maxG: s.maxG, setMax: (e) => this.setState({ maxG: e.target.value }),
+      weekdays: wk.map((w, i) => { const on = s.days.indexOf(wkIdx[i]) >= 0; return Object.assign({ label: w, on, toggle: () => this.toggleIn('days', wkIdx[i]) }, this.chip(on)); }),
+      slots: sl.map((w, i) => { const on = s.slots.indexOf(i) >= 0; return Object.assign({ label: w, on, toggle: () => this.toggleIn('slots', i) }, this.chip(on)); }),
+      cantSubmit,
+      submitBg: cantSubmit ? '#E1E3E5' : '#B8361F',
+      submitFg: cantSubmit ? '#5A5F66' : '#FFFFFF',
+      submitHint: cantSubmit ? 'Add your name, a cuisine, a price and at least one day and slot.' : 'Reviewed by our team before going live.',
+      submit: () => !cantSubmit && this.setState({ submitted: true }),
+      edit: () => this.setState({ submitted: false }),
+      firstName: name ? name.split(/\s+/)[0] : 'chef',
+      initials,
+      displayName: name || 'Your name',
+      cityUp: (s.city || '').toUpperCase(),
+      cuisineLine: (s.cuisines.length ? s.cuisines.slice(0, 2).join(' · ') : 'Pick a cuisine') + (s.years ? ' · ' + s.years + ' yrs' : ''),
+      priceLabel: '₹' + price.toLocaleString('en-IN'),
+      pct: Math.round(done / checks.length * 100),
+      checks: checks.map((c) => ({ label: c.label, fg: c.ok ? '#1B1D1F' : '#5A5F66', dot: c.ok ? '#1E7A3C' : '#C9CDD1' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

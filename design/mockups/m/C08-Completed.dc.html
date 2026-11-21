@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Finish OTP and payout</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+input:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.pop{animation:pop .4s ease-out}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 18px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="100" hint-size="390px,844px"></dc-import>
+  </div>
+  <sc-if value="{{notOk}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 18px; flex: 1;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="C07-Cooking.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+        </a>
+        <h1 style="margin: 0; font-size: 22px;">Finish the job</h1>
+      </div>
+      <p style="margin: 40px 0 0; font-size: 15px; color: #3D4247; line-height: 1.5;">Rahul just got a finish OTP in his app. Enter it to close the job and release your payment.</p>
+      <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 700;">Finish OTP
+        <input type="tel" maxlength="4" value="{{v}}" onInput="{{setV}}" placeholder="• • • •" style="height: 72px; border-radius: 16px; border: 2px solid {{bd}}; background: #FFFFFF; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 34px; letter-spacing: .5em; padding-left: .5em; color: #1B1D1F;">
+      </label>
+      <div style="font-size: 13px; font-weight: 700; color: #B8361F; min-height: 18px;">{{err}}</div>
+      <p style="margin: auto 0 0; font-size: 12px; color: #3D4247; text-align: center;">Guest not responding? It auto-completes 2 hours after you mark done, unless they report an issue. (Demo code: 7395)</p>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ok}}" hint-placeholder-val="{{ false }}">
+    <div class="pop" style="display: flex; flex-direction: column; gap: 16px; flex: 1;">
+      <div style="text-align: center; margin-top: 60px;">
+        <span style="display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 99px; background: #1E7A3C;">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>
+        </span>
+        <h1 style="margin: 12px 0 0; font-size: 26px;">Job complete!</h1>
+        <p style="margin: 6px 0 0; font-size: 14px; color: #3D4247;">Payment released to you</p>
+      </div>
+      <div style="background: #FFFEFB; border-radius: 4px; box-shadow: 0 10px 18px rgba(0,0,0,.08); padding: 18px; display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 14px;">
+        <div style="display: flex; justify-content: space-between;"><span>Booking (6 × ₹1,800)</span><span>₹10,800</span></div>
+        <div style="display: flex; justify-content: space-between; color: #5A5F66;"><span>Platform fee 15%</span><span>−₹1,620</span></div>
+        <div style="display: flex; justify-content: space-between; color: #1E6B36;"><span>Tip from Rahul</span><span>+₹200</span></div>
+        <div style="border-top: 1.5px dashed #C9CDD1; padding-top: 10px; display: flex; justify-content: space-between; font-size: 20px; font-weight: 600;"><span>You get</span><span>₹9,380</span></div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 12px; color: #5A5F66;">To HDFC ···· 1290 by tomorrow, 11 AM</div>
+      </div>
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+        <a href="C15-RateGuest.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Rate Rahul</a>
+        <a href="C09-Earnings.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 50px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">See earnings</a>
+        <a href="C04-Dashboard.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 48px; font-size: 14px; font-weight: 700; text-decoration: none;">Back to home</a>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { v: '' }; }
+  renderVals() {
+    const v = this.state.v;
+    const ok = v === '7395';
+    const bad = v.length === 4 && !ok;
+    return {
+      v, ok, notOk: !ok,
+      setV: (e) => this.setState({ v: e.target.value.replace(/\D/g, '').slice(0, 4) }),
+      bd: bad ? '#B8361F' : '#1B1D1F',
+      err: bad ? 'That code doesn’t match. Ask Rahul to check his app.' : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

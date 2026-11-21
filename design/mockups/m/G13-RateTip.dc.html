@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rate and tip</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #ECE8E1; isolation: isolate; padding: 64px 24px 28px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="150" hint-size="390px,844px"></dc-import>
+  </div>
+  <span style="width: 120px; height: 120px; border-radius: 99px; overflow: hidden; background: #FBEDEA; box-shadow: 0 10px 22px rgba(0,0,0,.12);">
+    <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="120" bust="1" hint-size="120px,120px"></dc-import>
+  </span>
+  <div>
+    <h1 style="margin: 0; font-size: 24px;">How was dinner?</h1>
+    <p style="margin: 6px 0 0; font-size: 14px; color: #3D4247;">Payment of ₹10,800 has been released to Ananya.</p>
+  </div>
+  <div style="display: flex; gap: 6px;" role="radiogroup" aria-label="Rating">
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="5">
+      <button onClick="{{s.pick}}" aria-label="{{s.aria}}" style="width: 48px; height: 48px; border: none; background: transparent; cursor: pointer; padding: 0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="{{s.fill}}" stroke="#B8361F" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+  <textarea rows="3" aria-label="Write a review" placeholder="What did you love? (optional)" style="width: 100%; box-sizing: border-box; padding: 12px; border-radius: 14px; border: 1px solid #C9CDD1; font-family: inherit; font-size: 14px; resize: none; color: #1B1D1F;"></textarea>
+  <div style="width: 100%; text-align: left;">
+    <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px;">Add a tip — 100% goes to the chef</div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+      <sc-for list="{{tips}}" as="t" hint-placeholder-count="4">
+        <button onClick="{{t.pick}}" style="min-height: 48px; border-radius: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}};">{{t.l}}</button>
+      </sc-for>
+    </div>
+  </div>
+  <a href="G04-Home.dc.html" style="margin-top: auto; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">{{cta}}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { r: 5, tip: 200 }; }
+  renderVals() {
+    const s = this.state;
+    return {
+      stars: [1, 2, 3, 4, 5].map((n) => ({ aria: n + ' star' + (n > 1 ? 's' : ''), fill: n <= s.r ? '#B8361F' : 'none', pick: () => this.setState({ r: n }) })),
+      tips: [0, 100, 200, 500].map((v) => { const on = s.tip === v; return { l: v ? '₹' + v : 'None', bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#C9CDD1', pick: () => this.setState({ tip: v }) }; }),
+      cta: s.tip ? 'Submit & pay ₹' + s.tip + ' tip' : 'Submit review'
+    };
+  }
+}
+</script>
+</body>
+</html>

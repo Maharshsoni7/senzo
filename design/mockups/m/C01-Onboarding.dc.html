@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chef onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+.bob{animation:bob 2.8s ease-in-out infinite}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #E9EBEC; isolation: isolate; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" floor="430" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <a href="C11-Login.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3D4247; font-weight: 600;">STEP 1 OF 3</span>
+    <span style="width: 44px;"></span>
+  </div>
+  <h1 style="margin: 0; font-size: 26px; line-height: 1.15; text-align: center;">This is how guests<br>will see you</h1>
+
+  <div style="position: relative; height: 270px; display: flex; justify-content: center;">
+    <span style="position: absolute; left: 50%; top: 244px; width: 140px; height: 22px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.25), transparent);"></span>
+    <div class="bob" style="position: absolute; top: 0; left: 50%; margin-left: -60px;">
+      <dc-import name="ChefFig" skin="{{skin}}" hair="{{hair}}" apron="{{apron}}" long-op="{{longOp}}" beard-op="{{beardOp}}" initials="{{ini}}" w="120" hint-size="120px,252px"></dc-import>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">Your name
+      <input value="{{name}}" onInput="{{setName}}" style="min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1px solid #C9CDD1; font-family: inherit; font-size: 16px; color: #1B1D1F;">
+    </label>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 12px; font-weight: 700; width: 48px;">Skin</span>
+      <sc-for list="{{skins}}" as="k" hint-placeholder-count="5">
+        <button onClick="{{k.pick}}" aria-label="{{k.aria}}" style="width: 34px; height: 34px; border-radius: 99px; cursor: pointer; background: {{k.c}}; border: 3px solid {{k.ring}};"></button>
+      </sc-for>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 12px; font-weight: 700; width: 48px;">Apron</span>
+      <sc-for list="{{aprons}}" as="k" hint-placeholder-count="5">
+        <button onClick="{{k.pick}}" aria-label="{{k.aria}}" style="width: 34px; height: 34px; border-radius: 9px; cursor: pointer; background: {{k.c}}; border: 3px solid {{k.ring}};"></button>
+      </sc-for>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <span style="font-size: 12px; font-weight: 700; width: 48px;">Hair</span>
+      <sc-for list="{{hairs}}" as="k" hint-placeholder-count="3">
+        <button onClick="{{k.pick}}" style="min-height: 34px; padding: 0 12px; border-radius: 9px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid {{k.bd}}; background: {{k.bg}}; color: {{k.fg}};">{{k.l}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <a href="C02-Verification.dc.html" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Next: verify &amp; get paid</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { name: 'Ananya Mehta', skin: '#D9A273', apron: '#B8361F', hs: 'long' }; }
+  renderVals() {
+    const s = this.state;
+    const ini = (s.name || '?').trim().split(/\s+/).slice(0, 2).map((p) => p.charAt(0).toUpperCase()).join('');
+    const ring = (on) => on ? '#1B1D1F' : '#FFFFFF';
+    return {
+      name: s.name, setName: (e) => this.setState({ name: e.target.value }), ini,
+      skin: s.skin, apron: s.apron, hair: '#1E1612',
+      longOp: s.hs === 'long' ? '1' : '0', beardOp: s.hs === 'beard' ? '1' : '0',
+      skins: ['#E8BE98', '#D9A273', '#B67A4E', '#9C6440', '#7A4A2C'].map((c, i) => ({ c, aria: 'Skin tone ' + (i + 1), ring: ring(s.skin === c), pick: () => this.setState({ skin: c }) })),
+      aprons: ['#B8361F', '#2F6B4F', '#2D4E86', '#6B2D5C', '#24282C'].map((c, i) => ({ c, aria: 'Apron colour ' + (i + 1), ring: ring(s.apron === c), pick: () => this.setState({ apron: c }) })),
+      hairs: [['short', 'Short'], ['long', 'Long'], ['beard', 'Beard']].map((h) => { const on = s.hs === h[0]; return { l: h[1], bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#C9CDD1', pick: () => this.setState({ hs: h[0] }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

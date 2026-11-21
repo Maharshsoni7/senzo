@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Past jobs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="C04-Dashboard.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div>
+      <h1 style="margin: 0; font-size: 22px;">Past jobs</h1>
+      <div style="font-size: 12px; color: #5A5F66;">212 jobs · ★ 4.9 from guests</div>
+    </div>
+  </div>
+  <div style="display: flex; gap: 6px; overflow-x: auto;">
+    <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+      <button onClick="{{f.pick}}" style="flex: none; min-height: 38px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{f.bd}}; background: {{f.bg}}; color: {{f.fg}};">{{f.l}}</button>
+    </sc-for>
+  </div>
+  <sc-for list="{{jobs}}" as="j" hint-placeholder-count="5">
+    <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #EAE5DC; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5A5F66;">{{j.d}} · {{j.id}}</span>
+        <span style="font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: {{j.sbg}}; color: {{j.sfg}};">{{j.s}}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 800;">{{j.g}} · {{j.n}} guests</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600;">{{j.e}}</span>
+      </div>
+      <div style="font-size: 12px; color: #5A5F66;">{{j.note}}</div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 'All' }; }
+  renderVals() {
+    const s = this.state;
+    const st = {
+      Completed: ['#E6F2EA', '#1E6B36'], Cancelled: ['#F1EEE8', '#5A5F66'], 'No-show': ['#FBEDEA', '#8E2A17']
+    };
+    const all = [
+      { d: 'Sat 7 Nov', id: 'SZ-1042', g: 'Rahul Desai', n: 6, e: '+₹9,380', s: 'Completed', note: 'Guest gave ★ 5 · tip ₹200' },
+      { d: 'Tue 3 Nov', id: 'SZ-1031', g: 'Neha M.', n: 6, e: '+₹9,180', s: 'Completed', note: 'Guest gave ★ 4.5' },
+      { d: 'Sun 1 Nov', id: 'SZ-1024', g: 'Harsh P.', n: 10, e: '+₹9,180', s: 'Completed', note: 'Guest gave ★ 5 · Jain menu' },
+      { d: 'Thu 29 Oct', id: 'SZ-1009', g: 'Mihir J.', n: 4, e: '+₹3,060', s: 'No-show', note: 'Waited 30 min · no-show fee paid' },
+      { d: 'Sat 24 Oct', id: 'SZ-0997', g: 'Pooja S.', n: 8, e: '₹0', s: 'Cancelled', note: 'Guest cancelled 3 days before · full refund to guest' }
+    ];
+    const jobs = all.filter((j) => s.f === 'All' || j.s === s.f).map((j) => Object.assign({}, j, { sbg: st[j.s][0], sfg: st[j.s][1], s: j.s.toUpperCase() }));
+    return {
+      filters: ['All', 'Completed', 'Cancelled', 'No-show'].map((l) => { const on = s.f === l; return { l, bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#D5D0C7', pick: () => this.setState({ f: l }) }; }),
+      jobs
+    };
+  }
+}
+</script>
+</body>
+</html>

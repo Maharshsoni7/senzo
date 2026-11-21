@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Report a problem</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+  <div style="padding: 52px 20px 12px; display: flex; align-items: center; gap: 12px;">
+    <a href="G12-LiveBooking.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div>
+      <h1 style="margin: 0; font-size: 22px;">Report a problem</h1>
+      <div style="font-size: 12px; color: #5A5F66;">SZ-1042 · Ananya Mehta · today</div>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; top: 116px; bottom: 96px; overflow-y: auto; padding: 4px 20px 20px; box-sizing: border-box; display: grid; align-content: start; gap: 14px;">
+    <sc-if value="{{form}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: #FBEDEA; border: 1.5px solid #B8361F; border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.45; color: #6E2414;"><strong>Don’t share your finish OTP yet.</strong> Your payment stays on hold until this is sorted.</div>
+
+        <div style="display: flex; gap: 8px;">
+          <a href="tel:112" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border-radius: 14px; background: #B8361F; color: #FFFFFF; font-size: 14px; font-weight: 800; text-decoration: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 17v.5"></path></svg>
+            Feel unsafe? SOS
+          </a>
+          <button style="flex: 1; min-height: 50px; border-radius: 14px; border: 1px solid #1B1D1F; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; color: #1B1D1F;">Call support</button>
+        </div>
+
+        <div>
+          <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px;">What went wrong?</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{issues}}" as="i" hint-placeholder-count="7">
+              <button onClick="{{i.pick}}" aria-pressed="{{i.on}}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid {{i.bd}}; background: {{i.bg}}; color: {{i.fg}};">{{i.l}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700;">Tell us more
+          <textarea rows="4" placeholder="What happened, and when?" style="padding: 12px 14px; border-radius: 12px; border: 1px solid #D5D0C7; font-family: inherit; font-size: 15px; line-height: 1.45; resize: none; background: #FFFFFF; color: #1B1D1F;"></textarea>
+        </label>
+        <button style="min-height: 64px; border-radius: 14px; border: 2px dashed #B9B2A6; background: rgba(255,255,255,.5); font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; color: #1B1D1F; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+          Add photos (optional)
+        </button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 10px;">
+        <div style="background: #FFFEFB; border-radius: 14px; padding: 20px; text-align: center; box-shadow: 0 8px 18px rgba(0,0,0,.06);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #5A5F66;">TICKET SR-2041</div>
+          <div style="font-size: 20px; font-weight: 800; margin-top: 6px;">We’re on it</div>
+          <div style="font-size: 13px; color: #3D4247; margin-top: 6px; line-height: 1.5;">A support person will call you within 15 minutes. Ananya’s payment is on hold until it’s resolved.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0; background: #FFFFFF; border-radius: 14px; padding: 6px 16px;">
+          <div style="display: flex; justify-content: space-between; min-height: 46px; align-items: center; border-bottom: 1px solid #F1EEE8; font-size: 13px;"><span>Issue</span><strong>{{issue}}</strong></div>
+          <div style="display: flex; justify-content: space-between; min-height: 46px; align-items: center; border-bottom: 1px solid #F1EEE8; font-size: 13px;"><span>Payment</span><strong style="color: #9A5B00;">On hold · ₹10,976</strong></div>
+          <div style="display: flex; justify-content: space-between; min-height: 46px; align-items: center; font-size: 13px;"><span>Possible outcome</span><strong>Partial or full refund</strong></div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; padding: 14px 16px 26px; box-sizing: border-box;">
+    <sc-if value="{{form}}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{submit}}" disabled="{{noIssue}}" style="width: 100%; height: 56px; border-radius: 999px; border: none; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; background: {{btnBg}}; color: {{btnFg}};">Send report</button>
+    </sc-if>
+    <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+      <a href="G11-Bookings.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">Back to my bookings</a>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { issue: '', sent: false }; }
+  renderVals() {
+    const s = this.state;
+    const list = ['Food quality', 'Chef late / no-show', 'Hygiene', 'Kitchen damage', 'Asked to pay in cash', 'Behaviour / safety', 'Other'];
+    return {
+      form: !s.sent, sent: s.sent, issue: s.issue,
+      issues: list.map((l) => { const on = s.issue === l; return { l, on, bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#D5D0C7', pick: () => this.setState({ issue: l }) }; }),
+      noIssue: !s.issue, btnBg: s.issue ? '#B8361F' : '#4A5853', btnFg: s.issue ? '#FFFFFF' : '#B9C6BF',
+      submit: () => s.issue && this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

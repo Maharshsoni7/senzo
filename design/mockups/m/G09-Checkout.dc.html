@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Checkout and pay</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; isolation: isolate; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif;">
+
+  <!-- header on the wall -->
+  <div style="position: absolute; left: 16px; right: 16px; top: 52px; display: flex; align-items: center; gap: 12px;">
+    <a href="G08-Availability.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center; flex: none;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div>
+      <h1 style="margin: 0; font-size: 22px; line-height: 1.1;">Your order ticket</h1>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .08em; color: #3D4247; margin-top: 3px;">CHECK · PAY · DONE</div>
+    </div>
+  </div>
+
+  <!-- ticket rail -->
+
+  <div style="position: absolute; left: 0; right: 0; top: 120px; bottom: 96px; overflow-y: auto; padding: 0 16px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+
+    <!-- order ticket -->
+    <div style="position: relative; padding-top: 4px; flex: none;">
+      <div style="background: #FFFEFB; border-radius: 14px 14px 0 0; box-shadow: 0 8px 18px rgba(0,0,0,.08); padding: 20px 18px 14px;">
+        <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; color: #5A5F66;">
+          <span>ORDER SZ-1042</span><span>TABLE FOR 6</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: 12px;">
+          <span style="width: 54px; height: 54px; border-radius: 99px; overflow: hidden; background: #FBEDEA; flex: none;">
+            <dc-import name="ChefFig" skin="#D9A273" hair="#1E1612" apron="#B8361F" long-op="1" beard-op="0" initials="AM" w="54" bust="1" hint-size="54px,54px"></dc-import>
+          </span>
+          <div>
+            <div style="font-size: 17px; font-weight: 800;">Ananya Mehta</div>
+            <div style="font-size: 13px; color: #3D4247;">Gujarati Classic set menu · 6 dishes</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; font-size: 13px;">
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; color: #5A5F66;">WHEN</div><strong>Sat 7 Nov · 7:30 PM</strong></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; color: #5A5F66;">WHERE</div><strong>Home · Bodakdev</strong></div>
+        </div>
+        <div style="border-top: 1.5px dashed #C9CDD1; margin: 14px 0 10px;"></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+          <div style="display: flex; justify-content: space-between;"><span>Gujarati Classic · ₹1,800 × 6<br><span style="font-size: 11px; color: #5A5F66;">5–10 guest price · groceries incl.</span></span><span>₹10,800</span></div>
+          <div style="display: flex; justify-content: space-between; color: #3D4247;"><span>Convenience fee</span><span>₹149</span></div>
+          <div style="display: flex; justify-content: space-between; color: #3D4247;"><span>GST on fee 18%</span><span>₹27</span></div>
+          <sc-if value="{{promo}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; justify-content: space-between; color: #1E6B36;"><span>FIRSTFEAST</span><span>−₹500</span></div>
+          </sc-if>
+        </div>
+        <button onClick="{{togglePromo}}" style="margin-top: 10px; min-height: 36px; padding: 0 12px; border-radius: 6px; border: 1px dashed #9EA4AA; background: transparent; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; cursor: pointer; color: #1B1D1F;">{{promoBtn}}</button>
+        <div style="border-top: 1.5px dashed #C9CDD1; margin: 12px 0 8px;"></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; font-family: 'IBM Plex Mono', monospace;">
+          <span style="font-size: 12px; letter-spacing: .12em; font-weight: 600;">TOTAL</span>
+          <span style="font-size: 24px; font-weight: 600;">{{total}}</span>
+        </div>
+      </div>
+      <div style="height: 8px; background: linear-gradient(135deg, #FFFEFB 50%, transparent 50%) 0 0 / 12px 8px repeat-x, linear-gradient(225deg, #FFFEFB 50%, transparent 50%) 6px 0 / 12px 8px repeat-x;"></div>
+    </div>
+
+    <!-- held-safely stamp -->
+    <div style="align-self: center; transform: rotate(-2deg); border: 2px dashed #1E7A3C; border-radius: 8px; padding: 8px 14px; background: rgba(230,242,234,.9); color: #1E4D2E; text-align: center; flex: none;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; font-weight: 600;">PAYMENT HELD SAFELY</div>
+      <div style="font-size: 12px; margin-top: 2px;">Released to the chef only after your finish OTP</div>
+    </div>
+
+    <!-- payment ticket -->
+    <div style="background: #FFFEFB; border-radius: 14px; box-shadow: 0 8px 18px rgba(0,0,0,.08); padding: 14px 16px 6px; flex: none;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600; margin-bottom: 4px;">HOW WILL YOU PAY?</div>
+      <sc-for list="{{methods}}" as="m" hint-placeholder-count="5">
+        <button onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="width: 100%; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0; border: none; border-top: 1px dashed #D5D8DB; background: transparent; font-family: inherit; cursor: pointer; text-align: left; color: #1B1D1F;">
+          <span style="width: 36px; height: 36px; border-radius: 10px; background: {{m.c}}; color: #FFFFFF; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; flex: none;">{{m.ab}}</span>
+          <span style="flex: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; font-weight: 700;">{{m.n}}</span><span style="font-size: 12px; color: #5A5F66;">{{m.s}}</span></span>
+          <span style="width: 22px; height: 22px; border-radius: 99px; display: grid; place-items: center; border: 2px solid {{m.ring}}; background: {{m.fill}};">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+    <p style="margin: 0; text-align: center; font-size: 12px; color: #3D4247; flex: none;">Free cancellation until Thu 5 Nov, 7:30 PM</p>
+  </div>
+
+  <!-- counter bar -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #2F3D37; box-shadow: 0 -2px 0 #F7F5F1, 0 -5px 0 #D8D4CC; display: flex; align-items: center; gap: 12px; padding: 0 16px 14px; box-sizing: border-box;">
+    <div style="color: #FFFFFF;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #B9C6BF;">TOTAL</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600;">{{total}}</div>
+    </div>
+    <a href="G10-Confirmed.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 54px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+      Pay with {{methodShort}}
+    </a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { m: 0, promo: false }; }
+  renderVals() {
+    const s = this.state;
+    const defs = [
+      { n: 'Google Pay', s: 'UPI · rahul@okaxis', ab: 'GPAY', c: '#2D4E86', short: 'GPay' },
+      { n: 'PhonePe', s: 'UPI', ab: 'PE', c: '#5F2D91', short: 'PhonePe' },
+      { n: 'Any UPI ID', s: 'Paytm, BHIM and others', ab: 'UPI', c: '#3D4247', short: 'UPI' },
+      { n: 'Card', s: 'HDFC Visa ···· 4242', ab: 'CARD', c: '#7A3E1D', short: 'card' },
+      { n: "Senzo wallet", s: '₹250 balance', ab: 'WAL', c: '#1E7A3C', short: 'wallet' }
+    ];
+    const total = 10976 - (s.promo ? 500 : 0);
+    return {
+      methods: defs.map((d, i) => Object.assign({}, d, { on: s.m === i, ring: s.m === i ? '#B8361F' : '#C9CDD1', fill: s.m === i ? '#B8361F' : '#FFFFFF', pick: () => this.setState({ m: i }) })),
+      methodShort: defs[s.m].short,
+      promo: s.promo,
+      promoBtn: s.promo ? '✕ remove FIRSTFEAST' : '+ add promo code',
+      togglePromo: () => this.setState({ promo: !s.promo }),
+      total: '₹' + total.toLocaleString('en-IN')
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}
+@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+.bob{animation:bob 2.8s ease-in-out infinite}
+input:focus-visible{outline:none}
+button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:3px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; background-color: #E9EBEC; isolation: isolate;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" floor="564" hint-size="390px,844px"></dc-import>
+  </div>
+
+  <!-- top: two quiet icons + hanging sign -->
+  <div style="position: absolute; left: 16px; right: 16px; top: 52px; display: flex; justify-content: space-between; z-index: 5;">
+    <div style="display: flex; gap: 8px;">
+    <a href="G11-Bookings.dc.html" aria-label="My bookings" style="position: relative; width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6"></path></svg>
+      <span style="position: absolute; top: -3px; right: -3px; width: 18px; height: 18px; border-radius: 99px; background: #B8361F; color: #FFFFFF; font-size: 10px; font-weight: 700; display: grid; place-items: center;">1</span>
+    </a>
+    <a href="G20-Notifications.dc.html" aria-label="Notifications, 2 new" style="position: relative; width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>
+      <span style="position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 99px; background: #B8361F; border: 2px solid #FFFFFF;"></span>
+    </a>
+    </div>
+    <a href="G14-Account.dc.html" aria-label="Account" style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+    </a>
+  </div>
+  <div style="position: absolute; left: 50%; top: 34px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 4;">
+    <div style="position: relative; width: 120px; height: 20px;">
+      <span style="position: absolute; left: 20px; top: 0; width: 2px; height: 22px; background: #6F757B; transform: rotate(14deg); transform-origin: top;"></span>
+      <span style="position: absolute; right: 20px; top: 0; width: 2px; height: 22px; background: #6F757B; transform: rotate(-14deg); transform-origin: top;"></span>
+    </div>
+    <div style="background: #24282C; color: #F4F2EE; padding: 7px 18px 9px; border-radius: 6px; box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 0 0 3px #3A4045; text-align: center;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: .26em; color: #C8CDD2;">PRIVATE CHEFS</div>
+      <svg role="img" aria-label="Senzo" viewBox="51 28 2904 782" style="width: 96px; height: 26px; display: block; margin: 4px auto 0;"><path d="M252 600Q144 580 97.5 538.0Q51 496 51 427Q51 353 106.5 311.5Q162 270 274 270Q340 270 409 281Q433 285 448.5 304.0Q464 323 464 348V353Q464 374 447.5 387.0Q431 400 410 396Q345 383 290 383Q249 383 232.5 393.0Q216 403 216 423Q216 461 276 473Q390 492 435.5 533.0Q481 574 481 652Q481 727 425.0 768.5Q369 810 262 810Q184 810 114 795Q90 790 74.5 769.5Q59 749 59 723V715Q59 694 76.0 682.5Q93 671 114 676Q179 693 242 693Q316 693 316 650Q316 630 302.5 619.0Q289 608 252 600Z M821 379Q776 379 753.0 402.5Q730 426 724 483Q724 491 731 491H900Q909 491 909 482Q905 379 821 379ZM846 810Q710 810 636.5 741.0Q563 672 563 540Q563 409 628.5 339.5Q694 270 818 270Q1056 270 1060 530Q1060 554 1041.5 570.5Q1023 587 999 587H732Q722 587 724 596Q732 651 766.5 674.5Q801 698 870 698Q915 698 967 685Q988 680 1004.5 693.0Q1021 706 1021 727V729Q1021 754 1005.5 774.5Q990 795 966 799Q908 810 846 810Z M1218 800Q1195 800 1178.5 783.0Q1162 766 1162 743V337Q1162 314 1178.5 297.0Q1195 280 1218 280H1259Q1283 280 1299.5 296.5Q1316 313 1317 337L1318 345Q1318 346 1319 346L1321 344Q1386 270 1477.0 270.0Q1568 270 1608.0 321.5Q1648 373 1648 497V743Q1648 766 1631.5 783.0Q1615 800 1592 800H1548Q1525 800 1508.0 783.0Q1491 766 1491 743V502Q1491 442 1475.0 419.5Q1459 397 1417 397Q1382 397 1352.5 425.5Q1323 454 1323 487V743Q1323 766 1306.5 783.0Q1290 800 1267 800Z M1811 643 2013 396V394Q2013 393 2012 393H1832Q1809 393 1792.0 376.5Q1775 360 1775.0 337.0Q1775 314 1792.0 297.0Q1809 280 1832 280H2158Q2181 280 2198.0 297.0Q2215 314 2215 337Q2215 393 2179 437L1977 684V686Q1977 687 1978 687H2158Q2181 687 2198.0 703.5Q2215 720 2215.0 743.0Q2215 766 2198.0 783.0Q2181 800 2158 800H1832Q1809 800 1792.0 783.0Q1775 766 1775 743Q1775 687 1811 643Z" fill="#F6F1E7"></path><path d="M2405.5 606.0 A285.0 285.0 0 0 0 2872.4 606.0" fill="none" stroke="#F6F1E7" stroke-width="165" stroke-linecap="round"></path><path d="M2639.0 28.0 C2741.3 141.7 2809.5 244.0 2786.7 334.9 C2764.0 414.5 2707.2 460.0 2639.0 460.0 C2570.7 460.0 2513.9 414.5 2491.2 334.9 C2479.8 266.7 2525.3 209.9 2570.7 164.4 C2582.1 232.6 2604.9 266.7 2627.6 266.7 C2616.2 187.2 2604.9 107.6 2639.0 28.0 Z" fill="#C8372D"></path></svg>
+    </div>
+  </div>
+
+  <!-- one search pill -->
+  <div style="position: absolute; left: 20px; right: 20px; top: 124px; z-index: 5; display: flex; flex-direction: column; gap: 8px;">
+    <label style="display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #C9CDD1; box-shadow: 0 4px 12px rgba(0,0,0,.05);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input value="{{q}}" onInput="{{setQ}}" onFocus="{{focus}}" placeholder="Biryani, Gujarati, Jain…" aria-label="Search chefs" style="flex: 1; min-width: 0; border: none; background: transparent; font-family: inherit; font-size: 15px; color: #1B1D1F;">
+      <sc-if value="{{hasQ}}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{clearQ}}" aria-label="Clear search" style="width: 28px; height: 28px; border-radius: 99px; border: none; background: #F1F2F3; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+      </sc-if>
+    </label>
+    <sc-if value="{{searching}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+        <sc-for list="{{words}}" as="w" hint-placeholder-count="5">
+          <button onClick="{{w.pick}}" style="min-height: 32px; padding: 0 12px; border-radius: 999px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}};">{{w.l}}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- the line-up -->
+  <section aria-label="Chefs" onTouchStart="{{tStart}}" onTouchEnd="{{tEnd}}" style="position: absolute; left: 0; right: 0; top: 200px; height: 400px;">
+    <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+      <div style="position: absolute; left: 24px; right: 24px; top: 130px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+        <p style="margin: 0; font-size: 15px; color: #5A5F66;">No chef for “{{q}}” yet.</p>
+        <a href="G23-PlanEvent.dc.html" style="display: flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 14px; font-weight: 700; text-decoration: none;">Ask chefs to make it</a>
+      </div>
+    </sc-if>
+    <div style="position: absolute; left: 50%; top: 0; height: 400px; display: flex; transition: transform .55s cubic-bezier(.25,.8,.25,1); transform: {{trackTf}};">
+      <sc-for list="{{chefs}}" as="c" hint-placeholder-count="5">
+        <div style="position: relative; width: 150px; height: 400px; flex: none;">
+          <span style="position: absolute; left: 50%; top: 352px; width: 150px; height: 24px; transform-origin: 50% 50%; transition: transform .45s ease, opacity .45s ease; transform: {{c.sh}}; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.28), transparent); opacity: {{c.op}};"></span>
+          <div style="position: absolute; left: 0; bottom: 36px; width: 150px; transform-origin: 50% 100%; transition: transform .45s ease, opacity .45s ease; transform: {{c.tf}}; opacity: {{c.op}};">
+            <div class="{{c.bob}}">
+              <button onClick="{{c.act}}" aria-label="{{c.aria}}" style="display: block; padding: 0; border: none; background: transparent; cursor: pointer;">
+                <dc-import name="ChefFig" skin="{{c.skin}}" hair="{{c.hair}}" apron="{{c.apron}}" long-op="{{c.l}}" beard-op="{{c.b}}" initials="{{c.ini}}" w="150" hint-size="150px,315px"></dc-import>
+              </button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- caption + one action -->
+  <div style="position: absolute; left: 0; right: 0; top: 608px; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 20px;">
+    <sc-if value="{{hasCur}}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: center;">
+        <div style="font-size: 20px; font-weight: 800;">{{cur.n}}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5A5F66; margin-top: 3px;">{{cur.cu}} · {{cur.p}}/guest · ★ {{cur.r}}</div>
+      </div>
+    </sc-if>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <button onClick="{{prev}}" aria-label="Previous chef" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <button onClick="{{openSheet}}" disabled="{{empty}}" style="display: flex; align-items: center; min-height: 52px; padding: 0 30px; border-radius: 999px; border: none; background: #1B1D1F; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;">View &amp; book</button>
+      <button onClick="{{next}}" aria-label="Next chef" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1B1D1F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+    <sc-if value="{{noQ}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #5A5F66;">
+        <span style="font-family: 'IBM Plex Mono', monospace;">{{counter}}</span>
+        <span aria-hidden="true">·</span>
+        <a href="G23-PlanEvent.dc.html" style="display: inline-flex; align-items: center; min-height: 32px; font-weight: 700; color: #B8361F; text-decoration: underline; text-underline-offset: 3px;">Not sure? Get menus from chefs</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{showFaces}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="font-size: 12px; font-weight: 700; color: #3D4247;">{{resultLabel}}</div>
+        <div style="display: flex; gap: 6px;">
+          <sc-for list="{{faces}}" as="f" hint-placeholder-count="4">
+            <button onClick="{{f.go}}" aria-label="{{f.n}}" aria-current="{{f.on}}" style="width: 40px; height: 40px; padding: 0; border-radius: 99px; overflow: hidden; cursor: pointer; background: #FFFFFF; border: 2.5px solid {{f.ring}};">
+              <dc-import name="ChefFig" skin="{{f.skin}}" hair="{{f.hair}}" apron="{{f.apron}}" long-op="{{f.l}}" beard-op="{{f.b}}" initials="{{f.ini}}" w="35" bust="1" hint-size="35px,35px"></dc-import>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <a href="G12-LiveBooking.dc.html" style="position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; min-height: 40px; padding: 0 14px; border-radius: 999px; background: #24282C; color: #FFFFFF; font-size: 12px; font-weight: 600; text-decoration: none;">
+    <span style="width: 8px; height: 8px; border-radius: 9px; background: #9FE0B4;"></span>
+    Sat 7 Nov · Ananya · OTP 4821
+  </a>
+
+  <!-- chef preview sheet: always the chef in the centre -->
+  <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(27,29,31,.5); z-index: 20;">
+      <button onClick="{{closeSheet}}" aria-label="Close preview" style="position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: transparent; cursor: pointer;"></button>
+      <div role="dialog" aria-modal="true" aria-label="{{cur.n}}" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFEFB; border-radius: 22px 22px 0 0; padding: 10px 20px 30px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: center;"><span style="width: 40px; height: 5px; border-radius: 9px; background: #D5D0C7;"></span></div>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <span style="width: 72px; height: 72px; border-radius: 99px; overflow: hidden; background: #F4F1EB; flex: none;">
+            <dc-import name="ChefFig" skin="{{cur.skin}}" hair="{{cur.hair}}" apron="{{cur.apron}}" long-op="{{cur.l}}" beard-op="{{cur.b}}" initials="{{cur.ini}}" w="72" bust="1" hint-size="72px,72px"></dc-import>
+          </span>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 22px; font-weight: 800;">{{cur.n}}</div>
+            <div style="font-size: 13px; color: #3D4247;">{{cur.cu}}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; margin-top: 4px;"><strong>★ {{cur.r}}</strong> · {{cur.p}}/guest</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #5A5F66; font-weight: 600; margin-bottom: 6px;">KNOWN FOR</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{curTags}}" as="t" hint-placeholder-count="4">
+              <span style="font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: #F1EEE8; text-transform: capitalize;">{{t}}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="G07-ChefProfile.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; border: 1.5px solid #1B1D1F; font-size: 15px; font-weight: 700; text-decoration: none;">Full profile</a>
+          <a href="G08-Availability.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; background: #B8361F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">Pick date</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { active: 1, q: '', searching: false, word: '', sheet: false }; }
+  all() {
+    return [
+      { n: 'Meera Iyer', cu: 'South Indian', tags: 'south indian kerala appam fish veg', r: '4.9', p: '₹1,600', skin: '#9C6440', hair: '#120E0C', apron: '#2F6B4F', l: '1', b: '0', ini: 'MI' },
+      { n: 'Ananya Mehta', cu: 'Modern Gujarati', tags: 'gujarati jain veg thali undhiyu', r: '4.9', p: '₹1,800', skin: '#D9A273', hair: '#1E1612', apron: '#B8361F', l: '1', b: '0', ini: 'AM' },
+      { n: 'Hetal Desai', cu: 'Kathiyawadi Gujarati', tags: 'gujarati kathiyawadi veg thali sev tameta', r: '4.8', p: '₹1,500', skin: '#C88B5E', hair: '#1B1310', apron: '#2D4E86', l: '1', b: '0', ini: 'HD' },
+      { n: 'Jignesh Patel', cu: 'Surti Gujarati', tags: 'gujarati surti undhiyu locho veg', r: '4.7', p: '₹1,400', skin: '#B67A4E', hair: '#2A2420', apron: '#3E7A3A', l: '0', b: '1', ini: 'JP' },
+      { n: 'Bhavna Trivedi', cu: 'Gujarati Jain Thali', tags: 'gujarati jain thali veg festive', r: '4.9', p: '₹1,600', skin: '#E0B08A', hair: '#8E9196', apron: '#6B2D5C', l: '1', b: '0', ini: 'BT' },
+      { n: 'Rohan Kapoor', cu: 'North Indian Tandoor', tags: 'north indian punjabi tandoor kebab', r: '4.8', p: '₹2,200', skin: '#B67A4E', hair: '#1B1714', apron: '#7A3E1D', l: '0', b: '1', ini: 'RK' },
+      { n: 'Zoya Khan', cu: 'Mughlai', tags: 'mughlai biryani nihari', r: '4.8', p: '₹2,000', skin: '#C88B5E', hair: '#1B1310', apron: '#6B2D5C', l: '1', b: '0', ini: 'ZK' },
+      { n: 'Kabir Shah', cu: 'Italian', tags: 'italian pasta pizza veg jain', r: '4.7', p: '₹2,500', skin: '#D6A37A', hair: '#3B2A20', apron: '#2D4E86', l: '0', b: '0', ini: 'KS' },
+      { n: 'Ishita Patel', cu: 'Plant-based', tags: 'vegan veg jain healthy', r: '4.9', p: '₹1,700', skin: '#E0B08A', hair: '#3A281E', apron: '#3E7A3A', l: '1', b: '0', ini: 'IP' },
+      { n: 'Arjun Rao', cu: 'Pan-Asian', tags: 'chinese thai asian dimsum', r: '4.8', p: '₹2,400', skin: '#8E5B39', hair: '#151210', apron: '#1F5F6B', l: '0', b: '0', ini: 'AR' },
+      { n: 'Priya Nair', cu: 'Desserts', tags: 'desserts cake sweets eggless', r: '4.9', p: '₹1,500', skin: '#B87D52', hair: '#20150F', apron: '#A23E6B', l: '1', b: '0', ini: 'PN' }
+    ];
+  }
+  renderVals() {
+    const s = this.state;
+    const q = s.q.trim().toLowerCase();
+    const list = this.all().filter((c) => !q || (c.n + ' ' + c.cu + ' ' + c.tags).toLowerCase().indexOf(q) >= 0);
+    const active = Math.min(s.active, Math.max(0, list.length - 1));
+    const go = (i) => this.setState({ active: (i + list.length) % list.length });
+    const chefs = list.map((c, i) => {
+      const off = i - active;
+      return Object.assign({}, c, {
+        tf: off === 0 ? 'scale(1)' : 'translateY(-30px) scale(.7)',
+        sh: off === 0 ? 'translateX(-50%)' : 'translateX(-50%) translateY(-30px) scale(.7)',
+        op: Math.abs(off) <= 1 ? 1 : 0,
+        bob: off === 0 ? 'bob' : '',
+        aria: off === 0 ? c.n : 'Show ' + c.n,
+        act: () => go(i)
+      });
+    });
+    const words = ['Gujarati', 'Jain', 'Biryani', 'Italian', 'Desserts'];
+    return {
+      q: s.q, hasQ: !!s.q, searching: s.searching || !!s.q,
+      setQ: (e) => this.setState({ q: e.target.value, active: 0 }),
+      focus: () => this.setState({ searching: true }),
+      clearQ: () => this.setState({ q: '', searching: false, active: 1 }),
+      noQ: !q, showFaces: !!q && list.length > 0,
+      resultLabel: list.length + (list.length === 1 ? ' chef' : ' chefs') + ' for “' + s.q.trim() + '” · tap a face or swipe',
+      faces: list.map((c, i) => Object.assign({}, c, { on: i === active, ring: i === active ? '#B8361F' : '#FFFFFF', go: () => go(i) })),
+      words: words.map((w) => { const on = s.q.toLowerCase() === w.toLowerCase(); const cnt = this.all().filter((c) => (c.n + ' ' + c.cu + ' ' + c.tags).toLowerCase().indexOf(w.toLowerCase()) >= 0).length; return { l: w + ' · ' + cnt, bg: on ? '#1B1D1F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1D1F', bd: on ? '#1B1D1F' : '#C9CDD1', pick: () => this.setState({ q: on ? '' : w, active: 0 }) }; }),
+      chefs, empty: list.length === 0, hasCur: list.length > 0,
+      cur: list[active] || {},
+      curTags: list[active] ? list[active].tags.split(' ').slice(0, 4) : [],
+      sheetOpen: s.sheet && list.length > 0,
+      openSheet: () => this.setState({ sheet: true }),
+      closeSheet: () => this.setState({ sheet: false }),
+      trackTf: 'translateX(' + (-(active * 150 + 75)) + 'px)',
+      prev: () => go(active - 1), next: () => go(active + 1),
+      tStart: (e) => { this._x = e.touches[0].clientX; },
+      tEnd: (e) => { const dx = e.changedTouches[0].clientX - (this._x || 0); if (dx > 40) go(active - 1); else if (dx < -40) go(active + 1); },
+      counter: list.length ? (active + 1) + '/' + list.length + ' nearby' : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

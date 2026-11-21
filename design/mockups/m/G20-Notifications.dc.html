@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}button:focus-visible,a:focus-visible{outline:3px solid #B8361F;outline-offset:2px}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F4F1EB; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="G04-Home.dc.html" aria-label="Back" style="width: 44px; height: 44px; flex: none; border-radius: 99px; background: #FFFFFF; border: 1px solid #D5D0C7; display: grid; place-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-size: 22px; flex: 1;">Notifications</h1>
+    <button onClick="{{readAll}}" style="border: none; background: transparent; font-family: inherit; font-size: 13px; font-weight: 700; color: #B8361F; cursor: pointer; min-height: 44px;">Mark all read</button>
+  </div>
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #3D4247; font-weight: 600; margin-top: 4px;">{{g.t}}</div>
+      <sc-for list="{{g.items}}" as="n" hint-placeholder-count="3">
+        <a href="{{n.href}}" style="display: flex; gap: 12px; align-items: flex-start; background: {{n.bg}}; border-radius: 14px; padding: 12px; text-decoration: none; border: 1px solid #EAE5DC;">
+          <span style="width: 36px; height: 36px; border-radius: 10px; flex: none; display: grid; place-items: center; background: {{n.ic}}; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;">{{n.ab}}</span>
+          <span style="flex: 1; min-width: 0;">
+            <span style="display: block; font-size: 14px; font-weight: 700;">{{n.title}}</span>
+            <span style="display: block; font-size: 12px; color: #3D4247; line-height: 1.4; margin-top: 2px;">{{n.body}}</span>
+            <span style="display: block; font-size: 11px; color: #5A5F66; margin-top: 4px;">{{n.time}}</span>
+          </span>
+          <span style="width: 8px; height: 8px; border-radius: 9px; background: {{n.dot}}; margin-top: 6px; flex: none;"></span>
+        </a>
+      </sc-for>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { read: false }; }
+  renderVals() {
+    const r = this.state.read;
+    const mk = (ab, ic, title, body, time, href, unread) => ({ ab, ic, title, body, time, href, bg: unread && !r ? '#FFFFFF' : '#FBF9F5', dot: unread && !r ? '#B8361F' : 'transparent' });
+    return {
+      readAll: () => this.setState({ read: true }),
+      groups: [
+        { t: 'TODAY', items: [
+          mk('MENU', '#B8361F', 'Ananya sent your menu', 'Khandvi tacos, Jain undhiyu, kesar tart · tap to accept', '8:42 PM', 'G15-Chat.dc.html', true),
+          mk('OK', '#1E7A3C', 'Booking confirmed', 'Sat 7 Nov, 7:30 PM · start OTP 4821', '9:12 AM', 'G10-Confirmed.dc.html', true)
+        ] },
+        { t: 'EARLIER', items: [
+          mk('₹', '#2D4E86', 'Refund completed', '₹13,376 reached your Google Pay', 'Mon 2 Nov', 'G17-Declined.dc.html', false),
+          mk('★', '#9A5B00', 'How was dinner with Zoya?', 'Rate & leave a tip — 100% goes to the chef', 'Sun 18 Oct', 'G13-RateTip.dc.html', false),
+          mk('PDF', '#3D4247', 'Invoice ready', 'SZ-0988 · Zoya Khan · ₹28,350', 'Sun 18 Oct', 'G21-Invoice.dc.html', false)
+        ] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

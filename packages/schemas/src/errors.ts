@@ -1,0 +1,30 @@
+import { z } from 'zod';
+
+export const ErrorCode = z.enum([
+  'VALIDATION_FAILED',
+  'UNAUTHORIZED',
+  'FORBIDDEN',
+  'NOT_FOUND',
+  'RATE_LIMITED',
+  'IDEMPOTENCY_KEY_REQUIRED',
+  'IDEMPOTENCY_KEY_REUSED',
+  'INTERNAL',
+  'SLOT_TAKEN',
+  'BELOW_CHEF_MINIMUM',
+  'OTP_INVALID',
+  'OTP_LOCKED',
+  'OUTSIDE_SERVICE_AREA',
+  'POLICY_WINDOW_CLOSED',
+]);
+export type ErrorCode = z.infer<typeof ErrorCode>;
+
+/** RFC 9457 body returned as application/problem+json. */
+export const Problem = z.object({
+  type: z.string(),
+  title: z.string(),
+  status: z.number().int(),
+  code: ErrorCode,
+  detail: z.string().optional(),
+  fields: z.record(z.string(), z.array(z.string())).optional(),
+});
+export type Problem = z.infer<typeof Problem>;

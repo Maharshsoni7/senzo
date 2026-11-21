@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Booking confirmed</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#1B1D1F}a:hover{color:#B8361F}</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #ECE8E1; isolation: isolate; color: #1B1D1F; font-family: 'Archivo', system-ui, sans-serif; display: flex; flex-direction: column; padding: 56px 20px 24px; gap: 16px;">
+  <div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; z-index: -1;">
+    <dc-import name="KitchenBg" variant="header" strip="196" hint-size="390px,844px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+    <span style="width: 64px; height: 64px; border-radius: 99px; background: #1E7A3C; display: grid; place-items: center;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>
+    </span>
+    <h1 style="margin: 4px 0 0; font-size: 26px;">Booking confirmed</h1>
+    <p style="margin: 0; font-size: 14px; color: #5A5F66;">₹10,976 paid via Google Pay · <span style="font-family: 'IBM Plex Mono', monospace;">SZ-1042</span></p>
+  </div>
+
+  <div style="border-radius: 4px; padding: 16px; background: #FFFEFB; box-shadow: 0 12px 22px rgba(0,0,0,.14); display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #5A5F66; font-weight: 600;">START OTP</span>
+      <span style="font-size: 12px; color: #5A5F66;">Share only when the chef arrives</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; font-family: 'IBM Plex Mono', monospace;">
+      <span style="height: 56px; border-radius: 12px; background: #1B1D1F; color: #FFFFFF; display: grid; place-items: center; font-size: 28px; font-weight: 600;">4</span>
+      <span style="height: 56px; border-radius: 12px; background: #1B1D1F; color: #FFFFFF; display: grid; place-items: center; font-size: 28px; font-weight: 600;">8</span>
+      <span style="height: 56px; border-radius: 12px; background: #1B1D1F; color: #FFFFFF; display: grid; place-items: center; font-size: 28px; font-weight: 600;">2</span>
+      <span style="height: 56px; border-radius: 12px; background: #1B1D1F; color: #FFFFFF; display: grid; place-items: center; font-size: 28px; font-weight: 600;">1</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 0;">
+    <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+      <div style="display: flex; gap: 12px;">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <span style="width: 22px; height: 22px; border-radius: 99px; flex: none; display: grid; place-items: center; background: {{s.bg}}; border: 2px solid {{s.bd}}; box-sizing: border-box;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" opacity="{{s.tick}}"><path d="M5 12l5 5 9-10"></path></svg>
+          </span>
+          <span style="width: 2px; flex: 1; min-height: 18px; background: {{s.line}};"></span>
+        </div>
+        <div style="padding-bottom: 12px;">
+          <div style="font-size: 14px; font-weight: 700;">{{s.t}}</div>
+          <div style="font-size: 12px; color: #5A5F66; line-height: 1.45;">{{s.d}}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+    <a href="G12-LiveBooking.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; background: #1B1D1F; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none;">Track booking</a>
+    <div style="display: flex; gap: 8px;">
+      <a href="G11-Bookings.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none;">Add to calendar</a>
+      <a href="G04-Home.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 999px; border: 1px solid #C9CDD1; background: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none;">Home</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mk = (t, d, state) => ({ t, d,
+      bg: state === 'done' ? '#1E7A3C' : '#FFFFFF', bd: state === 'done' ? '#1E7A3C' : state === 'now' ? '#B8361F' : '#C9CDD1',
+      tick: state === 'done' ? 1 : 0, line: state === 'done' ? '#1E7A3C' : '#E1E3E5' });
+    const steps = [
+      mk('Paid · money held safely', 'Released to the chef only after the meal is done', 'done'),
+      mk('Ananya accepted', 'Today, 9:12 PM · menu &amp; grocery list shared in chat'.replace('&amp;', '&'), 'done'),
+      mk('Chef arrives · share START OTP', 'Sat 7 Nov, ~5:30 PM (2 hrs before dinner)', 'now'),
+      mk('Cooking & serving', 'Live status in the app', 'next'),
+      mk('Share FINISH OTP · rate & tip', 'Confirms the job is done and pays the chef', 'next')
+    ];
+    steps[steps.length - 1].line = 'transparent';
+    return { steps };
+  }
+}
+</script>
+</body>
+</html>
