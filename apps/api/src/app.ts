@@ -1,21 +1,12 @@
-import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
+import { createRoute, z } from '@hono/zod-openapi';
 import { createDb } from './db';
-import type { AppEnv } from './env';
 import { AppError, problem } from './lib/errors';
 import { log } from './lib/log';
+import { createRouter } from './lib/router';
+import { authRoutes } from './modules/auth/routes';
 
 export function createApp() {
-  const app = new OpenAPIHono<AppEnv>({
-    defaultHook: (result, c) => {
-      if (!result.success) {
-        const fields: Record<string, string[]> = {};
-        for (const issue of result.error.issues) {
-          (fields[issue.path.join('.') || '_'] ??= []).push(issue.message);
-        }
-        return problem(c, new AppError('VALIDATION_FAILED', 400, undefined, fields));
-      }
-    },
-  });
+  const app = createRouter();
 
   app.use('*', async (c, next) => {
     c.set('db', createDb(c.env.DB));
@@ -44,6 +35,12 @@ export function createApp() {
     (c) => c.json({ ok: true as const }, 200),
   );
 
+  app.route('/v1/auth', authRoutes);
+
+  app.openAPIRegistry.registerComponent('securitySchemes', 'bearer', {
+    type: 'http',
+    scheme: 'bearer',
+  });
   app.doc31('/openapi.json', {
     openapi: '3.1.0',
     info: { title: 'Senzo API', version: '1' },

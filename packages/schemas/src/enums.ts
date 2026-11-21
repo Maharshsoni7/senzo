@@ -8,6 +8,7 @@ export type Role = z.infer<typeof Role>;
 export const UserStatus = z.enum(['active', 'blocked', 'deleted']);
 export const Platform = z.enum(['android', 'ios', 'web']);
 export const AppKind = z.enum(['guest', 'partner']);
+export type AppKind = z.infer<typeof AppKind>;
 export const OtpPurpose = z.enum(['login']);
 export const ConsentKind = z.enum(['terms', 'privacy', 'marketing']);
 

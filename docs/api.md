@@ -21,6 +21,8 @@ All routes are under `/v1`, JSON, defined with zod via `@hono/zod-openapi`. The 
 | POST | `/auth/refresh` | refreshToken | new token pair (old one revoked) |
 | POST | `/auth/logout` | — | 204 |
 
+Built (`apps/api/src/modules/auth`). Errors: `TURNSTILE_FAILED` 403 · `RATE_LIMITED` 429 with `Retry-After` (30 s between sends, first send + 3 resends per rolling hour per phone) · `OTP_INVALID` 422 (wrong or expired; `detail` says tries left) · `OTP_LOCKED` 423 after 5 wrong tries · `SESSION_REVOKED` 401 when an already-rotated refresh token is used (every session of that user is revoked). Access token: HS256 JWT, 15 min, claims `sub` (user id) and `sid` (session id). A new partner-app user gets no role until chef onboarding. Per-IP and per-device limits wait for the Durable Object rate limiter.
+
 ## Me (G14, G18, G20)
 
 | Method | Path | Notes |

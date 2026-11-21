@@ -58,6 +58,8 @@ pnpm --filter api db:seed:local      # mockup demo data (idempotent); tests impo
 
 Not set up yet: `api-client generate` (orval task). `wrangler.jsonc` has a placeholder D1 `database_id` until Cloudflare is connected.
 
+Local API secrets: the developer copies `apps/api/.dev.vars.example` to `.dev.vars` (you can't read or edit it). Tests get their secrets from `apps/api/vitest.config.ts`; dev login code is `DEV_FIXED_OTP` (123456).
+
 Before saying a task is done: `pnpm typecheck && pnpm lint && pnpm test` pass for the packages you touched.
 
 Expo routes live in `apps/<app>/src/app/` (SDK 58 default); route paths in `docs/screens.md` are relative to that folder. Add Expo packages with `npx expo install` from the app folder.

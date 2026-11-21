@@ -16,6 +16,8 @@ export const ErrorCode = z.enum([
   'OTP_LOCKED',
   'OUTSIDE_SERVICE_AREA',
   'POLICY_WINDOW_CLOSED',
+  'TURNSTILE_FAILED',
+  'SESSION_REVOKED',
 ]);
 export type ErrorCode = z.infer<typeof ErrorCode>;
 
@@ -27,5 +29,6 @@ export const Problem = z.object({
   code: ErrorCode,
   detail: z.string().optional(),
   fields: z.record(z.string(), z.array(z.string())).optional(),
+  retryAfterSec: z.number().int().optional(),
 });
 export type Problem = z.infer<typeof Problem>;

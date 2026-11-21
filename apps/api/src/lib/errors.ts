@@ -8,6 +8,7 @@ export class AppError extends Error {
     readonly status: ContentfulStatusCode,
     readonly detail?: string,
     readonly fields?: Record<string, string[]>,
+    readonly retryAfterSec?: number,
   ) {
     super(detail ?? code);
   }
@@ -27,6 +28,9 @@ export function problem(c: Context, err: AppError) {
     code: err.code,
     ...(err.detail && { detail: err.detail }),
     ...(err.fields && { fields: err.fields }),
+    ...(err.retryAfterSec !== undefined && { retryAfterSec: err.retryAfterSec }),
   };
-  return c.json(body, err.status, { 'Content-Type': 'application/problem+json' });
+  const headers: Record<string, string> = { 'Content-Type': 'application/problem+json' };
+  if (err.retryAfterSec !== undefined) headers['Retry-After'] = String(err.retryAfterSec);
+  return c.json(body, err.status, headers);
 }

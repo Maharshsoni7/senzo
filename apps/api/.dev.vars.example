@@ -1,0 +1,7 @@
+# Copy to .dev.vars for `wrangler dev`. Real values go in `wrangler secret put` per environment.
+JWT_SECRET=dev-only-change-me-32-chars-minimum
+OTP_PEPPER=dev-only-change-me-too
+# Cloudflare's test secret that always passes; pair it with site key 1x00000000000000000000AA in the apps.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+# Every login code is this in dev; no SMS is sent. Ignored when ENVIRONMENT=production.
+DEV_FIXED_OTP=123456
