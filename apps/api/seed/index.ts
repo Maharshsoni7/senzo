@@ -12,6 +12,7 @@ const plan: [SQLiteTable, object[]][] = [
   [schema.chefCuisines, data.chefCuisines],
   [schema.chefFoodRules, data.chefFoodRules],
   [schema.chefOccasions, data.chefOccasions],
+  [schema.cookingDays, data.cookingDays],
   [schema.dishes, data.dishes],
   [schema.setMenus, data.setMenus],
   [schema.menuBands, data.menuBands],

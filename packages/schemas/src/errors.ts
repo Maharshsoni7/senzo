@@ -23,6 +23,7 @@ export const ErrorCode = z.enum([
   'PROMO_INVALID',
   'INVALID_TRANSITION',
   'STATE_CONFLICT',
+  'SLOT_UNAVAILABLE',
 ]);
 export type ErrorCode = z.infer<typeof ErrorCode>;
 

@@ -515,3 +515,19 @@ export const promoCodes: Insert<S['promoCodes']>[] = [
 export const ledgerAccounts: Insert<S['ledgerAccounts']>[] = (
   ['platform_revenue', 'gateway_fee', 'gst_payable', 'tds_payable', 'promo_expense'] as const
 ).map((kind) => ({ id: `acct_${kind}`, kind }));
+
+// C10: Ananya is off Monday–Wednesday; rail chefs cook lunch and dinner daily.
+export const cookingDays: Insert<S['cookingDays']>[] = [
+  ...[0, 4, 5, 6].map((weekday) => ({
+    chefId: 'chef_ananya',
+    weekday,
+    slots: ['lunch' as const, 'dinner' as const, 'late' as const],
+  })),
+  ...railChefs.flatMap((c) =>
+    [0, 1, 2, 3, 4, 5, 6].map((weekday) => ({
+      chefId: `chef_${c.key}`,
+      weekday,
+      slots: ['lunch' as const, 'dinner' as const],
+    })),
+  ),
+];

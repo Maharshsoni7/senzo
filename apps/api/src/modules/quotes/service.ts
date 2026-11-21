@@ -1,6 +1,7 @@
 import type { QuoteRequest } from '@senzo/schemas';
 import type { Db } from '../../db';
 import { AppError } from '../../lib/errors';
+import { assertSlotOpen } from '../availability/service';
 import { priceQuote } from './engine';
 import { findActivePromo, loadMenuForQuote } from './repo';
 
@@ -11,6 +12,8 @@ import { findActivePromo, loadMenuForQuote } from './repo';
 export async function quote(db: Db, req: QuoteRequest) {
   const menu = await loadMenuForQuote(db, req.menuId);
   if (!menu) throw new AppError('NOT_FOUND', 404, 'Menu not found');
+
+  if (req.date && req.slot) await assertSlotOpen(db, menu.chefId, req.date, req.slot);
 
   const promo = req.promo ? await findActivePromo(db, req.promo, Date.now()) : null;
   if (req.promo && !promo) throw new AppError('PROMO_INVALID', 422, 'Promo code is not valid');

@@ -57,7 +57,7 @@ Last updated: 21 Nov 2026
 - ✅ Timers: `BookingTimers` Workflow per booking (`src/workflows/booking-timers.ts`), steps in `modules/bookings/timers.ts`: checkout expiry 10 min (+ lock release) → accept deadline 2 h → reminders 24 h / 2 h (outbox `booking.reminder`; skipped if > 15 min overdue) → possible no-show 30 min after arrival → auto-complete 2 h after "done" → payout release 24 h after completion. Every step re-reads the booking and no-ops if it moved on
 - ⬜ Create booking + Razorpay order (test mode) + webhooks — **blocked on P1** (Route vs RazorpayX). Must call `startBookingTimers()` at checkout, `signalBooking(PAYMENT_CAPTURED)` on capture, `signalBooking(JOB_DONE)` from the "done" route
 - ⬜ Late capture after checkout expiry → automatic refund (webhook handler)
-- ⬜ Availability check in quotes / booking (G08)
+- ✅ Availability (G08): `GET /v1/chefs/:chefId/availability?month=` — weekly `cooking_days` + one-off `availability` overrides + active bookings and in-progress checkouts; past slots and non-live chefs off. `POST /v1/quotes` with date+slot returns SLOT_TAKEN / SLOT_UNAVAILABLE. Seed: Ananya Thu–Sun (C10)
 
 ## Open decisions
 
@@ -65,7 +65,7 @@ Last updated: 21 Nov 2026
 | --- | --- | --- |
 | Q1–Q7 | See `docs/business-rules.md` | 🟡 defaults in use (D21), final answers pending; Q2/Q6 need a CA |
 | Q8 | GST on ₹149 fee: ₹27 (mockups, rounded) vs ₹26.82 (exact) | 🟡 default: round to rupee, as mockups; confirm with CA |
-| P1 | Payouts: Route settlement vs RazorpayX ("Withdraw now", 11 AM daily) | ⬜ open |
+| P1 | Payouts: Route settlement vs RazorpayX ("Withdraw now", 11 AM daily) | ⏸ deferred: founder chose to build all payment work last (22 Nov 2026) |
 | P2 | Workers Paid plan ($5/mo) from staging on (10 ms CPU limit on free) | ⬜ open |
 | P3 | Admin panel design (no mockup) | ⬜ open |
 
