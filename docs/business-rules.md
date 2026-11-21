@@ -133,7 +133,7 @@ The price is **snapshotted** on the booking at checkout; later menu edits by the
 | # | Question | Default until decided |
 | --- | --- | --- |
 | Q1 | Can a chef go live after ID + PAN + bank, with the police badge added later (mockup C02), or only after all checks (architecture doc)? | All checks except police; police badge added when it clears |
-| Q2 | Is the 15% platform fee inclusive of GST? (C08 shows 15% flat; C18 mock totals look like 15% + 18% GST) | 15% + 18% GST on the fee — confirm with CA |
+| Q2 | Is the 15% platform fee inclusive of GST? (C08 shows 15% flat; C18 mock totals look like 15% + 18% GST) | 15% + 18% GST on the fee, deducted from the chef's share — confirm with CA. With it, the C08 example pays the chef ₹8,888.40, not ₹9,180. Switch: `FEES.platformFeeGstBps` in `apps/api/src/config/fees.ts` |
 | Q3 | Is the ₹149 convenience fee refunded on guest cancellation? | Refunded only when the guest gets a 100% refund |
 | Q4 | Penalty and guest compensation when a chef cancels after accepting | 100% refund + ₹250 wallet credit; strike system |
 | Q5 | Reply window for menu requests | 6 hours |

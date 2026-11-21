@@ -19,9 +19,7 @@
             "type": "integer"
           }
         },
-        "required": [
-          "retryAfterSec"
-        ]
+        "required": ["retryAfterSec"]
       },
       "Problem": {
         "type": "object",
@@ -54,7 +52,10 @@
               "OUTSIDE_SERVICE_AREA",
               "POLICY_WINDOW_CLOSED",
               "TURNSTILE_FAILED",
-              "SESSION_REVOKED"
+              "SESSION_REVOKED",
+              "FOOD_RULE_UNAVAILABLE",
+              "GUESTS_OUT_OF_RANGE",
+              "PROMO_INVALID"
             ]
           },
           "detail": {
@@ -73,12 +74,7 @@
             "type": "integer"
           }
         },
-        "required": [
-          "type",
-          "title",
-          "status",
-          "code"
-        ]
+        "required": ["type", "title", "status", "code"]
       },
       "OtpRequest": {
         "type": "object",
@@ -92,17 +88,11 @@
           },
           "channel": {
             "type": "string",
-            "enum": [
-              "sms",
-              "voice"
-            ],
+            "enum": ["sms", "voice"],
             "default": "sms"
           }
         },
-        "required": [
-          "phone",
-          "turnstileToken"
-        ]
+        "required": ["phone", "turnstileToken"]
       },
       "AuthResult": {
         "type": "object",
@@ -128,10 +118,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": [
-                "guest",
-                "chef"
-              ]
+              "enum": ["guest", "chef"]
             }
           }
         },
@@ -159,34 +146,20 @@
             "properties": {
               "platform": {
                 "type": "string",
-                "enum": [
-                  "android",
-                  "ios",
-                  "web"
-                ]
+                "enum": ["android", "ios", "web"]
               },
               "app": {
                 "type": "string",
-                "enum": [
-                  "guest",
-                  "partner"
-                ]
+                "enum": ["guest", "partner"]
               },
               "pushToken": {
                 "type": "string"
               }
             },
-            "required": [
-              "platform",
-              "app"
-            ]
+            "required": ["platform", "app"]
           }
         },
-        "required": [
-          "phone",
-          "code",
-          "device"
-        ]
+        "required": ["phone", "code", "device"]
       },
       "TokenPair": {
         "type": "object",
@@ -206,12 +179,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "accessToken",
-          "accessExpiresAt",
-          "refreshToken",
-          "refreshExpiresAt"
-        ]
+        "required": ["accessToken", "accessExpiresAt", "refreshToken", "refreshExpiresAt"]
       },
       "RefreshRequest": {
         "type": "object",
@@ -221,9 +189,274 @@
             "minLength": 1
           }
         },
+        "required": ["refreshToken"]
+      },
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "menuId": {
+            "type": "string"
+          },
+          "chefId": {
+            "type": "string"
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "foodRule": {
+            "type": "string",
+            "enum": ["regular", "jain", "no_onion_garlic"]
+          },
+          "groceriesBy": {
+            "type": "string",
+            "enum": ["chef", "guest"]
+          },
+          "band": {
+            "type": "object",
+            "properties": {
+              "minGuests": {
+                "type": "integer"
+              },
+              "maxGuests": {
+                "type": "integer"
+              },
+              "pricePerGuestPaise": {
+                "type": "integer"
+              }
+            },
+            "required": ["minGuests", "maxGuests", "pricePerGuestPaise"]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "course": {
+                  "type": "string"
+                },
+                "optionId": {
+                  "type": "string"
+                },
+                "dishName": {
+                  "type": "string"
+                },
+                "extraPaise": {
+                  "type": "integer"
+                },
+                "jainVersion": {
+                  "type": "boolean"
+                },
+                "servedAs": {
+                  "type": ["string", "null"]
+                },
+                "swappedFrom": {
+                  "type": ["string", "null"]
+                }
+              },
+              "required": [
+                "course",
+                "optionId",
+                "dishName",
+                "extraPaise",
+                "jainVersion",
+                "servedAs",
+                "swappedFrom"
+              ]
+            }
+          },
+          "addons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "pricePerGuestPaise": {
+                  "type": "integer"
+                }
+              },
+              "required": ["id", "name", "pricePerGuestPaise"]
+            }
+          },
+          "perGuestPaise": {
+            "type": "integer"
+          },
+          "groceriesSavingPerGuestPaise": {
+            "type": "integer"
+          },
+          "oneOffs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": ["induction"]
+                },
+                "amountPaise": {
+                  "type": "integer"
+                }
+              },
+              "required": ["kind", "amountPaise"]
+            }
+          },
+          "menuTotalPaise": {
+            "type": "integer"
+          },
+          "minimumPaise": {
+            "type": "integer"
+          },
+          "bookable": {
+            "type": "boolean"
+          },
+          "convenienceFeePaise": {
+            "type": "integer"
+          },
+          "convenienceFeeGstPaise": {
+            "type": "integer"
+          },
+          "promo": {
+            "type": ["object", "null"],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "discountPaise": {
+                "type": "integer"
+              }
+            },
+            "required": ["code", "discountPaise"]
+          },
+          "totalPaise": {
+            "type": "integer"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "JAIN_SWAPPED",
+                    "NO_OVEN_ALTERNATIVE",
+                    "INDUCTION_ADDED",
+                    "BELOW_CHEF_MINIMUM"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": ["code", "message"]
+            }
+          }
+        },
         "required": [
-          "refreshToken"
+          "menuId",
+          "chefId",
+          "guests",
+          "foodRule",
+          "groceriesBy",
+          "band",
+          "items",
+          "addons",
+          "perGuestPaise",
+          "groceriesSavingPerGuestPaise",
+          "oneOffs",
+          "menuTotalPaise",
+          "minimumPaise",
+          "bookable",
+          "convenienceFeePaise",
+          "convenienceFeeGstPaise",
+          "promo",
+          "totalPaise",
+          "warnings"
         ]
+      },
+      "QuoteRequest": {
+        "type": "object",
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "guests": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "foodRule": {
+            "type": "string",
+            "enum": ["regular", "jain", "no_onion_garlic"],
+            "default": "regular"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "default": []
+          },
+          "addons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "default": []
+          },
+          "groceriesBy": {
+            "type": "string",
+            "enum": ["chef", "guest"],
+            "default": "chef"
+          },
+          "kitchen": {
+            "type": "object",
+            "properties": {
+              "gas": {
+                "type": "boolean",
+                "default": true
+              },
+              "oven": {
+                "type": "boolean",
+                "default": true
+              },
+              "mixer": {
+                "type": "boolean",
+                "default": true
+              },
+              "fridge": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "default": {
+              "gas": true,
+              "oven": true,
+              "mixer": true,
+              "fridge": true
+            }
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "slot": {
+            "type": "string",
+            "enum": ["lunch", "dinner", "late"]
+          },
+          "promo": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["menuId", "guests"]
       }
     },
     "parameters": {}
@@ -232,9 +465,7 @@
     "/v1/health": {
       "get": {
         "operationId": "getHealth",
-        "tags": [
-          "system"
-        ],
+        "tags": ["system"],
         "responses": {
           "200": {
             "description": "API is up",
@@ -245,14 +476,10 @@
                   "properties": {
                     "ok": {
                       "type": "boolean",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   },
-                  "required": [
-                    "ok"
-                  ]
+                  "required": ["ok"]
                 }
               }
             }
@@ -263,9 +490,7 @@
     "/v1/auth/otp/request": {
       "post": {
         "operationId": "requestOtp",
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Send a login code by SMS or voice call",
         "requestBody": {
           "required": true,
@@ -314,9 +539,7 @@
     "/v1/auth/otp/verify": {
       "post": {
         "operationId": "verifyOtp",
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Check the code and start a session",
         "requestBody": {
           "required": true,
@@ -365,9 +588,7 @@
     "/v1/auth/refresh": {
       "post": {
         "operationId": "refreshSession",
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Swap a refresh token for a new pair; the old one stops working",
         "requestBody": {
           "required": true,
@@ -406,9 +627,7 @@
     "/v1/auth/logout": {
       "post": {
         "operationId": "logout",
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "security": [
           {
             "bearer": []
@@ -420,6 +639,55 @@
           },
           "401": {
             "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/quotes": {
+      "post": {
+        "operationId": "createQuote",
+        "tags": ["menus"],
+        "summary": "Price a menu choice on the server (G22, G08, G09)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Price breakdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Menu not found or not live",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Guests out of range, food rule not offered or promo invalid",
             "content": {
               "application/problem+json": {
                 "schema": {

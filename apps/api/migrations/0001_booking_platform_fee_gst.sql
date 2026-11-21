@@ -1,0 +1,1 @@
+ALTER TABLE `bookings` ADD `platform_fee_gst_paise` integer DEFAULT 0 NOT NULL;

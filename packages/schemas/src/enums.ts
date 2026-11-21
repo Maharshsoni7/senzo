@@ -32,8 +32,11 @@ export const FoodType = z.enum(['veg', 'jain', 'vegan', 'egg', 'non_veg']);
 export const ReviewStatus = z.enum(['pending', 'approved', 'rejected']);
 export const MenuKind = z.enum(['event', 'meal_prep']);
 export const JainFlag = z.enum(['ok', 'jain_version', 'not_jain']);
+export type JainFlag = z.infer<typeof JainFlag>;
 export const FoodRule = z.enum(['regular', 'jain', 'no_onion_garlic']);
+export type FoodRule = z.infer<typeof FoodRule>;
 export const GroceriesBy = z.enum(['chef', 'guest']);
+export type GroceriesBy = z.infer<typeof GroceriesBy>;
 
 export const BudgetTier = z.enum(['simple', 'special', 'premium']);
 export const MenuRequestStatus = z.enum(['open', 'closed', 'booked', 'expired']);
@@ -53,8 +56,10 @@ export const BookingState = z.enum([
   'refunded',
   'expired',
 ]);
+export type BookingState = z.infer<typeof BookingState>;
 export const BookingSubStatus = z.enum(['on_the_way', 'awaiting_finish', 'possible_no_show']);
 export const Actor = z.enum(['guest', 'chef', 'system', 'admin']);
+export type Actor = z.infer<typeof Actor>;
 export const JobOtpKind = z.enum(['start', 'finish']);
 export const JobCheckKind = z.enum(['arrival', 'door_wait', 'call']);
 

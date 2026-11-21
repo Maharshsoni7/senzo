@@ -1,4 +1,6 @@
 // Demo data from the approved mockups (G04, G07, G22, C05, C08, C09). Prices in paise.
+import { percentOf } from '@senzo/schemas';
+import { FEES } from '../src/config/fees';
 import type { schema } from '../src/db';
 
 type Insert<T extends { $inferInsert: unknown }> = T['$inferInsert'];
@@ -388,8 +390,20 @@ export const foodProfiles: Insert<S['foodProfiles']>[] = [
 const convenienceFeePaise = rupees(149);
 const feeGstPaise = rupees(27);
 
-const sz1042Menu = 6 * rupees(1800);
-const sz1048Menu = 10 * (rupees(2300) + rupees(120));
+/** Same split as the quote engine; the mockup's ₹9,180 for SZ-1042 predates the Q2 default. */
+function split(menuTotalPaise: number) {
+  const platformFeePaise = percentOf(menuTotalPaise, FEES.platformFeeBps);
+  const platformFeeGstPaise = percentOf(platformFeePaise, FEES.platformFeeGstBps);
+  return {
+    menuTotalPaise,
+    convenienceFeePaise,
+    feeGstPaise,
+    totalPaise: menuTotalPaise + convenienceFeePaise + feeGstPaise,
+    platformFeePaise,
+    platformFeeGstPaise,
+    chefSharePaise: menuTotalPaise - platformFeePaise - platformFeeGstPaise,
+  };
+}
 
 export const bookings: Insert<S['bookings']>[] = [
   {
@@ -406,12 +420,7 @@ export const bookings: Insert<S['bookings']>[] = [
     groceriesBy: 'chef',
     state: 'paid_out',
     priceSnapshot: { menu: 'Gujarati Classic', band: '5–10', perGuestPaise: rupees(1800) },
-    menuTotalPaise: sz1042Menu,
-    convenienceFeePaise,
-    feeGstPaise,
-    totalPaise: sz1042Menu + convenienceFeePaise + feeGstPaise,
-    platformFeePaise: (sz1042Menu * 15) / 100,
-    chefSharePaise: (sz1042Menu * 85) / 100,
+    ...split(6 * rupees(1800)),
     allergiesAckAt: at('2026-11-04T06:00:00Z'),
     acceptedAt: at('2026-11-04T06:00:00Z'),
     startedAt: at('2026-11-07T12:05:00Z'),
@@ -438,12 +447,7 @@ export const bookings: Insert<S['bookings']>[] = [
       perGuestPaise: rupees(2300),
       addons: ['Live jalebi counter'],
     },
-    menuTotalPaise: sz1048Menu,
-    convenienceFeePaise,
-    feeGstPaise,
-    totalPaise: sz1048Menu + convenienceFeePaise + feeGstPaise,
-    platformFeePaise: (sz1048Menu * 15) / 100,
-    chefSharePaise: (sz1048Menu * 85) / 100,
+    ...split(10 * (rupees(2300) + rupees(120))),
   },
 ];
 

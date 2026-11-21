@@ -78,7 +78,7 @@ One D1 database per environment (dev, staging, prod), APAC location hint. Schema
 
 | Table | Key columns | Notes |
 | --- | --- | --- |
-| `bookings` | id, code (`SZ-`), guest_id, chef_id, menu_id, proposal_id, address_id, date, slot, guests, food_rule, groceries_by, state, sub_status (`on_the_way`,`awaiting_finish`,`possible_no_show`), eta_minutes, price_snapshot (JSON), menu_total_paise, convenience_fee_paise, fee_gst_paise, promo_code, promo_paise, wallet_paise, total_paise, platform_fee_paise, chef_share_paise, allergies_ack_at, accepted_at, started_at, done_at, completed_at, paid_out_at, cancelled_by, cancel_reason, rescheduled_from | Unique partial index below |
+| `bookings` | id, code (`SZ-`), guest_id, chef_id, menu_id, proposal_id, address_id, date, slot, guests, food_rule, groceries_by, state, sub_status (`on_the_way`,`awaiting_finish`,`possible_no_show`), eta_minutes, price_snapshot (JSON), menu_total_paise, convenience_fee_paise, fee_gst_paise, promo_code, promo_paise, wallet_paise, total_paise, platform_fee_paise, platform_fee_gst_paise, chef_share_paise (= menu_total − platform fee − its GST), allergies_ack_at, accepted_at, started_at, done_at, completed_at, paid_out_at, cancelled_by, cancel_reason, rescheduled_from | Unique partial index below |
 | `booking_items` | booking_id, course, dish_name, extra_paise, is_addon, per_guest | Exact dishes the guest chose |
 | `booking_events` | id, booking_id, from_state, to_state, actor (`guest`,`chef`,`system`,`admin`), actor_id, reason, at | Append-only |
 | `job_otps` | booking_id, kind (`start`,`finish`), code_hash, attempts, valid_from, valid_to, used_at | 5 tries |

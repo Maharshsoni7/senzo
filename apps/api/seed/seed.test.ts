@@ -25,7 +25,8 @@ describe('seed', () => {
     expect(b).toMatchObject({
       menuTotalPaise: 1_080_000,
       platformFeePaise: 162_000,
-      chefSharePaise: 918_000,
+      platformFeeGstPaise: 29_160,
+      chefSharePaise: 888_840,
       totalPaise: 1_097_600,
       state: 'paid_out',
     });

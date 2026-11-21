@@ -18,6 +18,9 @@ export const ErrorCode = z.enum([
   'POLICY_WINDOW_CLOSED',
   'TURNSTILE_FAILED',
   'SESSION_REVOKED',
+  'FOOD_RULE_UNAVAILABLE',
+  'GUESTS_OUT_OF_RANGE',
+  'PROMO_INVALID',
 ]);
 export type ErrorCode = z.infer<typeof ErrorCode>;
 

@@ -29,6 +29,9 @@ export const ProblemCode = {
   POLICY_WINDOW_CLOSED: 'POLICY_WINDOW_CLOSED',
   TURNSTILE_FAILED: 'TURNSTILE_FAILED',
   SESSION_REVOKED: 'SESSION_REVOKED',
+  FOOD_RULE_UNAVAILABLE: 'FOOD_RULE_UNAVAILABLE',
+  GUESTS_OUT_OF_RANGE: 'GUESTS_OUT_OF_RANGE',
+  PROMO_INVALID: 'PROMO_INVALID',
 } as const;
 
 export type ProblemFields = { [key: string]: string[] };
@@ -112,6 +115,154 @@ export interface TokenPair {
 export interface RefreshRequest {
   /** @minLength 1 */
   refreshToken: string;
+}
+
+export type QuoteFoodRule = (typeof QuoteFoodRule)[keyof typeof QuoteFoodRule];
+
+export const QuoteFoodRule = {
+  regular: 'regular',
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export type QuoteGroceriesBy = (typeof QuoteGroceriesBy)[keyof typeof QuoteGroceriesBy];
+
+export const QuoteGroceriesBy = {
+  chef: 'chef',
+  guest: 'guest',
+} as const;
+
+export type QuoteBand = {
+  minGuests: number;
+  maxGuests: number;
+  pricePerGuestPaise: number;
+};
+
+export type QuoteItemsItem = {
+  course: string;
+  optionId: string;
+  dishName: string;
+  extraPaise: number;
+  jainVersion: boolean;
+  /** @nullable */
+  servedAs: string | null;
+  /** @nullable */
+  swappedFrom: string | null;
+};
+
+export type QuoteAddonsItem = {
+  id: string;
+  name: string;
+  pricePerGuestPaise: number;
+};
+
+export type QuoteOneOffsItemKind = (typeof QuoteOneOffsItemKind)[keyof typeof QuoteOneOffsItemKind];
+
+export const QuoteOneOffsItemKind = {
+  induction: 'induction',
+} as const;
+
+export type QuoteOneOffsItem = {
+  kind: QuoteOneOffsItemKind;
+  amountPaise: number;
+};
+
+/**
+ * @nullable
+ */
+export type QuotePromo = {
+  code: string;
+  discountPaise: number;
+} | null;
+
+export type QuoteWarningsItemCode =
+  (typeof QuoteWarningsItemCode)[keyof typeof QuoteWarningsItemCode];
+
+export const QuoteWarningsItemCode = {
+  JAIN_SWAPPED: 'JAIN_SWAPPED',
+  NO_OVEN_ALTERNATIVE: 'NO_OVEN_ALTERNATIVE',
+  INDUCTION_ADDED: 'INDUCTION_ADDED',
+  BELOW_CHEF_MINIMUM: 'BELOW_CHEF_MINIMUM',
+} as const;
+
+export type QuoteWarningsItem = {
+  code: QuoteWarningsItemCode;
+  message: string;
+};
+
+export interface Quote {
+  menuId: string;
+  chefId: string;
+  guests: number;
+  foodRule: QuoteFoodRule;
+  groceriesBy: QuoteGroceriesBy;
+  band: QuoteBand;
+  items: QuoteItemsItem[];
+  addons: QuoteAddonsItem[];
+  perGuestPaise: number;
+  groceriesSavingPerGuestPaise: number;
+  oneOffs: QuoteOneOffsItem[];
+  menuTotalPaise: number;
+  minimumPaise: number;
+  bookable: boolean;
+  convenienceFeePaise: number;
+  convenienceFeeGstPaise: number;
+  /** @nullable */
+  promo: QuotePromo;
+  totalPaise: number;
+  warnings: QuoteWarningsItem[];
+}
+
+export type QuoteRequestFoodRule = (typeof QuoteRequestFoodRule)[keyof typeof QuoteRequestFoodRule];
+
+export const QuoteRequestFoodRule = {
+  regular: 'regular',
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export type QuoteRequestGroceriesBy =
+  (typeof QuoteRequestGroceriesBy)[keyof typeof QuoteRequestGroceriesBy];
+
+export const QuoteRequestGroceriesBy = {
+  chef: 'chef',
+  guest: 'guest',
+} as const;
+
+export type QuoteRequestKitchen = {
+  gas?: boolean;
+  oven?: boolean;
+  mixer?: boolean;
+  fridge?: boolean;
+};
+
+export type QuoteRequestSlot = (typeof QuoteRequestSlot)[keyof typeof QuoteRequestSlot];
+
+export const QuoteRequestSlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export interface QuoteRequest {
+  /** @minLength 1 */
+  menuId: string;
+  /**
+   * @minimum 1
+   * @maximum 100
+   */
+  guests: number;
+  foodRule?: QuoteRequestFoodRule;
+  /** @maxItems 20 */
+  options?: string[];
+  /** @maxItems 20 */
+  addons?: string[];
+  groceriesBy?: QuoteRequestGroceriesBy;
+  kitchen?: QuoteRequestKitchen;
+  date?: string;
+  slot?: QuoteRequestSlot;
+  /** @minLength 1 */
+  promo?: string;
 }
 
 export type GetHealth200 = {
@@ -225,5 +376,24 @@ export const logout = async (options?: Parameters<typeof senzoFetch>[1]): Promis
   return senzoFetch<void>(getLogoutUrl(), {
     ...options,
     method: 'POST',
+  });
+};
+
+export const getCreateQuoteUrl = () => {
+  return `/v1/quotes`;
+};
+
+/**
+ * @summary Price a menu choice on the server (G22, G08, G09)
+ */
+export const createQuote = async (
+  quoteRequest: QuoteRequest,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<Quote> => {
+  return senzoFetch<Quote>(getCreateQuoteUrl(), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(quoteRequest),
   });
 };

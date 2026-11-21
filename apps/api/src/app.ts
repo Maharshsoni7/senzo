@@ -4,6 +4,7 @@ import { AppError, problem } from './lib/errors';
 import { log } from './lib/log';
 import { createRouter } from './lib/router';
 import { authRoutes } from './modules/auth/routes';
+import { quoteRoutes } from './modules/quotes/routes';
 
 export const OPENAPI_CONFIG = {
   openapi: '3.1.0',
@@ -42,6 +43,7 @@ export function createApp() {
   );
 
   app.route('/v1/auth', authRoutes);
+  app.route('/v1/quotes', quoteRoutes);
 
   app.openAPIRegistry.registerComponent('securitySchemes', 'bearer', {
     type: 'http',

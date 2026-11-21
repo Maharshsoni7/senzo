@@ -10,7 +10,7 @@ Last updated: 21 Nov 2026
 | --- | --- | --- |
 | 0 · Setup and decisions | 0–1 | 🟡 |
 | 1 · Foundation (monorepo, schemas, API skeleton, DB, CI) | 1–3 | 🟡 |
-| 2 · Core domain (quotes, booking state machine, ledger, Razorpay, timers) | 3–6 | ⬜ |
+| 2 · Core domain (quotes, booking state machine, ledger, Razorpay, timers) | 3–6 | 🟡 |
 | 3 · One booking end to end (guest + chef happy path) | 5–10 | ⬜ |
 | 4 · Breadth (chat, calls, menu requests, cancel, reports, notifications, earnings) | 10–13 | ⬜ |
 | 5 · Web + admin | 11–14 | ⬜ |
@@ -45,6 +45,17 @@ Last updated: 21 Nov 2026
 - ⬜ Bundle IDs / EAS project (needs domain decision)
 - ⬜ `apps/web`, `apps/admin` (Phase 5)
 - ✅ `CLAUDE.md` → Commands updated to real scripts
+
+## Phase 2 · Core domain
+
+- ✅ Price engine `apps/api/src/modules/quotes/engine.ts` (bands, upgrades, add-ons, grocery saving, Jain auto-swap, no-oven alternative, induction, chef minimum, promo, fees) + `POST /v1/quotes`; fee constants in `apps/api/src/config/fees.ts`
+- ✅ `bookings.platform_fee_gst_paise` (migration 0001) — Q2 default deducts 18% GST on the fee from the chef
+- ⬜ Cancellation policy (one function for G16 quote + refund)
+- ⬜ Ledger (balanced postings)
+- ⬜ Booking state machine `bookings.transition()`
+- ⬜ Create booking + soft lock + Razorpay order (test mode) + webhooks
+- ⬜ Workflows timers (accept 2 h, reminders, auto-complete, payout release)
+- ⬜ Availability check in quotes / booking (G08)
 
 ## Open decisions
 

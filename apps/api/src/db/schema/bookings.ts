@@ -60,6 +60,7 @@ export const bookings = sqliteTable(
     walletPaise: integer('wallet_paise').notNull().default(0),
     totalPaise: integer('total_paise').notNull(),
     platformFeePaise: integer('platform_fee_paise').notNull(),
+    platformFeeGstPaise: integer('platform_fee_gst_paise').notNull().default(0),
     chefSharePaise: integer('chef_share_paise').notNull(),
     allergiesAckAt: integer('allergies_ack_at'),
     acceptedAt: integer('accepted_at'),
