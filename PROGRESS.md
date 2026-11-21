@@ -65,6 +65,74 @@ Last updated: 21 Nov 2026
 - ✅ Discovery API: `GET /v1/chefs` (rail + search: area radius, text + synonyms, Jain/NOG, cuisine, group size, date+slot; ranked by distance, rating, acceptance, reply time), `/v1/chefs/:slug` (verified proofs only), `/:id/menus`, `/:id/reviews` (paged, "Rahul D.")
 - ⬜ FTS5 search index, `addressId` filter, ChefFig look
 
+## Screens (all 46 mockup screens + web)
+
+API: ✅ ready · 🟡 partly · ⬜ not built. 💳 = needs payments (built last). Last column tracks the app UI.
+
+### Guest app — Senzo (24)
+
+| ID | Screen | Phase | API | UI |
+| --- | --- | --- | --- | --- |
+| G01 | Welcome | 3 | — | ⬜ |
+| G02 | Login (phone) | 3 | ✅ otp/request | ⬜ |
+| G03 | Verify OTP | 3 | ✅ otp/verify | ⬜ |
+| G04 | Home · chef rail | 3 | ✅ GET /chefs | ⬜ |
+| G05 | Search | 3 | ✅ GET /chefs?q= | ⬜ |
+| G06 | Filters | 3 | ✅ GET /chefs (rule, cuisine, guests, date+slot) | ⬜ |
+| G07 | Chef profile | 3 | ✅ /chefs/:slug, /menus, /reviews | ⬜ |
+| G22 | Menu detail · Jain, add-ons, groceries | 3 | ✅ POST /quotes | ⬜ |
+| G08 | Check availability | 3 | ✅ /availability, /quotes | ⬜ |
+| G09 | Checkout & pay 💳 | last | ⬜ POST /bookings + Razorpay | ⬜ |
+| G10 | Booked + start OTP 💳 | last | ⬜ | ⬜ |
+| G11 | My bookings | 3 | ⬜ GET /bookings | ⬜ |
+| G12 | Live booking + finish OTP | 3 | ⬜ GET /bookings/:id, WS | ⬜ |
+| G13 | Rate & tip (tip 💳) | 4 | ⬜ review, tip | ⬜ |
+| G14 | Account + allergies | 4 | ⬜ /me, food-profile, wallet | ⬜ |
+| G15 | Chat + proposed menu | 4 | ⬜ threads, WS | ⬜ |
+| G16 | Cancel / reschedule (refund 💳) | 4 | 🟡 policy built; routes ⬜ | ⬜ |
+| G17 | Chef declined · refunded | 4 | 🟡 timer built; routes ⬜ | ⬜ |
+| G18 | Add address (no map) | 4 | ⬜ /places, /me/addresses | ⬜ |
+| G19 | Report a problem + SOS | 4 | ⬜ reports, sos | ⬜ |
+| G20 | Notifications | 4 | ⬜ /me/notifications | ⬜ |
+| G21 | Invoice 💳 | last | ⬜ | ⬜ |
+| G23 | Plan my event · get menus | 4 | ⬜ /menu-requests | ⬜ |
+| G24 | Menus from 3 chefs | 4 | ⬜ /menu-requests/:id, proposals | ⬜ |
+
+### Chef app — Senzo Partner (22)
+
+| ID | Screen | Phase | API | UI |
+| --- | --- | --- | --- | --- |
+| C11 | Chef login | 3 | ✅ otp/* | ⬜ |
+| C01 | Onboarding · profile | 3 | ⬜ /partner/profile, uploads | ⬜ |
+| C02 | KYC & bank (bank 💳) | 3 | ⬜ /partner/kyc, bank | ⬜ |
+| C03 | Specialties & price | 3 | ⬜ /partner/dishes, go-live | ⬜ |
+| C04 | Chef home | 3 | ⬜ /partner/bookings | ⬜ |
+| C05 | Booking request + allergy check | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
+| C13 | I'm on my way (no map) | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
+| C06 | Arrive · start OTP | 3 | 🟡 state machine built; OTP + routes ⬜ | ⬜ |
+| C07 | Cooking in progress | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
+| C08 | Finish OTP · payout | 3 | 🟡 state machine + timers built; routes ⬜ | ⬜ |
+| C09 | Earnings & withdraw 💳 | last | 🟡 ledger built | ⬜ |
+| C10 | Availability calendar | 4 | 🟡 read built; PUT /partner/availability ⬜ | ⬜ |
+| C12 | Edit profile + bank (bank 💳) | 4 | ⬜ | ⬜ |
+| C14 | Guest not responding | 4 | 🟡 state machine built; routes ⬜ | ⬜ |
+| C15 | Rate the guest | 4 | ⬜ | ⬜ |
+| C16 | Past jobs | 4 | ⬜ | ⬜ |
+| C17 | Payout failed 💳 | last | ⬜ | ⬜ |
+| C18 | Tax statements 💳 | last | ⬜ | ⬜ |
+| C19 | Pause / delete account | 4 | ⬜ | ⬜ |
+| C20 | Set menus | 4 | ⬜ /partner/menus | ⬜ |
+| C21 | Reply to menu request | 4 | ⬜ | ⬜ |
+| C22 | Experience & proof | 4 | ⬜ | ⬜ |
+
+### Web and admin (Phase 5)
+
+| Screen | API | UI |
+| --- | --- | --- |
+| Main · browse & book chefs (web) | ✅ discovery; booking 💳 | ⬜ |
+| ChefSignup (web) | ⬜ uploads | ⬜ |
+| Admin panel (no mockup yet) | ⬜ | ⬜ |
+
 ## Open decisions
 
 | # | Question | Status |

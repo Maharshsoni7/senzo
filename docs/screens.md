@@ -12,6 +12,8 @@ Every data screen needs four states: **loading** (skeleton), **empty**, **error*
 | G02 | Login (phone) | `app/(auth)/login.tsx` | `POST /auth/otp/request` | Auth |
 | G03 | Verify OTP | `app/(auth)/verify.tsx` | `POST /auth/otp/verify` | Auth |
 | G04 | Home · chef rail + search | `app/(tabs)/index.tsx` | `GET /chefs` | Discovery |
+| G05 | Search results | `app/search.tsx` | `GET /chefs?q=` | Discovery |
+| G06 | Filters | `app/search/filters.tsx` (sheet) | `GET /chefs?rule=&cuisine=&guests=&date=&slot=` | Discovery |
 | G07 | Chef profile + experience | `app/chef/[slug]/index.tsx` | `GET /chefs/:slug`, `/menus`, `/reviews` | Discovery |
 | G22 | Set menu · Jain, add dishes, groceries | `app/chef/[slug]/menu/[menuId].tsx` | `POST /quotes` | Menus |
 | G08 | Check availability | `app/book/when.tsx` | `GET /chefs/:id/availability`, `POST /quotes` | Bookings |
