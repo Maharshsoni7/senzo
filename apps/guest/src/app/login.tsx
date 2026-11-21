@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { authErrorMessage } from '../../features/auth/errors';
-import { turnstileToken } from '../../lib/api';
+import { authErrorMessage } from '../features/auth/errors';
+import { turnstileToken } from '../lib/api';
 
 // G02. Google/Apple sign-in in the mockup isn't in the spec (E1 is phone OTP only).
 export default function Login() {

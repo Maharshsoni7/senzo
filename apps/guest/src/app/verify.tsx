@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { authErrorMessage } from '../../features/auth/errors';
-import { turnstileToken } from '../../lib/api';
-import { signIn } from '../../lib/session';
+import { authErrorMessage } from '../features/auth/errors';
+import { turnstileToken } from '../lib/api';
+import { signIn } from '../lib/session';
 
 const LENGTH = 6;
 

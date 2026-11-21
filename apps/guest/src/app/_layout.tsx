@@ -65,7 +65,9 @@ export default function RootLayout() {
             <Stack.Screen name="book/when" />
           </Stack.Protected>
           <Stack.Protected guard={status === 'signedOut'}>
-            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="welcome" />
+            <Stack.Screen name="login" />
+            <Stack.Screen name="verify" />
           </Stack.Protected>
         </Stack>
       </QueryProvider>

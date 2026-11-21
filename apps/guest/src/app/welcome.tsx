@@ -47,7 +47,7 @@ export default function Welcome() {
         {t('welcome.kicker')}
       </Text>
       <Image
-        source={require('../../../assets/images/logo-on-dark.png')}
+        source={require('../../assets/images/logo-on-dark.png')}
         style={styles.logo}
         contentFit="contain"
         accessibilityLabel="Senzo"
