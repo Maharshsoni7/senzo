@@ -42,7 +42,8 @@ const ARRIVAL_BEFORE_SLOT = 2 * HOUR;
 const NO_SHOW_WAIT = 30 * 60_000;
 const ON_MY_WAY_WINDOW = 4 * HOUR;
 
-const arrivalAt = (b: BookingForMachine) => slotStartsAt(b.date, b.slot) - ARRIVAL_BEFORE_SLOT;
+export const arrivalAt = (b: Pick<BookingForMachine, 'date' | 'slot'>) =>
+  slotStartsAt(b.date, b.slot) - ARRIVAL_BEFORE_SLOT;
 
 const RULES: Record<BookingEvent['type'], Rule> = {
   payment_captured: {

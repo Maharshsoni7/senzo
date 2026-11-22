@@ -57,7 +57,7 @@ The price is **snapshotted** on the booking at checkout; later menu edits by the
 | **Menu chat** | Chef can send a proposed-menu card; once the guest accepts, the menu is locked | G15 |
 | **Reminders** | 24 h and 2 h before the slot, to both sides | — |
 | **On my way** | Chef taps it and picks an ETA (15/30/45 min). Guest sees status + ETA only. No map, no live tracking | C13, G12 |
-| **Start OTP** | 4 digits, shown to the guest, typed by the chef at the door; 5 tries; valid only in the booking window. Chef location read once here; > 300 m from the address is flagged, not blocked | G10, C06 |
+| **Start OTP** | 4 digits, shown to the guest, typed by the chef at the door; 5 tries; valid only in the booking window — *provisional:* from 1 h before the arrival time to 1 h after serving time (`JOB_OTP` in `apps/api/src/config/policy.ts`). Chef location read once here; > 300 m from the address is flagged, not blocked | G10, C06 |
 | **Finish OTP** | Created when the chef taps "done"; shown to the guest; typed by the chef | G12, C08 |
 | **Auto-complete** | If the guest never shares the finish OTP, the job completes 2 h after the chef tapped "done", unless the guest opens a report | C08 |
 | **Payout release** | 24 h after completion if no report is open; then paid out in the chef's next daily payout (11 AM) or by "Withdraw now" | C08, C09 |

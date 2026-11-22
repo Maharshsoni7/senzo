@@ -951,6 +951,513 @@
           "price"
         ]
       },
+      "PartnerBookingList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PartnerBookingSummary"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ]
+      },
+      "PartnerBookingSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "payment_pending",
+              "requested",
+              "confirmed",
+              "in_progress",
+              "completed",
+              "paid_out",
+              "declined",
+              "cancelled",
+              "no_show",
+              "disputed",
+              "refunded",
+              "expired"
+            ]
+          },
+          "subStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "on_the_way",
+              "awaiting_finish",
+              "possible_no_show",
+              null
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "slot": {
+            "type": "string",
+            "enum": [
+              "lunch",
+              "dinner",
+              "late"
+            ]
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arriveBy": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "acceptBy": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "guestName": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "menuName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "foodRule": {
+            "type": "string",
+            "enum": [
+              "regular",
+              "jain",
+              "no_onion_garlic"
+            ]
+          },
+          "earningsPaise": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "state",
+          "subStatus",
+          "date",
+          "slot",
+          "startsAt",
+          "arriveBy",
+          "acceptBy",
+          "guests",
+          "guestName",
+          "area",
+          "menuName",
+          "foodRule",
+          "earningsPaise"
+        ]
+      },
+      "PartnerBookingDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "payment_pending",
+              "requested",
+              "confirmed",
+              "in_progress",
+              "completed",
+              "paid_out",
+              "declined",
+              "cancelled",
+              "no_show",
+              "disputed",
+              "refunded",
+              "expired"
+            ]
+          },
+          "subStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "on_the_way",
+              "awaiting_finish",
+              "possible_no_show",
+              null
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "slot": {
+            "type": "string",
+            "enum": [
+              "lunch",
+              "dinner",
+              "late"
+            ]
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arriveBy": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "acceptBy": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "guestName": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "menuName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "foodRule": {
+            "type": "string",
+            "enum": [
+              "regular",
+              "jain",
+              "no_onion_garlic"
+            ]
+          },
+          "earningsPaise": {
+            "type": "integer"
+          },
+          "groceriesBy": {
+            "type": "string",
+            "enum": [
+              "chef",
+              "guest"
+            ]
+          },
+          "etaMinutes": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "allergiesAckAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "startedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "doneAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "course": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "dishName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "course",
+                "dishName"
+              ]
+            }
+          },
+          "foodProfile": {
+            "type": "object",
+            "properties": {
+              "allergies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "jainCount": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "noOnionGarlic": {
+                "type": "boolean"
+              },
+              "notes": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "allergies",
+              "jainCount",
+              "noOnionGarlic",
+              "notes"
+            ]
+          },
+          "kitchen": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "gas": {
+                "type": "boolean"
+              },
+              "oven": {
+                "type": "boolean"
+              },
+              "mixer": {
+                "type": "boolean"
+              },
+              "fridge": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "gas",
+              "oven",
+              "mixer",
+              "fridge"
+            ]
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "unlocked": {
+                "type": "boolean"
+              },
+              "area": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "line1": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "pincode": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "lat": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "lng": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "unlocked",
+              "area",
+              "city",
+              "line1",
+              "pincode",
+              "lat",
+              "lng"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "state",
+          "subStatus",
+          "date",
+          "slot",
+          "startsAt",
+          "arriveBy",
+          "acceptBy",
+          "guests",
+          "guestName",
+          "area",
+          "menuName",
+          "foodRule",
+          "earningsPaise",
+          "groceriesBy",
+          "etaMinutes",
+          "allergiesAckAt",
+          "startedAt",
+          "doneAt",
+          "completedAt",
+          "items",
+          "foodProfile",
+          "kitchen",
+          "address"
+        ]
+      },
+      "AcceptBookingBody": {
+        "type": "object",
+        "properties": {
+          "allergiesAck": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        },
+        "required": [
+          "allergiesAck"
+        ]
+      },
+      "DeclineBookingBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      },
+      "OnMyWayBody": {
+        "type": "object",
+        "properties": {
+          "etaMinutes": {
+            "anyOf": [
+              {
+                "type": "number",
+                "enum": [
+                  15
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  30
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  45
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "etaMinutes"
+        ]
+      },
+      "StartJobBody": {
+        "type": "object",
+        "properties": {
+          "otp": {
+            "type": "string",
+            "pattern": "^\\d{4}$"
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "otp",
+          "lat",
+          "lng"
+        ]
+      },
+      "FinishJobBody": {
+        "type": "object",
+        "properties": {
+          "otp": {
+            "type": "string",
+            "pattern": "^\\d{4}$"
+          }
+        },
+        "required": [
+          "otp"
+        ]
+      },
       "ChefMonthAvailability": {
         "type": "object",
         "properties": {
@@ -1881,6 +2388,706 @@
           },
           "404": {
             "description": "No such booking, or it isn't this guest's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings": {
+      "get": {
+        "operationId": "listPartnerBookings",
+        "summary": "The chef's requests, upcoming jobs or past jobs (C04, C16)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "requests",
+                "upcoming",
+                "past"
+              ],
+              "default": "upcoming"
+            },
+            "required": false,
+            "name": "scope",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bookings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}": {
+      "get": {
+        "operationId": "getPartnerBooking",
+        "summary": "One booking; the street address unlocks after accepting (C05)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/accept": {
+      "post": {
+        "operationId": "acceptBooking",
+        "summary": "Accept a request after reading the allergies (C05)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptBookingBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/decline": {
+      "post": {
+        "operationId": "declineBooking",
+        "summary": "Decline a request; the guest is refunded in full (C05)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeclineBookingBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/on-my-way": {
+      "post": {
+        "operationId": "markOnMyWay",
+        "summary": "Tell the guest you are travelling, with an ETA (C13)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnMyWayBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/start": {
+      "post": {
+        "operationId": "startJob",
+        "summary": "Enter the guest's start code at the door; location is read once (C06)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartJobBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Wrong, early or expired code (OTP_INVALID); detail says tries left",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "Locked after 5 wrong codes (OTP_LOCKED)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/done": {
+      "post": {
+        "operationId": "markJobDone",
+        "summary": "Cooking is done; creates the finish code for the guest (C07)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/bookings/{bookingId}/finish": {
+      "post": {
+        "operationId": "finishJob",
+        "summary": "Enter the guest's finish code; payout is released 24 h later (C08)",
+        "tags": [
+          "partner"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishJobBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The booking after the change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerBookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not a chef account",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this chef's",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Not allowed in the booking’s current state (INVALID_TRANSITION, STATE_CONFLICT)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Wrong, early or expired code (OTP_INVALID); detail says tries left",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "Locked after 5 wrong codes (OTP_LOCKED)",
             "content": {
               "application/problem+json": {
                 "schema": {

@@ -488,6 +488,247 @@ export interface BookingDetail {
   price: BookingDetailPrice;
 }
 
+export type PartnerBookingSummaryState =
+  (typeof PartnerBookingSummaryState)[keyof typeof PartnerBookingSummaryState];
+
+export const PartnerBookingSummaryState = {
+  payment_pending: 'payment_pending',
+  requested: 'requested',
+  confirmed: 'confirmed',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  paid_out: 'paid_out',
+  declined: 'declined',
+  cancelled: 'cancelled',
+  no_show: 'no_show',
+  disputed: 'disputed',
+  refunded: 'refunded',
+  expired: 'expired',
+} as const;
+
+/**
+ * @nullable
+ */
+export type PartnerBookingSummarySubStatus =
+  (typeof PartnerBookingSummarySubStatus)[keyof typeof PartnerBookingSummarySubStatus] | null;
+
+export const PartnerBookingSummarySubStatus = {
+  on_the_way: 'on_the_way',
+  awaiting_finish: 'awaiting_finish',
+  possible_no_show: 'possible_no_show',
+} as const;
+
+export type PartnerBookingSummarySlot =
+  (typeof PartnerBookingSummarySlot)[keyof typeof PartnerBookingSummarySlot];
+
+export const PartnerBookingSummarySlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export type PartnerBookingSummaryFoodRule =
+  (typeof PartnerBookingSummaryFoodRule)[keyof typeof PartnerBookingSummaryFoodRule];
+
+export const PartnerBookingSummaryFoodRule = {
+  regular: 'regular',
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export interface PartnerBookingSummary {
+  id: string;
+  code: string;
+  state: PartnerBookingSummaryState;
+  /** @nullable */
+  subStatus: PartnerBookingSummarySubStatus;
+  date: string;
+  slot: PartnerBookingSummarySlot;
+  startsAt: string;
+  arriveBy: string;
+  /** @nullable */
+  acceptBy: string | null;
+  guests: number;
+  guestName: string;
+  area: string;
+  /** @nullable */
+  menuName: string | null;
+  foodRule: PartnerBookingSummaryFoodRule;
+  earningsPaise: number;
+}
+
+export interface PartnerBookingList {
+  items: PartnerBookingSummary[];
+  /** @nullable */
+  nextCursor: string | null;
+}
+
+export type PartnerBookingDetailState =
+  (typeof PartnerBookingDetailState)[keyof typeof PartnerBookingDetailState];
+
+export const PartnerBookingDetailState = {
+  payment_pending: 'payment_pending',
+  requested: 'requested',
+  confirmed: 'confirmed',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  paid_out: 'paid_out',
+  declined: 'declined',
+  cancelled: 'cancelled',
+  no_show: 'no_show',
+  disputed: 'disputed',
+  refunded: 'refunded',
+  expired: 'expired',
+} as const;
+
+/**
+ * @nullable
+ */
+export type PartnerBookingDetailSubStatus =
+  (typeof PartnerBookingDetailSubStatus)[keyof typeof PartnerBookingDetailSubStatus] | null;
+
+export const PartnerBookingDetailSubStatus = {
+  on_the_way: 'on_the_way',
+  awaiting_finish: 'awaiting_finish',
+  possible_no_show: 'possible_no_show',
+} as const;
+
+export type PartnerBookingDetailSlot =
+  (typeof PartnerBookingDetailSlot)[keyof typeof PartnerBookingDetailSlot];
+
+export const PartnerBookingDetailSlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export type PartnerBookingDetailFoodRule =
+  (typeof PartnerBookingDetailFoodRule)[keyof typeof PartnerBookingDetailFoodRule];
+
+export const PartnerBookingDetailFoodRule = {
+  regular: 'regular',
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export type PartnerBookingDetailGroceriesBy =
+  (typeof PartnerBookingDetailGroceriesBy)[keyof typeof PartnerBookingDetailGroceriesBy];
+
+export const PartnerBookingDetailGroceriesBy = {
+  chef: 'chef',
+  guest: 'guest',
+} as const;
+
+export type PartnerBookingDetailItemsItem = {
+  /** @nullable */
+  course: string | null;
+  dishName: string;
+};
+
+export type PartnerBookingDetailFoodProfile = {
+  allergies: string[];
+  /** @nullable */
+  jainCount: number | null;
+  noOnionGarlic: boolean;
+  /** @nullable */
+  notes: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type PartnerBookingDetailKitchen = {
+  gas: boolean;
+  oven: boolean;
+  mixer: boolean;
+  fridge: boolean;
+} | null;
+
+export type PartnerBookingDetailAddress = {
+  unlocked: boolean;
+  area: string;
+  city: string;
+  /** @nullable */
+  line1: string | null;
+  /** @nullable */
+  pincode: string | null;
+  /** @nullable */
+  lat: number | null;
+  /** @nullable */
+  lng: number | null;
+};
+
+export interface PartnerBookingDetail {
+  id: string;
+  code: string;
+  state: PartnerBookingDetailState;
+  /** @nullable */
+  subStatus: PartnerBookingDetailSubStatus;
+  date: string;
+  slot: PartnerBookingDetailSlot;
+  startsAt: string;
+  arriveBy: string;
+  /** @nullable */
+  acceptBy: string | null;
+  guests: number;
+  guestName: string;
+  area: string;
+  /** @nullable */
+  menuName: string | null;
+  foodRule: PartnerBookingDetailFoodRule;
+  earningsPaise: number;
+  groceriesBy: PartnerBookingDetailGroceriesBy;
+  /** @nullable */
+  etaMinutes: number | null;
+  /** @nullable */
+  allergiesAckAt: string | null;
+  /** @nullable */
+  startedAt: string | null;
+  /** @nullable */
+  doneAt: string | null;
+  /** @nullable */
+  completedAt: string | null;
+  items: PartnerBookingDetailItemsItem[];
+  foodProfile: PartnerBookingDetailFoodProfile;
+  /** @nullable */
+  kitchen: PartnerBookingDetailKitchen;
+  address: PartnerBookingDetailAddress;
+}
+
+export interface AcceptBookingBody {
+  allergiesAck: true;
+}
+
+export interface DeclineBookingBody {
+  /** @maxLength 200 */
+  reason?: string;
+}
+
+export const OnMyWayBodyEtaMinutes = { NUMBER_15: 15, NUMBER_30: 30, NUMBER_45: 45 } as const;
+export interface OnMyWayBody {
+  etaMinutes: (typeof OnMyWayBodyEtaMinutes)[keyof typeof OnMyWayBodyEtaMinutes];
+}
+
+export interface StartJobBody {
+  /** @pattern ^\d{4}$ */
+  otp: string;
+  /**
+   * @minimum -90
+   * @maximum 90
+   */
+  lat: number;
+  /**
+   * @minimum -180
+   * @maximum 180
+   */
+  lng: number;
+}
+
+export interface FinishJobBody {
+  /** @pattern ^\d{4}$ */
+  otp: string;
+}
+
 export type ChefMonthAvailabilityDaysItemSlotsLunch =
   (typeof ChefMonthAvailabilityDaysItemSlotsLunch)[keyof typeof ChefMonthAvailabilityDaysItemSlotsLunch];
 
@@ -723,6 +964,25 @@ export const ListMyBookingsScope = {
   past: 'past',
 } as const;
 
+export type ListPartnerBookingsParams = {
+  scope?: ListPartnerBookingsScope;
+  cursor?: string;
+  /**
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+};
+
+export type ListPartnerBookingsScope =
+  (typeof ListPartnerBookingsScope)[keyof typeof ListPartnerBookingsScope];
+
+export const ListPartnerBookingsScope = {
+  requests: 'requests',
+  upcoming: 'upcoming',
+  past: 'past',
+} as const;
+
 export type GetChefAvailabilityParams = {
   /** @pattern ^\d{4}-(0[1-9]|1[0-2])$ */
   month: string;
@@ -954,6 +1214,169 @@ export const getMyBooking = async (
   return senzoFetch<BookingDetail>(getGetMyBookingUrl(bookingId), {
     ...options,
     method: 'GET',
+  });
+};
+
+export const getListPartnerBookingsUrl = (params?: ListPartnerBookingsParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value));
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0
+    ? `/v1/partner/bookings?${stringifiedParams}`
+    : `/v1/partner/bookings`;
+};
+
+/**
+ * @summary The chef's requests, upcoming jobs or past jobs (C04, C16)
+ */
+export const listPartnerBookings = async (
+  params?: ListPartnerBookingsParams,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingList> => {
+  return senzoFetch<PartnerBookingList>(getListPartnerBookingsUrl(params), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getGetPartnerBookingUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}`;
+};
+
+/**
+ * @summary One booking; the street address unlocks after accepting (C05)
+ */
+export const getPartnerBooking = async (
+  bookingId: string,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getGetPartnerBookingUrl(bookingId), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getAcceptBookingUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/accept`;
+};
+
+/**
+ * @summary Accept a request after reading the allergies (C05)
+ */
+export const acceptBooking = async (
+  bookingId: string,
+  acceptBookingBody: AcceptBookingBody,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getAcceptBookingUrl(bookingId), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(acceptBookingBody),
+  });
+};
+
+export const getDeclineBookingUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/decline`;
+};
+
+/**
+ * @summary Decline a request; the guest is refunded in full (C05)
+ */
+export const declineBooking = async (
+  bookingId: string,
+  declineBookingBody: DeclineBookingBody,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getDeclineBookingUrl(bookingId), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(declineBookingBody),
+  });
+};
+
+export const getMarkOnMyWayUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/on-my-way`;
+};
+
+/**
+ * @summary Tell the guest you are travelling, with an ETA (C13)
+ */
+export const markOnMyWay = async (
+  bookingId: string,
+  onMyWayBody: OnMyWayBody,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getMarkOnMyWayUrl(bookingId), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(onMyWayBody),
+  });
+};
+
+export const getStartJobUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/start`;
+};
+
+/**
+ * @summary Enter the guest's start code at the door; location is read once (C06)
+ */
+export const startJob = async (
+  bookingId: string,
+  startJobBody: StartJobBody,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getStartJobUrl(bookingId), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(startJobBody),
+  });
+};
+
+export const getMarkJobDoneUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/done`;
+};
+
+/**
+ * @summary Cooking is done; creates the finish code for the guest (C07)
+ */
+export const markJobDone = async (
+  bookingId: string,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getMarkJobDoneUrl(bookingId), {
+    ...options,
+    method: 'POST',
+  });
+};
+
+export const getFinishJobUrl = (bookingId: string) => {
+  return `/v1/partner/bookings/${bookingId}/finish`;
+};
+
+/**
+ * @summary Enter the guest's finish code; payout is released 24 h later (C08)
+ */
+export const finishJob = async (
+  bookingId: string,
+  finishJobBody: FinishJobBody,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<PartnerBookingDetail> => {
+  return senzoFetch<PartnerBookingDetail>(getFinishJobUrl(bookingId), {
+    ...options,
+    method: 'POST',
+    headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
+    body: JSON.stringify(finishJobBody),
   });
 };
 

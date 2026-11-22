@@ -492,6 +492,23 @@ export const bookings: Insert<S['bookings']>[] = [
     cancelledBy: 'system',
     cancelReason: 'No answer in 2 hours',
   },
+  // C05 demo for Ananya: a fresh request from Krupa, who has a peanut allergy.
+  {
+    id: 'bk_sz1052',
+    code: 'SZ-1052',
+    guestId: 'usr_krupa',
+    chefId: 'chef_ananya',
+    menuId: 'menu_gujarati_classic',
+    addressId: 'addr_krupa_home',
+    date: '2026-12-20',
+    slot: 'lunch',
+    guests: 8,
+    foodRule: 'jain',
+    groceriesBy: 'chef',
+    state: 'requested',
+    priceSnapshot: { menu: 'Gujarati Classic', band: '5–10', perGuestPaise: rupees(1800) },
+    ...split(8 * rupees(1800)),
+  },
 ];
 
 export const bookingItems: Insert<S['bookingItems']>[] = (
@@ -552,6 +569,8 @@ export const bookingEvents: Insert<S['bookingEvents']>[] = [
       ['bk_sz1050', null, 'payment_pending', 'guest', '2026-11-21T05:00:00Z'],
       ['bk_sz1050', 'payment_pending', 'requested', 'system', '2026-11-21T05:01:00Z'],
       ['bk_sz1050', 'requested', 'declined', 'system', '2026-11-21T07:01:00Z'],
+      ['bk_sz1052', null, 'payment_pending', 'guest', '2026-11-22T04:00:00Z'],
+      ['bk_sz1052', 'payment_pending', 'requested', 'system', '2026-11-22T04:01:00Z'],
     ] as const
   ).map(([bookingId, fromState, toState, actor, when], i) => ({
     id: `evt_${bookingId.slice(3)}_${i}`,

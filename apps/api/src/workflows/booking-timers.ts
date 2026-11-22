@@ -15,16 +15,15 @@ import {
   releasePayout,
   sendReminder,
 } from '../modules/bookings/timers';
+import { JOB_DONE, PAYMENT_CAPTURED, type BookingTimerParams } from '../modules/bookings/signals';
 
-export type BookingTimerParams = {
-  bookingId: string;
-  chefId: string;
-  date: string;
-  slot: 'lunch' | 'dinner' | 'late';
-};
-
-export const PAYMENT_CAPTURED = 'payment-captured';
-export const JOB_DONE = 'job-done';
+export {
+  JOB_DONE,
+  PAYMENT_CAPTURED,
+  signalBooking,
+  startBookingTimers,
+  type BookingTimerParams,
+} from '../modules/bookings/signals';
 
 /**
  * One instance per booking, id = booking id, started when checkout begins. Every step
@@ -90,9 +89,3 @@ async function waitOrTimeout(
     return false;
   }
 }
-
-export const startBookingTimers = (env: Bindings, params: BookingTimerParams) =>
-  env.BOOKING_TIMERS.create({ id: params.bookingId, params });
-
-export const signalBooking = async (env: Bindings, bookingId: string, type: string) =>
-  (await env.BOOKING_TIMERS.get(bookingId)).sendEvent({ type, payload: {} });

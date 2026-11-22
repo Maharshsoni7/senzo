@@ -71,7 +71,10 @@ describe('GET /v1/bookings', () => {
   });
 
   it("shows only the caller's bookings", async () => {
-    expect(codes((await get<List>('/v1/bookings', 'usr_krupa')).body)).toEqual(['SZ-1048']);
+    expect(codes((await get<List>('/v1/bookings', 'usr_krupa')).body)).toEqual([
+      'SZ-1048',
+      'SZ-1052',
+    ]);
     expect(codes((await get<List>('/v1/bookings?scope=past', 'usr_krupa')).body)).toEqual([]);
   });
 

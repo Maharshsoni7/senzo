@@ -67,6 +67,9 @@ Last updated: 22 Nov 2026
 - ✅ Guest app slice 1–4: UI kit (`packages/ui`: theme + Archivo/Plex Mono, Text, Button, Chip, Card, states, icons, ChefFig), session in SecureStore with shared refresh, TanStack Query cache (MMKV; memory in Expo Go), i18n en (+ gu/hi copies listed in `_todo`), screens G01–G08 + G22 on the live API, booking draft shared G22 → G08; Android bundle builds; 14 jest-expo tests
 - ✅ G11 + G12: `GET /v1/bookings?scope=upcoming|past` and `GET /v1/bookings/:id` (`modules/bookings/{routes,service,repo,otp}.ts`), guest-only; start/finish codes derived from `OTP_PEPPER` so they can be shown while `job_otps` keeps only a hash. App: My bookings (FlashList, coming up + past) and Live booking (progress, ETA, OTP, details, price), polling every 30 s while live. Seed: Rahul gets SZ-1051 (confirmed, 19 Dec) and SZ-1050 (declined, 13 Dec)
 - ⬜ `/ws/bookings/:id` live socket (replaces polling)
+- ✅ Chef job API (`modules/partner-bookings`, `requireChef`): requests / upcoming / past, detail with address unlock window, accept (allergy tick, live chef), decline, on my way, start (code + one location read, distance stored), done (finish code + Workflow signal), finish. Wrong codes count immediately, 5th locks. Start-code window provisional (1 h before arrival → 1 h after serving). Seed: SZ-1052 request from Krupa to Ananya (20 Dec lunch)
+- ⬜ Chef app screens C11, C04, C05, C13, C06, C07, C08
+- ⬜ Door log + no-show (C14), chef earnings summary on C04
 - ⬜ Turnstile widget in the app (dev API accepts any token)
 - ⬜ KitchenBg and DishArt illustrations; chef preview sheet (G04)
 - ⬜ Gujarati and Hindi translations (`apps/guest/src/i18n/{gu,hi}.json` → `_todo`; run `node src/i18n/sync-locales.mjs` after adding English keys)
@@ -112,18 +115,18 @@ API: ✅ ready · 🟡 partly · ⬜ not built. 💳 = needs payments (built las
 | C01 | Onboarding · profile | 3 | ⬜ /partner/profile, uploads | ⬜ |
 | C02 | KYC & bank (bank 💳) | 3 | ⬜ /partner/kyc, bank | ⬜ |
 | C03 | Specialties & price | 3 | ⬜ /partner/dishes, go-live | ⬜ |
-| C04 | Chef home | 3 | ⬜ /partner/bookings | ⬜ |
-| C05 | Booking request + allergy check | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
-| C13 | I'm on my way (no map) | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
-| C06 | Arrive · start OTP | 3 | 🟡 state machine built; OTP + routes ⬜ | ⬜ |
-| C07 | Cooking in progress | 3 | 🟡 state machine built; routes ⬜ | ⬜ |
-| C08 | Finish OTP · payout | 3 | 🟡 state machine + timers built; routes ⬜ | ⬜ |
+| C04 | Chef home | 3 | ✅ /partner/bookings?scope= (earnings summary ⬜) | ⬜ |
+| C05 | Booking request + allergy check | 3 | ✅ /partner/bookings/:id, accept, decline | ⬜ |
+| C13 | I'm on my way (no map) | 3 | ✅ on-my-way | ⬜ |
+| C06 | Arrive · start OTP | 3 | ✅ start (code + one location read) | ⬜ |
+| C07 | Cooking in progress | 3 | ✅ done | ⬜ |
+| C08 | Finish OTP · payout | 3 | ✅ finish (payout release: timers) | ⬜ |
 | C09 | Earnings & withdraw 💳 | last | 🟡 ledger built | ⬜ |
 | C10 | Availability calendar | 4 | 🟡 read built; PUT /partner/availability ⬜ | ⬜ |
 | C12 | Edit profile + bank (bank 💳) | 4 | ⬜ | ⬜ |
 | C14 | Guest not responding | 4 | 🟡 state machine built; routes ⬜ | ⬜ |
 | C15 | Rate the guest | 4 | ⬜ | ⬜ |
-| C16 | Past jobs | 4 | ⬜ | ⬜ |
+| C16 | Past jobs | 4 | ✅ /partner/bookings?scope=past | ⬜ |
 | C17 | Payout failed 💳 | last | ⬜ | ⬜ |
 | C18 | Tax statements 💳 | last | ⬜ | ⬜ |
 | C19 | Pause / delete account | 4 | ⬜ | ⬜ |
@@ -158,3 +161,4 @@ API: ✅ ready · 🟡 partly · ⬜ not built. 💳 = needs payments (built las
 - **21 Nov 2026** — CI on GitHub Actions (green). Typed API client generated from OpenAPI with orval. 61 tests pass. Phase 1 foundation done except the items still open above.
 - **22 Nov 2026** — Payments deferred to the end (founder). Checkout soft lock (Durable Object) + per-booking timer Workflow; G08 availability. Cloudflare connected: cloud D1 `senzo-dev` migrated and seeded, API live on workers.dev.
 - **22 Nov 2026** — G11 My bookings + G12 Live booking: guest bookings list/detail API with derived job OTPs (documented in `docs/api.md`), two screens, demo bookings for Rahul in the seed. The mockup's "arrived" step is folded into "on the way" (no server signal); copy for the finish code says the chef is paid 24 h later (G13 gap).
+- **22 Nov 2026** — Chef job API (C04–C08, C13, C16 data). Workflow signal helpers moved to `modules/bookings/signals.ts` so routes don't import `cloudflare:workers`. 363 API tests pass.

@@ -22,5 +22,7 @@ export type AppEnv = {
     /** Set by requireAuth; absent on public routes. */
     userId?: string;
     sessionId?: string;
+    /** Set by requireChef on /v1/partner routes. */
+    chefId?: string;
   };
 };

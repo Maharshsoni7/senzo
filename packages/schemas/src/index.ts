@@ -5,4 +5,5 @@ export * from './discovery';
 export * from './enums';
 export * from './errors';
 export * from './money';
+export * from './partner';
 export * from './quotes';

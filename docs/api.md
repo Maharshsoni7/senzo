@@ -122,6 +122,8 @@ All five are **built** (`modules/discovery`, `modules/availability`). Not yet: `
 | GET | `/partner/tax-documents?fy=` | C18 |
 | DELETE | `/partner/account` | only with no upcoming jobs or pending payout (C19) |
 
+`/partner/bookings` list, detail, `accept`, `decline`, `on-my-way`, `start`, `done` and `finish` are built (`modules/partner-bookings`). They need a signed-in user with a chef row (`requireChef`; 403 otherwise); another chef's booking is 404. Accepting also needs the chef to be `live`, but a paused chef can still run jobs already accepted. Scopes: `requests` (by answer deadline, `acceptBy` = requested + 2 h), `upcoming` (`confirmed`, `in_progress`), `past` (the rest; checkouts hidden). Every action returns the updated detail. Before accepting, the chef sees the area, city, dishes, the guest's food profile and kitchen check. After accepting, and until 24 h after the job (`completedAt`, or serving time if it never completed), the chef also sees street, pincode and coordinates, so C13 can open the phone's Maps app. Flat and gate notes wait for field encryption. Accept creates the start-code row; `done` creates the finish-code row and signals the timer Workflow. `start`/`finish` check the code against its stored hash: a wrong code counts at once and the 5th locks it (`OTP_LOCKED` 423); an early or expired code is `OTP_INVALID` without using a try. `start` stores one `job_checks` arrival row with the distance; over 300 m is logged for ops, not blocked. No-show and door log (C14) aren't built yet.
+
 ## Webhooks (`/webhooks`, no auth, signature-checked)
 
 | Path | Source | Handled |
