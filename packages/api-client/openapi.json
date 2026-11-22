@@ -1060,6 +1060,12 @@
               "no_onion_garlic"
             ]
           },
+          "menuTotalPaise": {
+            "type": "integer"
+          },
+          "feesPaise": {
+            "type": "integer"
+          },
           "earningsPaise": {
             "type": "integer"
           }
@@ -1079,6 +1085,8 @@
           "area",
           "menuName",
           "foodRule",
+          "menuTotalPaise",
+          "feesPaise",
           "earningsPaise"
         ]
       },
@@ -1169,6 +1177,12 @@
               "jain",
               "no_onion_garlic"
             ]
+          },
+          "menuTotalPaise": {
+            "type": "integer"
+          },
+          "feesPaise": {
+            "type": "integer"
           },
           "earningsPaise": {
             "type": "integer"
@@ -1356,6 +1370,8 @@
           "area",
           "menuName",
           "foodRule",
+          "menuTotalPaise",
+          "feesPaise",
           "earningsPaise",
           "groceriesBy",
           "etaMinutes",

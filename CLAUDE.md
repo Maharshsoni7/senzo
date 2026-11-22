@@ -48,7 +48,8 @@ Update this list when scripts change. Node ≥ 22, pnpm via Corepack.
 pnpm install
 pnpm --filter api dev            # wrangler dev on :8787 (GET /v1/health, /openapi.json)
 pnpm --filter guest dev          # expo start (Razorpay needs a dev build, not Expo Go)
-pnpm --filter chef dev
+pnpm --filter chef dev           # Senzo Partner; seeded chef Ananya logs in with 9800000200, code 123456
+pnpm --filter chef test          # jest-expo, same setup as the guest app
 pnpm test                        # Vitest; api tests run in workerd with a local D1 + all migrations
 pnpm typecheck && pnpm lint
 pnpm --filter api db:generate --name <what>   # drizzle-kit generate SQL migration

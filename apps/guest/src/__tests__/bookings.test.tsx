@@ -62,7 +62,7 @@ const detail = (over: Partial<BookingDetail>): BookingDetail => ({
 });
 
 async function renderWithQuery(ui: ReactElement) {
-  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: Infinity } } });
   return await render(<QueryClientProvider client={client}>{ui}</QueryClientProvider>);
 }
 
@@ -122,15 +122,13 @@ describe('Live booking (G12)', () => {
   });
 
   it('shows the finish code and says the chef is paid 24 hours later', async () => {
-    jest
-      .mocked(getMyBooking)
-      .mockResolvedValue(
-        detail({
-          state: 'in_progress',
-          subStatus: 'awaiting_finish',
-          otp: { kind: 'finish', code: '7395' },
-        }),
-      );
+    jest.mocked(getMyBooking).mockResolvedValue(
+      detail({
+        state: 'in_progress',
+        subStatus: 'awaiting_finish',
+        otp: { kind: 'finish', code: '7395' },
+      }),
+    );
     await renderWithQuery(<LiveBooking />);
     expect(await screen.findByText('7395', {}, { timeout: 5000 })).toBeTruthy();
     expect(screen.getByText('Finish OTP')).toBeTruthy();
@@ -141,7 +139,9 @@ describe('Live booking (G12)', () => {
   it('offers a retry when the booking fails to load', async () => {
     jest.mocked(getMyBooking).mockRejectedValue(new Error('offline'));
     await renderWithQuery(<LiveBooking />);
-    expect(await screen.findByRole('button', { name: 'Try again' }, { timeout: 5000 })).toBeTruthy();
+    expect(
+      await screen.findByRole('button', { name: 'Try again' }, { timeout: 5000 }),
+    ).toBeTruthy();
   });
 });
 

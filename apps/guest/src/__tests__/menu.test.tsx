@@ -56,7 +56,7 @@ const quote = (over: Partial<Quote>): Quote => ({
 });
 
 async function renderMenu() {
-  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: Infinity } } });
   return await render(
     <QueryClientProvider client={client}>
       <MenuDetail />

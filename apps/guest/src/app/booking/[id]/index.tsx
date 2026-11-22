@@ -125,32 +125,51 @@ export default function LiveBooking() {
           <View style={styles.spacer} />
         </View>
 
-        <Card style={styles.hero}>
-          <ChefFig look={lookFor(b.chef.id)} initials={initialsOf(b.chef.displayName)} width={90} />
-          {stepIndex(stage) >= 0 ? <Progress stage={stage} /> : null}
-          <Text variant="title" accessibilityRole="header" accessibilityLiveRegion="polite">
+        {stepIndex(stage) >= 0 ? <Progress stage={stage} /> : null}
+
+        <View style={styles.hero}>
+          <ChefFig
+            look={lookFor(b.chef.id)}
+            initials={initialsOf(b.chef.displayName)}
+            width={144}
+          />
+          <View style={styles.shadow} />
+        </View>
+
+        <View style={styles.status}>
+          <Text
+            variant="titleLarge"
+            accessibilityRole="header"
+            accessibilityLiveRegion="polite"
+            style={styles.center}
+          >
             {t(`booking.title.${stage}`, args)}
           </Text>
-          <Text tone="secondary">{t(`booking.sub.${stage}`, args)}</Text>
+          <Text tone="secondary" style={styles.center}>
+            {t(`booking.sub.${stage}`, args)}
+          </Text>
           {b.otp ? (
             <View
               style={styles.otp}
+              accessible
               accessibilityLabel={t('booking.otpA11y', { code: b.otp.code.split('').join(' ') })}
             >
-              <Text variant="label" tone="onDarkMuted">
+              <Text variant="label" tone="muted">
                 {t(b.otp.kind === 'start' ? 'booking.startOtp' : 'booking.finishOtp')}
               </Text>
-              <Text variant="mono" tone="onDark" style={styles.otpCode}>
+              <Text variant="mono" weight="semibold" style={styles.otpCode}>
                 {b.otp.code}
               </Text>
             </View>
           ) : null}
           {b.otp?.kind === 'finish' ? (
-            <Text variant="small" tone="warning">
-              {t('booking.dontShare')}
-            </Text>
+            <View style={styles.warn}>
+              <Text variant="small" weight="bold" style={styles.warnText}>
+                {t('booking.dontShare')}
+              </Text>
+            </View>
           ) : null}
-        </Card>
+        </View>
 
         <Card style={styles.card}>
           <Text variant="label" tone="muted">
@@ -195,24 +214,46 @@ export default function LiveBooking() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: theme.color.background },
-  content: { padding: theme.spacing.screenX, gap: 16, paddingBottom: 40 },
-  skeleton: { gap: 12, padding: theme.spacing.screenX },
+  screen: { flex: 1, backgroundColor: theme.color.backgroundKitchen },
+  content: { padding: 20, gap: 16, paddingBottom: 40 },
+  skeleton: { gap: 12, padding: 20 },
   topBar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   spacer: { width: theme.size.buttonHeight },
-  hero: { gap: 12, alignItems: 'stretch' },
-  steps: { flexDirection: 'row', gap: 8 },
+  steps: { flexDirection: 'row', gap: 6, paddingHorizontal: 4 },
   step: { flex: 1, gap: 6 },
-  bar: { height: 4, borderRadius: 2, backgroundColor: theme.color.borderCool },
+  bar: { height: 5, borderRadius: 9, backgroundColor: theme.color.borderCool },
   barOn: { backgroundColor: theme.color.success },
-  otp: {
-    backgroundColor: theme.color.dark,
-    borderRadius: theme.radius.small,
-    padding: 16,
-    alignItems: 'center',
-    gap: 4,
+  hero: { alignItems: 'center', marginTop: 8 },
+  shadow: {
+    width: 160,
+    height: 20,
+    borderRadius: 80,
+    backgroundColor: 'rgba(0,0,0,0.12)',
+    marginTop: -14,
   },
-  otpCode: { fontSize: 36, lineHeight: 44, letterSpacing: 12 },
+  status: { alignItems: 'center', gap: 10 },
+  center: { textAlign: 'center' },
+  otp: {
+    backgroundColor: theme.color.surfaceTicket,
+    borderWidth: 1.5,
+    borderStyle: 'dashed',
+    borderColor: theme.color.textMuted,
+    borderRadius: 14,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    gap: 6,
+    marginTop: 4,
+  },
+  otpCode: { fontSize: 34, lineHeight: 42, letterSpacing: 10, paddingLeft: 10 },
+  warn: {
+    backgroundColor: theme.color.primarySoft,
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    minHeight: 40,
+    justifyContent: 'center',
+  },
+  warnText: { color: theme.color.primaryOnSoft },
   card: { gap: 8 },
   items: { gap: 2, marginTop: 4 },
   line: { flexDirection: 'row', justifyContent: 'space-between' },

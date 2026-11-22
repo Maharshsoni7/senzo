@@ -14,6 +14,8 @@ const ICONS = {
   user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 20a7 7 0 0 1 14 0',
   search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm5 12 4 4',
   filter: 'M4 6h16M7 12h10M10 18h4',
+  check: 'M5 12l5 5 9-10',
+  pin: 'M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12zm0-9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
 } as const;
 
 export type IconName = keyof typeof ICONS;

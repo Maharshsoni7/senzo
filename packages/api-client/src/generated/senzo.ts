@@ -554,6 +554,8 @@ export interface PartnerBookingSummary {
   /** @nullable */
   menuName: string | null;
   foodRule: PartnerBookingSummaryFoodRule;
+  menuTotalPaise: number;
+  feesPaise: number;
   earningsPaise: number;
 }
 
@@ -676,6 +678,8 @@ export interface PartnerBookingDetail {
   /** @nullable */
   menuName: string | null;
   foodRule: PartnerBookingDetailFoodRule;
+  menuTotalPaise: number;
+  feesPaise: number;
   earningsPaise: number;
   groceriesBy: PartnerBookingDetailGroceriesBy;
   /** @nullable */

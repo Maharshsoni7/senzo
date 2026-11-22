@@ -6,3 +6,4 @@ export * from './IconButton';
 export * from './states';
 export * from './Text';
 export * from './theme';
+export * from './Ticket';

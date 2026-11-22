@@ -58,6 +58,8 @@ function toSummary(row: Row) {
     area: row.area,
     menuName: row.menuName,
     foodRule: b.foodRule,
+    menuTotalPaise: b.menuTotalPaise,
+    feesPaise: b.platformFeePaise + b.platformFeeGstPaise,
     earningsPaise: b.chefSharePaise,
   };
 }

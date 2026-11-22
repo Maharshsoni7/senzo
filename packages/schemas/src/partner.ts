@@ -32,7 +32,10 @@ export const PartnerBookingSummary = z
     area: z.string(),
     menuName: z.string().nullable(),
     foodRule: FoodRule,
-    /** Menu total minus platform fee and its GST. */
+    menuTotalPaise: Paise,
+    /** Platform fee plus the GST on it. */
+    feesPaise: Paise,
+    /** Menu total minus fees. */
     earningsPaise: Paise,
   })
   .meta({ id: 'PartnerBookingSummary' });

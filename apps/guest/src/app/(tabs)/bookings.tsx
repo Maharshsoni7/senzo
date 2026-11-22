@@ -1,8 +1,8 @@
 import type { BookingSummary } from '@senzo/api-client';
 import { formatINR } from '@senzo/schemas';
 import {
-  Card,
   ChefFig,
+  Icon,
   IconButton,
   initialsOf,
   lookFor,
@@ -11,6 +11,8 @@ import {
   StateMessage,
   Text,
   theme,
+  Ticket,
+  TicketRule,
 } from '@senzo/ui';
 import { FlashList } from '@shopify/flash-list';
 import { router } from 'expo-router';
@@ -28,44 +30,38 @@ type Row =
 
 const openBooking = (id: string) => router.push({ pathname: '/booking/[id]', params: { id } });
 
-function OtpBox({ otp }: { otp: NonNullable<BookingSummary['otp']> }) {
-  const { t } = useTranslation();
+function Avatar({ chef, size }: { chef: BookingSummary['chef']; size: number }) {
   return (
-    <View style={styles.otp}>
-      <Text variant="label" tone="onDarkMuted">
-        {t(otp.kind === 'start' ? 'booking.startOtp' : 'booking.finishOtp')}
-      </Text>
-      <Text variant="mono" tone="onDark" style={styles.otpCode}>
-        {otp.code}
-      </Text>
+    <View style={[styles.avatar, { width: size, height: size }]}>
+      <ChefFig look={lookFor(chef.id)} initials={initialsOf(chef.displayName)} width={size} bust />
     </View>
   );
 }
 
 function UpcomingCard({ b }: { b: BookingSummary }) {
   const { t } = useTranslation();
-  const stage = stageOf(b);
-  const ended = stage === 'declined' || stage === 'cancelled';
   return (
     <Pressable
       accessibilityRole="button"
       onPress={() => openBooking(b.id)}
-      style={({ pressed }) => pressed && styles.pressed}
+      style={({ pressed }) => [styles.item, pressed && styles.pressed]}
     >
-      <Card style={[styles.card, ended && styles.cardEnded]}>
+      <Ticket>
         <View style={styles.row}>
           <Text variant="label" tone="muted">
             {b.code}
           </Text>
-          <Text variant="label" tone={ended ? 'primary' : 'success'}>
-            {t(`booking.stage.${stage}`)}
+          <Text variant="label" tone="success">
+            {t(`booking.stage.${stageOf(b)}`)}
           </Text>
         </View>
-        <View style={styles.row}>
-          <ChefFig look={lookFor(b.chef.id)} initials={initialsOf(b.chef.displayName)} width={44} />
+        <View style={[styles.row, styles.who]}>
+          <Avatar chef={b.chef} size={60} />
           <View style={styles.flex}>
-            <Text weight="bold">{b.chef.displayName}</Text>
-            <Text variant="small" tone="secondary">
+            <Text variant="bodyLarge" weight="bold">
+              {b.chef.displayName}
+            </Text>
+            <Text variant="small" tone="muted">
               {t('bookings.when', {
                 day: dayLabel(b.startsAt),
                 time: timeLabel(b.startsAt),
@@ -74,15 +70,53 @@ function UpcomingCard({ b }: { b: BookingSummary }) {
             </Text>
           </View>
         </View>
-        {b.otp ? <OtpBox otp={b.otp} /> : null}
-        <Text variant="small" tone={stage === 'declined' ? 'success' : 'secondary'}>
-          {stage === 'declined'
-            ? t('bookings.refunded', { amount: formatINR(b.totalPaise) })
-            : stage === 'cancelled'
-              ? t('bookings.cancelled')
-              : t('bookings.paid', { amount: formatINR(b.totalPaise) })}
-        </Text>
-      </Card>
+        <TicketRule />
+        <View style={styles.row}>
+          {b.otp ? (
+            <Text variant="mono">
+              {t(b.otp.kind === 'start' ? 'booking.startOtp' : 'booking.finishOtp')}{' '}
+              <Text variant="mono" weight="bold" style={styles.otpInline}>
+                {b.otp.code}
+              </Text>
+            </Text>
+          ) : (
+            <View />
+          )}
+          <Text variant="mono" weight="semibold">
+            {t('bookings.paid', { amount: formatINR(b.totalPaise) })}
+          </Text>
+        </View>
+      </Ticket>
+    </Pressable>
+  );
+}
+
+/** Declined or cancelled before the slot: one compact row. */
+function EndedRow({ b }: { b: BookingSummary }) {
+  const { t } = useTranslation();
+  const declined = stageOf(b) === 'declined';
+  return (
+    <Pressable
+      accessibilityRole="button"
+      onPress={() => openBooking(b.id)}
+      style={({ pressed }) => [styles.item, pressed && styles.pressed]}
+    >
+      <Ticket style={[styles.row, styles.compact]}>
+        <View style={styles.flex}>
+          <Text variant="label" tone={declined ? 'success' : 'muted'}>
+            {t(`booking.stage.${declined ? 'declined' : 'cancelled'}`)}
+          </Text>
+          <Text weight="bold">
+            {b.chef.displayName} · {dayLabel(b.startsAt)}
+          </Text>
+          <Text variant="small" tone="muted">
+            {declined
+              ? t('bookings.refunded', { amount: formatINR(b.totalPaise) })
+              : t('bookings.cancelled')}
+          </Text>
+        </View>
+        <Icon name="forward" />
+      </Ticket>
     </Pressable>
   );
 }
@@ -94,13 +128,13 @@ function PastCard({ b }: { b: BookingSummary }) {
     <Pressable
       accessibilityRole="button"
       onPress={() => openBooking(b.id)}
-      style={({ pressed }) => pressed && styles.pressed}
+      style={({ pressed }) => [styles.item, pressed && styles.pressed]}
     >
-      <Card style={[styles.card, styles.row]}>
-        <ChefFig look={lookFor(b.chef.id)} initials={initialsOf(b.chef.displayName)} width={36} />
+      <Ticket style={[styles.row, styles.compact, styles.past]}>
+        <Avatar chef={b.chef} size={48} />
         <View style={styles.flex}>
           <Text weight="bold">{b.chef.displayName}</Text>
-          <Text variant="small" tone="secondary">
+          <Text variant="small" tone="muted">
             {stage === 'finished'
               ? t('bookings.pastLine', {
                   day: dayLabel(b.startsAt),
@@ -115,12 +149,22 @@ function PastCard({ b }: { b: BookingSummary }) {
           hitSlop={12}
           onPress={() => router.push({ pathname: '/chef/[slug]', params: { slug: b.chef.slug } })}
         >
-          <Text variant="small" weight="semibold" tone="primary">
+          <Text variant="small" weight="bold" tone="primary">
             {t('bookings.bookAgain')}
           </Text>
         </Pressable>
-      </Card>
+      </Ticket>
     </Pressable>
+  );
+}
+
+function BookingRow({ b, past }: { b: BookingSummary; past: boolean }) {
+  if (past) return <PastCard b={b} />;
+  const stage = stageOf(b);
+  return stage === 'declined' || stage === 'cancelled' ? (
+    <EndedRow b={b} />
+  ) : (
+    <UpcomingCard b={b} />
   );
 }
 
@@ -134,7 +178,7 @@ export default function Bookings() {
   const header = (
     <View style={styles.header}>
       <IconButton icon="back" accessibilityLabel={t('common.back')} onPress={() => router.back()} />
-      <Text variant="titleLarge" accessibilityRole="header" style={styles.title}>
+      <Text variant="titleLarge" accessibilityRole="header">
         {t('bookings.title')}
       </Text>
     </View>
@@ -143,7 +187,7 @@ export default function Bookings() {
   if (upcoming.isPending || past.isPending) {
     return (
       <SafeAreaView style={styles.screen}>
-        {header}
+        <View style={styles.pad}>{header}</View>
         <View style={styles.skeleton}>
           <Skeleton height={160} />
           <Skeleton height={72} />
@@ -154,7 +198,7 @@ export default function Bookings() {
   if (!upcoming.data || !past.data) {
     return (
       <SafeAreaView style={styles.screen}>
-        {header}
+        <View style={styles.pad}>{header}</View>
         <StateMessage
           title={t('common.error')}
           actionLabel={t('common.retry')}
@@ -172,7 +216,7 @@ export default function Bookings() {
   if (coming.length === 0 && done.length === 0) {
     return (
       <SafeAreaView style={styles.screen}>
-        {header}
+        <View style={styles.pad}>{header}</View>
         <StateMessage
           title={t('bookings.emptyTitle')}
           body={t('bookings.emptyBody')}
@@ -217,13 +261,13 @@ export default function Bookings() {
         renderItem={({ item }) => {
           if (item.kind === 'header') {
             return (
-              <Text variant="label" tone="muted" style={styles.section}>
+              <Text variant="label" tone="secondary" style={styles.section}>
                 {item.title}
               </Text>
             );
           }
           if (item.kind === 'empty') return <Text tone="secondary">{item.title}</Text>;
-          return item.past ? <PastCard b={item.booking} /> : <UpcomingCard b={item.booking} />;
+          return <BookingRow b={item.booking} past={item.past} />;
         }}
       />
     </SafeAreaView>
@@ -231,25 +275,23 @@ export default function Bookings() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: theme.color.background },
-  header: { gap: 16, marginBottom: 8 },
-  title: { marginTop: 8 },
-  skeleton: { gap: 12, paddingHorizontal: theme.spacing.screenX, marginTop: 24 },
-  list: { paddingHorizontal: theme.spacing.screenX, paddingBottom: 32 },
-  section: { marginTop: 20, marginBottom: 8 },
-  card: { gap: 10, marginBottom: 12 },
-  cardEnded: { backgroundColor: theme.color.surfaceSubtle },
+  screen: { flex: 1, backgroundColor: theme.color.backgroundKitchen },
+  pad: { paddingHorizontal: 20, paddingTop: 8 },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingTop: 8 },
+  skeleton: { gap: 12, paddingHorizontal: 20, marginTop: 40 },
+  list: { paddingHorizontal: 20, paddingBottom: 32 },
+  section: { marginTop: 40, marginBottom: 12 },
+  item: { marginBottom: 12 },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  who: { marginTop: 12, justifyContent: 'flex-start' },
+  compact: { paddingVertical: 12 },
+  past: { opacity: 0.92, shadowOpacity: 0, elevation: 0 },
   flex: { flex: 1 },
   pressed: { opacity: 0.85 },
-  otp: {
-    backgroundColor: theme.color.dark,
-    borderRadius: theme.radius.small,
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  avatar: {
+    borderRadius: 999,
+    overflow: 'hidden',
+    backgroundColor: theme.color.primarySoft,
   },
-  otpCode: { fontSize: 22, letterSpacing: 6 },
+  otpInline: { fontSize: 16, letterSpacing: 1.6 },
 });
