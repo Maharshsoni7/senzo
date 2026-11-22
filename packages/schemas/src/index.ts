@@ -1,5 +1,6 @@
 export * from './auth';
 export * from './availability';
+export * from './bookings';
 export * from './discovery';
 export * from './enums';
 export * from './errors';

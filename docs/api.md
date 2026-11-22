@@ -57,8 +57,8 @@ All five are **built** (`modules/discovery`, `modules/availability`). Not yet: `
 | --- | --- | --- |
 | POST | `/bookings` | quote input + addressId + notes; **Idempotency-Key**; takes the soft lock; creates Razorpay order → `{ bookingId, code, razorpayOrderId, amountPaise, keyId }` |
 | POST | `/bookings/:id/payment/verify` | Razorpay `payment_id`, `order_id`, `signature` from the SDK; final state still waits for the webhook |
-| GET | `/bookings?scope=upcoming\|past` | G11 |
-| GET | `/bookings/:id` | Full booking incl. start/finish OTP for the guest when due |
+| GET | `/bookings?scope=upcoming\|past` | G11. **Built** (below) |
+| GET | `/bookings/:id` | Full booking incl. start/finish OTP for the guest when due. **Built** (below) |
 | GET | `/bookings/:id/cancellation-quote` | Refund amount by policy for "now" |
 | POST | `/bookings/:id/cancel` | reason; **Idempotency-Key** |
 | POST | `/bookings/:id/reschedule` | new date + slot (once, ≥ 48 h before) |
@@ -68,6 +68,8 @@ All five are **built** (`modules/discovery`, `modules/availability`). Not yet: `
 | POST | `/bookings/:id/tip` | amount → Razorpay order for the tip; **Idempotency-Key** |
 | GET | `/bookings/:id/invoices` | signed links (G21) |
 | POST | `/uploads` | → presigned R2 URL for photos (report, chat) |
+
+`GET /bookings` and `GET /bookings/:id` are built (`modules/bookings/{routes,service,repo}.ts`), guest-only: another guest's booking is 404, and checkouts (`payment_pending`, `expired`) are hidden. `upcoming` = `requested`, `confirmed`, `in_progress`, plus `declined`/`cancelled` until their slot time passes (G11 shows "not accepted · refunded"), soonest first; `past` = the rest, most recent first. `otp: { kind, code } | null` is the start code while `confirmed` and the finish code while `in_progress` + `awaiting_finish`. Job codes are `HMAC(OTP_PEPPER, bookingId + kind)` → 4 digits, so the guest can see them while `job_otps` stores only a hash; the start/finish routes verify by re-deriving. The detail adds the guest's own address (label, line1, area), dishes, price breakdown, and ETA + `onTheWayAt` while the chef is on the way. Until `/ws/bookings/:id` exists the app polls.
 
 ## Menu requests (G23, G24)
 

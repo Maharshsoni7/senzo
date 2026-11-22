@@ -1,8 +1,8 @@
-# Senzo — progress ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+# Senzo — progress
 
 Updated after every task. Status: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 
-Last updated: 21 Nov 2026
+Last updated: 22 Nov 2026
 
 ## Phases
 
@@ -65,6 +65,8 @@ Last updated: 21 Nov 2026
 - ✅ Discovery API: `GET /v1/chefs` (rail + search: area radius, text + synonyms, Jain/NOG, cuisine, group size, date+slot; ranked by distance, rating, acceptance, reply time), `/v1/chefs/:slug` (verified proofs only), `/:id/menus`, `/:id/reviews` (paged, "Rahul D.")
 - ⬜ FTS5 search index, `addressId` filter, ChefFig look from the API
 - ✅ Guest app slice 1–4: UI kit (`packages/ui`: theme + Archivo/Plex Mono, Text, Button, Chip, Card, states, icons, ChefFig), session in SecureStore with shared refresh, TanStack Query cache (MMKV; memory in Expo Go), i18n en (+ gu/hi copies listed in `_todo`), screens G01–G08 + G22 on the live API, booking draft shared G22 → G08; Android bundle builds; 14 jest-expo tests
+- ✅ G11 + G12: `GET /v1/bookings?scope=upcoming|past` and `GET /v1/bookings/:id` (`modules/bookings/{routes,service,repo,otp}.ts`), guest-only; start/finish codes derived from `OTP_PEPPER` so they can be shown while `job_otps` keeps only a hash. App: My bookings (FlashList, coming up + past) and Live booking (progress, ETA, OTP, details, price), polling every 30 s while live. Seed: Rahul gets SZ-1051 (confirmed, 19 Dec) and SZ-1050 (declined, 13 Dec)
+- ⬜ `/ws/bookings/:id` live socket (replaces polling)
 - ⬜ Turnstile widget in the app (dev API accepts any token)
 - ⬜ KitchenBg and DishArt illustrations; chef preview sheet (G04)
 - ⬜ Gujarati and Hindi translations (`apps/guest/src/i18n/{gu,hi}.json` → `_todo`; run `node src/i18n/sync-locales.mjs` after adding English keys)
@@ -88,8 +90,8 @@ API: ✅ ready · 🟡 partly · ⬜ not built. 💳 = needs payments (built las
 | G08 | Check availability | 3 | ✅ /availability, /quotes | 🟡 checkout waits for payments |
 | G09 | Checkout & pay 💳 | last | ⬜ POST /bookings + Razorpay | ⬜ |
 | G10 | Booked + start OTP 💳 | last | ⬜ | ⬜ |
-| G11 | My bookings | 3 | ⬜ GET /bookings | 🟡 placeholder |
-| G12 | Live booking + finish OTP | 3 | ⬜ GET /bookings/:id, WS | ⬜ |
+| G11 | My bookings | 3 | ✅ GET /bookings | ✅ (chat, change, report, invoice links wait for those screens) |
+| G12 | Live booking + finish OTP | 3 | ✅ GET /bookings/:id · WS ⬜ (polls 30 s) | ✅ (report, chat, call, rate & tip links wait) |
 | G13 | Rate & tip (tip 💳) | 4 | ⬜ review, tip | ⬜ |
 | G14 | Account + allergies | 4 | ⬜ /me, food-profile, wallet | 🟡 placeholder + sign out |
 | G15 | Chat + proposed menu | 4 | ⬜ threads, WS | ⬜ |
@@ -155,3 +157,4 @@ API: ✅ ready · 🟡 partly · ⬜ not built. 💳 = needs payments (built las
 - **21 Nov 2026** — Seed data from mockups (GST rounding logged as Q8). Phone OTP auth with rotating refresh tokens; `.dev.vars.example` added. 59 tests pass.
 - **21 Nov 2026** — CI on GitHub Actions (green). Typed API client generated from OpenAPI with orval. 61 tests pass. Phase 1 foundation done except the items still open above.
 - **22 Nov 2026** — Payments deferred to the end (founder). Checkout soft lock (Durable Object) + per-booking timer Workflow; G08 availability. Cloudflare connected: cloud D1 `senzo-dev` migrated and seeded, API live on workers.dev.
+- **22 Nov 2026** — G11 My bookings + G12 Live booking: guest bookings list/detail API with derived job OTPs (documented in `docs/api.md`), two screens, demo bookings for Rahul in the seed. The mockup's "arrived" step is folded into "on the way" (no server signal); copy for the finish code says the chef is paid 24 h later (G13 gap).

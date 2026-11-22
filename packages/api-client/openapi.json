@@ -547,6 +547,410 @@
           "guests"
         ]
       },
+      "BookingList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookingSummary"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ]
+      },
+      "BookingSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "payment_pending",
+              "requested",
+              "confirmed",
+              "in_progress",
+              "completed",
+              "paid_out",
+              "declined",
+              "cancelled",
+              "no_show",
+              "disputed",
+              "refunded",
+              "expired"
+            ]
+          },
+          "subStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "on_the_way",
+              "awaiting_finish",
+              "possible_no_show",
+              null
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "slot": {
+            "type": "string",
+            "enum": [
+              "lunch",
+              "dinner",
+              "late"
+            ]
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "chef": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "slug",
+              "displayName"
+            ]
+          },
+          "menuName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "totalPaise": {
+            "type": "integer"
+          },
+          "otp": {
+            "$ref": "#/components/schemas/JobOtp"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "state",
+          "subStatus",
+          "date",
+          "slot",
+          "startsAt",
+          "guests",
+          "chef",
+          "menuName",
+          "totalPaise",
+          "otp"
+        ]
+      },
+      "JobOtp": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "start",
+              "finish"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^\\d{4}$"
+          }
+        },
+        "required": [
+          "kind",
+          "code"
+        ]
+      },
+      "BookingDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "payment_pending",
+              "requested",
+              "confirmed",
+              "in_progress",
+              "completed",
+              "paid_out",
+              "declined",
+              "cancelled",
+              "no_show",
+              "disputed",
+              "refunded",
+              "expired"
+            ]
+          },
+          "subStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "on_the_way",
+              "awaiting_finish",
+              "possible_no_show",
+              null
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "slot": {
+            "type": "string",
+            "enum": [
+              "lunch",
+              "dinner",
+              "late"
+            ]
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "guests": {
+            "type": "integer"
+          },
+          "chef": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "slug",
+              "displayName"
+            ]
+          },
+          "menuName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "totalPaise": {
+            "type": "integer"
+          },
+          "otp": {
+            "$ref": "#/components/schemas/JobOtp"
+          },
+          "foodRule": {
+            "type": "string",
+            "enum": [
+              "regular",
+              "jain",
+              "no_onion_garlic"
+            ]
+          },
+          "groceriesBy": {
+            "type": "string",
+            "enum": [
+              "chef",
+              "guest"
+            ]
+          },
+          "etaMinutes": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "onTheWayAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "startedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "doneAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "cancelledBy": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "guest",
+              "chef",
+              "system",
+              "admin",
+              null
+            ]
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "enum": [
+                  "home",
+                  "work",
+                  "other"
+                ]
+              },
+              "line1": {
+                "type": "string"
+              },
+              "area": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "label",
+              "line1",
+              "area"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "course": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "dishName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "course",
+                "dishName"
+              ]
+            }
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "menuTotalPaise": {
+                "type": "integer"
+              },
+              "convenienceFeePaise": {
+                "type": "integer"
+              },
+              "feeGstPaise": {
+                "type": "integer"
+              },
+              "promoPaise": {
+                "type": "integer"
+              },
+              "walletPaise": {
+                "type": "integer"
+              },
+              "totalPaise": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "menuTotalPaise",
+              "convenienceFeePaise",
+              "feeGstPaise",
+              "promoPaise",
+              "walletPaise",
+              "totalPaise"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "state",
+          "subStatus",
+          "date",
+          "slot",
+          "startsAt",
+          "guests",
+          "chef",
+          "menuName",
+          "totalPaise",
+          "otp",
+          "foodRule",
+          "groceriesBy",
+          "etaMinutes",
+          "onTheWayAt",
+          "startedAt",
+          "doneAt",
+          "completedAt",
+          "cancelledBy",
+          "address",
+          "items",
+          "price"
+        ]
+      },
       "ChefMonthAvailability": {
         "type": "object",
         "properties": {
@@ -1350,6 +1754,133 @@
           },
           "422": {
             "description": "Guests out of range, food rule not offered or promo invalid",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bookings": {
+      "get": {
+        "operationId": "listMyBookings",
+        "tags": [
+          "bookings"
+        ],
+        "summary": "The guest's bookings, coming up or past (G11)",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "upcoming",
+                "past"
+              ],
+              "default": "upcoming"
+            },
+            "required": false,
+            "name": "scope",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bookings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bookings/{bookingId}": {
+      "get": {
+        "operationId": "getMyBooking",
+        "tags": [
+          "bookings"
+        ],
+        "summary": "One booking with its live status and the start/finish code when due (G12)",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "bookingId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such booking, or it isn't this guest's",
             "content": {
               "application/problem+json": {
                 "schema": {

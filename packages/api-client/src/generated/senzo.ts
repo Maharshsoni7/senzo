@@ -268,6 +268,226 @@ export interface QuoteRequest {
   promo?: string;
 }
 
+export type BookingSummaryState = (typeof BookingSummaryState)[keyof typeof BookingSummaryState];
+
+export const BookingSummaryState = {
+  payment_pending: 'payment_pending',
+  requested: 'requested',
+  confirmed: 'confirmed',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  paid_out: 'paid_out',
+  declined: 'declined',
+  cancelled: 'cancelled',
+  no_show: 'no_show',
+  disputed: 'disputed',
+  refunded: 'refunded',
+  expired: 'expired',
+} as const;
+
+/**
+ * @nullable
+ */
+export type BookingSummarySubStatus =
+  (typeof BookingSummarySubStatus)[keyof typeof BookingSummarySubStatus] | null;
+
+export const BookingSummarySubStatus = {
+  on_the_way: 'on_the_way',
+  awaiting_finish: 'awaiting_finish',
+  possible_no_show: 'possible_no_show',
+} as const;
+
+export type BookingSummarySlot = (typeof BookingSummarySlot)[keyof typeof BookingSummarySlot];
+
+export const BookingSummarySlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export type JobOtpKind = (typeof JobOtpKind)[keyof typeof JobOtpKind];
+
+export const JobOtpKind = {
+  start: 'start',
+  finish: 'finish',
+} as const;
+
+/**
+ * @nullable
+ */
+export type JobOtp = {
+  kind: JobOtpKind;
+  /** @pattern ^\d{4}$ */
+  code: string;
+} | null;
+
+export type BookingSummaryChef = {
+  id: string;
+  slug: string;
+  displayName: string;
+};
+
+export interface BookingSummary {
+  id: string;
+  code: string;
+  state: BookingSummaryState;
+  /** @nullable */
+  subStatus: BookingSummarySubStatus;
+  date: string;
+  slot: BookingSummarySlot;
+  startsAt: string;
+  guests: number;
+  chef: BookingSummaryChef;
+  /** @nullable */
+  menuName: string | null;
+  totalPaise: number;
+  otp: JobOtp | null;
+}
+
+export interface BookingList {
+  items: BookingSummary[];
+  /** @nullable */
+  nextCursor: string | null;
+}
+
+export type BookingDetailState = (typeof BookingDetailState)[keyof typeof BookingDetailState];
+
+export const BookingDetailState = {
+  payment_pending: 'payment_pending',
+  requested: 'requested',
+  confirmed: 'confirmed',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  paid_out: 'paid_out',
+  declined: 'declined',
+  cancelled: 'cancelled',
+  no_show: 'no_show',
+  disputed: 'disputed',
+  refunded: 'refunded',
+  expired: 'expired',
+} as const;
+
+/**
+ * @nullable
+ */
+export type BookingDetailSubStatus =
+  (typeof BookingDetailSubStatus)[keyof typeof BookingDetailSubStatus] | null;
+
+export const BookingDetailSubStatus = {
+  on_the_way: 'on_the_way',
+  awaiting_finish: 'awaiting_finish',
+  possible_no_show: 'possible_no_show',
+} as const;
+
+export type BookingDetailSlot = (typeof BookingDetailSlot)[keyof typeof BookingDetailSlot];
+
+export const BookingDetailSlot = {
+  lunch: 'lunch',
+  dinner: 'dinner',
+  late: 'late',
+} as const;
+
+export type BookingDetailChef = {
+  id: string;
+  slug: string;
+  displayName: string;
+};
+
+export type BookingDetailFoodRule =
+  (typeof BookingDetailFoodRule)[keyof typeof BookingDetailFoodRule];
+
+export const BookingDetailFoodRule = {
+  regular: 'regular',
+  jain: 'jain',
+  no_onion_garlic: 'no_onion_garlic',
+} as const;
+
+export type BookingDetailGroceriesBy =
+  (typeof BookingDetailGroceriesBy)[keyof typeof BookingDetailGroceriesBy];
+
+export const BookingDetailGroceriesBy = {
+  chef: 'chef',
+  guest: 'guest',
+} as const;
+
+/**
+ * @nullable
+ */
+export type BookingDetailCancelledBy =
+  (typeof BookingDetailCancelledBy)[keyof typeof BookingDetailCancelledBy] | null;
+
+export const BookingDetailCancelledBy = {
+  guest: 'guest',
+  chef: 'chef',
+  system: 'system',
+  admin: 'admin',
+} as const;
+
+export type BookingDetailAddressLabel =
+  (typeof BookingDetailAddressLabel)[keyof typeof BookingDetailAddressLabel];
+
+export const BookingDetailAddressLabel = {
+  home: 'home',
+  work: 'work',
+  other: 'other',
+} as const;
+
+export type BookingDetailAddress = {
+  label: BookingDetailAddressLabel;
+  line1: string;
+  /** @nullable */
+  area: string | null;
+};
+
+export type BookingDetailItemsItem = {
+  /** @nullable */
+  course: string | null;
+  dishName: string;
+};
+
+export type BookingDetailPrice = {
+  menuTotalPaise: number;
+  convenienceFeePaise: number;
+  feeGstPaise: number;
+  promoPaise: number;
+  walletPaise: number;
+  totalPaise: number;
+};
+
+export interface BookingDetail {
+  id: string;
+  code: string;
+  state: BookingDetailState;
+  /** @nullable */
+  subStatus: BookingDetailSubStatus;
+  date: string;
+  slot: BookingDetailSlot;
+  startsAt: string;
+  guests: number;
+  chef: BookingDetailChef;
+  /** @nullable */
+  menuName: string | null;
+  totalPaise: number;
+  otp: JobOtp | null;
+  foodRule: BookingDetailFoodRule;
+  groceriesBy: BookingDetailGroceriesBy;
+  /** @nullable */
+  etaMinutes: number | null;
+  /** @nullable */
+  onTheWayAt: string | null;
+  /** @nullable */
+  startedAt: string | null;
+  /** @nullable */
+  doneAt: string | null;
+  /** @nullable */
+  completedAt: string | null;
+  /** @nullable */
+  cancelledBy: BookingDetailCancelledBy;
+  address: BookingDetailAddress;
+  items: BookingDetailItemsItem[];
+  price: BookingDetailPrice;
+}
+
 export type ChefMonthAvailabilityDaysItemSlotsLunch =
   (typeof ChefMonthAvailabilityDaysItemSlotsLunch)[keyof typeof ChefMonthAvailabilityDaysItemSlotsLunch];
 
@@ -486,6 +706,23 @@ export type GetHealth200 = {
   ok: true;
 };
 
+export type ListMyBookingsParams = {
+  scope?: ListMyBookingsScope;
+  cursor?: string;
+  /**
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+};
+
+export type ListMyBookingsScope = (typeof ListMyBookingsScope)[keyof typeof ListMyBookingsScope];
+
+export const ListMyBookingsScope = {
+  upcoming: 'upcoming',
+  past: 'past',
+} as const;
+
 export type GetChefAvailabilityParams = {
   /** @pattern ^\d{4}-(0[1-9]|1[0-2])$ */
   month: string;
@@ -673,6 +910,50 @@ export const createQuote = async (
     method: 'POST',
     headers: getHeaders({ 'Content-Type': 'application/json' }, options?.headers),
     body: JSON.stringify(quoteRequest),
+  });
+};
+
+export const getListMyBookingsUrl = (params?: ListMyBookingsParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value));
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/v1/bookings?${stringifiedParams}` : `/v1/bookings`;
+};
+
+/**
+ * @summary The guest's bookings, coming up or past (G11)
+ */
+export const listMyBookings = async (
+  params?: ListMyBookingsParams,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<BookingList> => {
+  return senzoFetch<BookingList>(getListMyBookingsUrl(params), {
+    ...options,
+    method: 'GET',
+  });
+};
+
+export const getGetMyBookingUrl = (bookingId: string) => {
+  return `/v1/bookings/${bookingId}`;
+};
+
+/**
+ * @summary One booking with its live status and the start/finish code when due (G12)
+ */
+export const getMyBooking = async (
+  bookingId: string,
+  options?: Parameters<typeof senzoFetch>[1],
+): Promise<BookingDetail> => {
+  return senzoFetch<BookingDetail>(getGetMyBookingUrl(bookingId), {
+    ...options,
+    method: 'GET',
   });
 };
 

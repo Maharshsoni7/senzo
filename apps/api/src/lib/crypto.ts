@@ -1,6 +1,6 @@
 const encoder = new TextEncoder();
 
-export async function hmacSha256(secret: string, message: string) {
+async function hmacBytes(secret: string, message: string) {
   if (!secret) throw new Error('HMAC secret not set (OTP_PEPPER?)');
   const key = await crypto.subtle.importKey(
     'raw',
@@ -9,8 +9,19 @@ export async function hmacSha256(secret: string, message: string) {
     false,
     ['sign'],
   );
-  const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(message));
-  return toBase64Url(new Uint8Array(sig));
+  return new Uint8Array(await crypto.subtle.sign('HMAC', key, encoder.encode(message)));
+}
+
+export async function hmacSha256(secret: string, message: string) {
+  return toBase64Url(await hmacBytes(secret, message));
+}
+
+/** n digits keyed on `message`; the same inputs always give the same code. */
+export async function hmacDigits(secret: string, message: string, n: number) {
+  const bytes = await hmacBytes(secret, message);
+  const value = new DataView(bytes.buffer).getUint32(0);
+  // Modulo bias is under 1e-5 for n ≤ 4.
+  return String(value % 10 ** n).padStart(n, '0');
 }
 
 export function randomToken(bytes = 32) {

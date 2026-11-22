@@ -63,6 +63,7 @@ export default function RootLayout() {
             <Stack.Screen name="chef/[slug]/index" />
             <Stack.Screen name="chef/[slug]/menu/[menuId]" />
             <Stack.Screen name="book/when" />
+            <Stack.Screen name="booking/[id]/index" />
           </Stack.Protected>
           <Stack.Protected guard={status === 'signedOut'}>
             <Stack.Screen name="welcome" />

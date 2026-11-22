@@ -455,7 +455,60 @@ export const bookings: Insert<S['bookings']>[] = [
     },
     ...split(10 * (rupees(2300) + rupees(120))),
   },
+  // G11/G12 demo for Rahul: one coming up, one the chef didn't take.
+  {
+    id: 'bk_sz1051',
+    code: 'SZ-1051',
+    guestId: 'usr_rahul',
+    chefId: 'chef_ananya',
+    menuId: 'menu_gujarati_classic',
+    addressId: 'addr_rahul_home',
+    date: '2026-12-19',
+    slot: 'dinner',
+    guests: 6,
+    foodRule: 'regular',
+    groceriesBy: 'chef',
+    state: 'confirmed',
+    priceSnapshot: { menu: 'Gujarati Classic', band: '5–10', perGuestPaise: rupees(1800) },
+    ...split(6 * rupees(1800)),
+    allergiesAckAt: at('2026-11-20T06:00:00Z'),
+    acceptedAt: at('2026-11-20T06:00:00Z'),
+  },
+  {
+    id: 'bk_sz1050',
+    code: 'SZ-1050',
+    guestId: 'usr_rahul',
+    chefId: 'chef_rohan',
+    menuId: 'menu_rohan_signature',
+    addressId: 'addr_rahul_home',
+    date: '2026-12-13',
+    slot: 'dinner',
+    guests: 6,
+    foodRule: 'regular',
+    groceriesBy: 'chef',
+    state: 'declined',
+    priceSnapshot: { menu: 'Signature', band: '2–12', perGuestPaise: rupees(2200) },
+    ...split(6 * rupees(2200)),
+    cancelledBy: 'system',
+    cancelReason: 'No answer in 2 hours',
+  },
 ];
+
+export const bookingItems: Insert<S['bookingItems']>[] = (
+  [
+    ['Starter 1', 'Khandvi Tacos'],
+    ['Starter 2', 'Patra'],
+    ['Main 1', 'Deconstructed Undhiyu'],
+    ['Main 2', 'Gujarati Dal'],
+    ['Bread & rice', 'Phulka & Jeera Rice'],
+    ['Dessert', 'Gulab Jamun'],
+  ] as const
+).map(([course, dishName], i) => ({
+  id: `item_sz1051_${i}`,
+  bookingId: 'bk_sz1051',
+  course,
+  dishName,
+}));
 
 const sz1042Flow = [
   [null, 'payment_pending', 'guest', '2026-11-04T05:20:00Z'],
@@ -491,6 +544,23 @@ export const bookingEvents: Insert<S['bookingEvents']>[] = [
     actor: 'system',
     at: at('2026-11-12T09:02:00Z'),
   },
+  ...(
+    [
+      ['bk_sz1051', null, 'payment_pending', 'guest', '2026-11-20T05:00:00Z'],
+      ['bk_sz1051', 'payment_pending', 'requested', 'system', '2026-11-20T05:01:00Z'],
+      ['bk_sz1051', 'requested', 'confirmed', 'chef', '2026-11-20T06:00:00Z'],
+      ['bk_sz1050', null, 'payment_pending', 'guest', '2026-11-21T05:00:00Z'],
+      ['bk_sz1050', 'payment_pending', 'requested', 'system', '2026-11-21T05:01:00Z'],
+      ['bk_sz1050', 'requested', 'declined', 'system', '2026-11-21T07:01:00Z'],
+    ] as const
+  ).map(([bookingId, fromState, toState, actor, when], i) => ({
+    id: `evt_${bookingId.slice(3)}_${i}`,
+    bookingId,
+    fromState,
+    toState,
+    actor,
+    at: at(when),
+  })),
 ];
 
 export const tips: Insert<S['tips']>[] = [

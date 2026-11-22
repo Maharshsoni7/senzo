@@ -6,6 +6,7 @@ import { log } from './lib/log';
 import { createRouter } from './lib/router';
 import { authRoutes } from './modules/auth/routes';
 import { availabilityRoutes } from './modules/availability/routes';
+import { bookingRoutes } from './modules/bookings/routes';
 import { discoveryRoutes } from './modules/discovery/routes';
 import { quoteRoutes } from './modules/quotes/routes';
 
@@ -61,6 +62,7 @@ export function createApp() {
 
   app.route('/v1/auth', authRoutes);
   app.route('/v1/quotes', quoteRoutes);
+  app.route('/v1/bookings', bookingRoutes);
   app.route('/v1/chefs', availabilityRoutes);
   app.route('/v1/chefs', discoveryRoutes);
 

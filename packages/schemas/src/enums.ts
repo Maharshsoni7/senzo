@@ -61,6 +61,7 @@ export const BookingState = z.enum([
 ]);
 export type BookingState = z.infer<typeof BookingState>;
 export const BookingSubStatus = z.enum(['on_the_way', 'awaiting_finish', 'possible_no_show']);
+export type BookingSubStatus = z.infer<typeof BookingSubStatus>;
 export const Actor = z.enum(['guest', 'chef', 'system', 'admin']);
 export type Actor = z.infer<typeof Actor>;
 export const JobOtpKind = z.enum(['start', 'finish']);

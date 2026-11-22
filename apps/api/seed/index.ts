@@ -23,6 +23,7 @@ const plan: [SQLiteTable, object[]][] = [
   [schema.addresses, data.addresses],
   [schema.foodProfiles, data.foodProfiles],
   [schema.bookings, data.bookings],
+  [schema.bookingItems, data.bookingItems],
   [schema.bookingEvents, data.bookingEvents],
   [schema.tips, data.tips],
   [schema.reviews, data.reviews],
